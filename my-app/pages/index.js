@@ -1,11 +1,11 @@
 import { useEffect } from "react";
 import Lenis from "@studio-freight/lenis";
 
-import NavBar from '../components/NavBar';
-import HeroSection from '../components/HeroSection';
+import NavBar from "../components/NavBar";
+import HeroSection from "../components/HeroSection";
+import ProjectsSection from "../components/ProjectSection";
 
 export default function Home() {
-
   useEffect(() => {
     const lenis = new Lenis({
       duration: 1.2,
@@ -28,9 +28,15 @@ export default function Home() {
   return (
     <>
       <NavBar />
-      <div>
-        <HeroSection />
-      </div>
+
+      {/* ✅ Hero */}
+      <HeroSection />
+
+      {/* ✅ Projects / Next Section */}
+      <ProjectsSection />
+
+      {/* You can keep adding more sections like this... */}
+      {/* <ContactSection /> */}
     </>
   );
 }

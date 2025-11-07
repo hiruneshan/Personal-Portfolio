@@ -65,15 +65,16 @@ export default function HeroSection() {
   };
 
   const darkOverlayLoaded = {
-    opacity: 0.45, // Final darkening level (0 = none, 1 = full dark)
+    opacity: 0.45,
   };
 
   const contentStyle = {
     zIndex: 2,
     position: "relative",
     opacity: 0,
-    animation: `fadeInText 3s ease-out forwards`,
-    animationDelay: "0.5s",
+    transform: "translateY(30px)",
+    animation: `fadeInUp 1.8s ease-out forwards`,
+    animationDelay: "0.6s",
   };
 
   return (
@@ -88,8 +89,15 @@ export default function HeroSection() {
       }}
     >
       <style>{`
-        @keyframes fadeInText {
-          to { opacity: 1; }
+        @keyframes fadeInUp {
+          0% {
+            opacity: 0;
+            transform: translateY(30px);
+          }
+          100% {
+            opacity: 1;
+            transform: translateY(0);
+          }
         }
       `}</style>
 
@@ -106,21 +114,24 @@ export default function HeroSection() {
       <Container className="text-center" style={contentStyle}>
         <Row className="align-items-center" style={{ minHeight: "80vh" }}>
           <Col>
-            <h1 className="display-2 fw-bold mb-4" style={{ color: "white" }}>
+            <h1 className="display-2 fw-bold mb-3" style={{ color: "white" }}>
               Hiru Wijemanne
             </h1>
-
-            <p className="lead mb-5" style={{ color: "rgba(255, 255, 255, 0.7)" }}>
+               <p className="lead mb-5" style={{ color: "rgba(255, 255, 255, 0.7)" }}>
               Full-Stack Developer
             </p>
+            <br />
 
-            <Button variant="primary" size="lg" className="me-3">
-              View Projects
-            </Button>
-
-            <Button variant="outline-light" size="lg">
-              Download Resume
-            </Button>
+            {/* ✅ NEW TEXT */}
+            <p
+              className="lead mb-4"
+              style={{ color: "rgba(255, 255, 255, 0.85)", maxWidth: "700px", margin: "0 auto" }}
+            >
+              Hey! I'm a Toronto-based full-stack developer with a passion for 
+              crafting efficient and scalable web applications. With a strong
+              foundation in both front-end and back-end technologies.
+              <br />Do you wanna see my skills? <b>HIRE ME!</b>
+            </p>
           </Col>
         </Row>
       </Container>
