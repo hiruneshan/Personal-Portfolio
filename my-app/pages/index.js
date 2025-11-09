@@ -35,8 +35,6 @@ export default function Home() {
       {/* ✅ Projects / Next Section */}
       <ProjectsSection />
 
-      {/* You can keep adding more sections like this... */}
-      {/* <ContactSection /> */}
     </>
   );
 }
