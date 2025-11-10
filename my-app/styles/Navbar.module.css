@@ -2,7 +2,7 @@
 
 .retroNavbar {
   font-family: 'VT323', monospace;
-  background-color: var(--retro-black);
+  background-color: #000;
   padding-top: 1rem;
   padding-bottom: 1rem;
   

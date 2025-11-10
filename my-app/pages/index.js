@@ -5,6 +5,7 @@ import NavBar from "../components/NavBar";
 import HeroSection from "../components/HeroSection";
 import ProjectSection from "../components/ProjectSection";
 import Projects from "@/components/Projects";
+import SocialLinks from "@/components/SocialLinks";
 
 export default function Home() {
   // useEffect(() => {
@@ -31,6 +32,7 @@ export default function Home() {
       <NavBar />
       <HeroSection />
       <Projects/>
+      <SocialLinks />
 
     </>
   );

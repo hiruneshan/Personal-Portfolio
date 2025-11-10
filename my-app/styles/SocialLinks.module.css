@@ -1,0 +1,27 @@
+/* styles/SocialLinks.module.css */
+
+.socialContainer {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem; /* Space between icons */
+  z-index: 1000; /* Ensures it's on top of other content */
+}
+
+.socialIcon {
+  /* Match the footer icon style from your other file */
+  width: 2rem;  /* h-8 w-8 */
+  height: 2rem; /* h-8 w-8 */
+  padding: 0.25rem; /* p-1 */
+  
+  color: var(--retro-green);
+  transition: all 0.2s ease-in-out;
+}
+
+.socialIcon:hover {
+  /* Match the hover style from your links */
+  background-color: var(--retro-green);
+  color: var(--retro-black);
+}
