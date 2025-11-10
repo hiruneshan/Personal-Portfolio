@@ -1,0 +1,88 @@
+/* styles/HeroSection.module.css */
+
+/* --- Base Section --- */
+.hero-section {
+  min-height: 100vh;
+  position: relative;
+  padding: 100px 0;
+  overflow: hidden;
+  background-color: #10172A; /* darkBlue */
+}
+
+/* --- Background Image Layer --- */
+.hero-background {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  background-image: linear-gradient(
+      to bottom,
+      rgba(255, 255, 255, 0.4) 0%,
+      rgba(255, 255, 255, 0) 5%,
+      rgba(255, 255, 255, 0) 100%
+    ),
+    url("/images/img.png"); /* Make sure this path is correct */
+  background-size: 100% 50px, cover;
+  background-position: center top;
+  background-repeat: no-repeat;
+  transition: background-position 3s ease-out, background-size 3s ease-out;
+}
+
+.hero-background.loaded {
+  background-position: center bottom;
+  background-size: 100% 100%, cover;
+  background-image: linear-gradient(
+      to bottom,
+      rgba(255, 255, 255, 0) 0%,
+      rgba(255, 255, 255, 0) 100%
+    ),
+    url("/images/img.png"); /* Make sure this path is correct */
+}
+
+/* --- Dark Overlay Layer --- */
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  background-color: #10172A; /* darkBlue */
+  opacity: 1;
+  transition: opacity 3s ease-out;
+  pointer-events: none;
+}
+
+.hero-overlay.loaded {
+  opacity: 0.45;
+}
+
+/* --- Content Layer --- */
+.hero-content {
+  z-index: 2;
+  position: relative;
+  opacity: 0;
+  transform: translateY(30px);
+  animation: fadeInUp 1.8s ease-out forwards;
+  animation-delay: 0.6s;
+}
+
+/* This class styles your intro paragraph */
+.intro-text {
+  color: rgba(255, 255, 255, 0.85);
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+
+/* --- Animations --- */
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
