@@ -1,0 +1,21 @@
+/* styles/globals.css */
+
+/* Add these two global rules to the TOP of this file */
+@import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
+
+:root {
+  --retro-green: #2abd2a;
+  --retro-black: #0d0d0d;
+}
+
+
+
+
+body {
+  /* Make the body background match the navbar background */
+  background-color: var(--retro-black);
+  
+  /* The rest of your body styles */
+  font-family: 'VT323', monospace;
+  color: var(--retro-green);
+}

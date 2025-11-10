@@ -1,0 +1,70 @@
+
+
+.retroNavbar {
+  font-family: 'VT323', monospace;
+  background-color: var(--retro-black);
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  
+
+}
+
+.navbarContainer {
+  padding-left: 1rem;
+  padding-right: 1rem;
+  max-width: 960px;
+  
+  /* ADD THE BORDER HERE:
+  */
+  border-bottom: 2px solid var(--retro-green);
+}
+/* Responsive padding from Tailwind */
+@media (min-width: 640px) {
+  .navbarContainer {
+    padding-left: 2.5rem; /* sm:px-10 */
+    padding-right: 2.5rem; /* sm:px-10 */
+  }
+}
+
+.navbarBrand {
+  /* 'flex items-center gap-4 text-retro-green' */
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  color: var(--retro-green) !important; /* Override Bootstrap */
+}
+
+.logoSvg {
+  /* 'size-6' */
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+.brandText {
+  /* 'text-lg font-bold ... tracking-widest uppercase' */
+  font-size: 1.125rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.navLinks {
+  /* 'gap-9' (approx 2.25rem) */
+  gap: 2.25rem;
+}
+
+.navLink {
+  /* 'text-retro-green text-base ... px-2 transition-colors' */
+  color: var(--retro-green) !important;
+  font-size: 1rem !important;
+  padding: 0 0.5rem !important; /* px-2 */
+  transition: all 0.2s ease-in-out;
+  border-radius: 0; /* remove default rounding */
+}
+
+.navLink:hover,
+.navLink:focus {
+  /* 'hover:bg-retro-green hover:text-black' */
+  background-color: var(--retro-green);
+  color: var(--retro-black) !important;
+}

@@ -1,52 +1,116 @@
-import Card from 'react-bootstrap/Card';
-import Button from 'react-bootstrap/Button';
+// app/components/Projects.js
+'use client'; // <-- Makes this a Client Component
+
+import React, { useState, useEffect } from 'react'; // <-- Import hooks
+import { Container, Row, Col } from 'react-bootstrap';
+import styles from '../styles/Projects.module.css';
 
 
-export default function ProjectCard({ project }) {
+// REMOVED: The static projectData array is no longer needed here
+
+// This is the small button component for the card header
+const WindowButton = () => (
+  <button className={styles.windowButton}>_</button>
+);
+
+export default function Projects() {
+  // --- STATE ---
+  // 1. Create state to hold your projects
+  const [projects, setProjects] = useState([]);
+  // 2. Create state to handle loading
+  const [isLoading, setIsLoading] = useState(true);
+
+  // --- DATA FETCHING ---
+  // 3. Fetch data from your API when the component mounts
+  useEffect(() => {
+    async function fetchProjects() {
+      try {
+        const response = await fetch('/api/projects');
+        const data = await response.json();
+        setProjects(data.projects); // <-- Set the projects from your API
+      } catch (error) {
+        console.error('Failed to fetch projects:', error);
+      } finally {
+        setIsLoading(false); // <-- Stop loading
+      }
+    }
+    fetchProjects();
+  }, []); // The empty array [] means this runs only once
+
+  if (isLoading) {
     return (
-        <Card 
-            className="h-100 shadow-lg border-0" 
-            style={{ borderRadius: '1rem', backgroundColor: '#1E293B', color: 'white' }}
-        >
-            {/* Placeholder for project image/screenshot */}
-            <Card.Img 
-                variant="top" 
-                src={project.imageUrl}
-                alt={`Screenshot of ${project.title}`}
-                onError={(e) => {
-                    // Fallback to a placeholder image if the URL fails
-                    e.target.onerror = null; 
-                    e.target.src = `https://placehold.co/600x400/10172A/ffffff?text=${project.title.split(' ')[0]}`;
-                }}
-                style={{ height: '200px', objectFit: 'cover', borderTopLeftRadius: '1rem', borderTopRightRadius: '1rem' }}
-            />
-            
-            <Card.Body className="d-flex flex-column">
-                <Card.Title className="fw-bold text-primary">{project.title}</Card.Title>
-                <Card.Text className="text-muted mb-4 flex-grow-1">
-                    {project.description}
-                </Card.Text>
-
-                <div className="mt-auto">
-                    <Button 
-                        variant="primary" 
-                        href={project.liveUrl} 
-                        target="_blank" 
-                        rel="noopener noreferrer"
-                        className="me-2"
-                    >
-                        Live Demo
-                    </Button>
-                    <Button 
-                        variant="outline-light" 
-                        href={project.repoUrl} 
-                        target="_blank" 
-                        rel="noopener noreferrer"
-                    >
-                        GitHub
-                    </Button>
-                </div>
-            </Card.Body>
-        </Card>
+      <Container as="main" className={styles.projectSection}>
+        <Row className="justify-content-center">
+          <Col xs={12} lg={10} className="text-center">
+            <p className={styles.subTitleText}>
+              Loading Project_Files...
+            </p>
+          </Col>
+        </Row>
+      </Container>
     );
+  }
+
+  // --- RENDERED COMPONENT ---
+  return (
+    <Container as="main" className={styles.projectSection}>
+      {/* === SECTION HEADER === */}
+      <Row className="justify-content-center">
+        <Col xs={12} lg={10} className="text-center">
+          <p className={styles.titleText}>Projects</p>
+          <p className={styles.subTitleText}>
+           
+            A directory of recent works, feel free to explore the codebase.
+            <br></br>
+          </p>
+        </Col>
+      </Row>
+
+      {/* === PROJECTS GRID === */}
+      <Row className={styles.projectGrid}>
+        {/* 5. Map over the 'projects' state variable */}
+        {projects.map((project, index) => (
+          <Col
+            md={6}
+            lg={4}
+            key={project.title}
+            className={styles.projectColumn}
+            // style={{ animationDelay: `${index * 100}ms` }}
+          >
+            {/* --- PROJECT CARD --- */}
+            <div className={styles.projectCard}>
+              {/* Card Header (Window Title Bar) */}
+              <div className={styles.cardHeader}>
+                <h3 className={styles.cardTitle}>{project.title}</h3>
+                <div className={styles.windowButtons}>
+                  <button className={styles.windowButton}>_</button>
+                  <button className={styles.windowButton}>□</button>
+                  <button className={styles.windowButton}>X</button>
+                </div>
+              </div>
+
+              {/* Card Image */}
+              <div className={styles.cardImageContainer}>
+                <img
+                  src={project.imageUrl || 'default-image.png'} // Use a fallback image
+                  alt={project.title}
+                  className={styles.cardImage}
+                />
+              </div>
+
+              {/* Card Body & 'Execute' Button */}
+              <div className={styles.cardBody}>
+                <p>{project.description}</p>
+                {/* You can map over keyFeatures here if you want */}
+                <a href="#" className={styles.btnRetro}>
+                  View GitHub...
+                </a>
+              </div>
+            </div>
+            {/* --- END PROJECT CARD --- */}
+          </Col>
+        ))}
+      </Row>
+    </Container>
+  );
 }

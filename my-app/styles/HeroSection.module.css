@@ -1,88 +1,164 @@
-/* styles/HeroSection.module.css */
 
-/* --- Base Section --- */
-.hero-section {
-  min-height: 100vh;
-  position: relative;
-  padding: 100px 0;
-  overflow: hidden;
-  background-color: #10172A; /* darkBlue */
-}
-
-/* --- Background Image Layer --- */
-.hero-background {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 0;
-  background-image: linear-gradient(
-      to bottom,
-      rgba(255, 255, 255, 0.4) 0%,
-      rgba(255, 255, 255, 0) 5%,
-      rgba(255, 255, 255, 0) 100%
-    ),
-    url("/images/img.png"); /* Make sure this path is correct */
-  background-size: 100% 50px, cover;
-  background-position: center top;
-  background-repeat: no-repeat;
-  transition: background-position 3s ease-out, background-size 3s ease-out;
-}
-
-.hero-background.loaded {
-  background-position: center bottom;
-  background-size: 100% 100%, cover;
-  background-image: linear-gradient(
-      to bottom,
-      rgba(255, 255, 255, 0) 0%,
-      rgba(255, 255, 255, 0) 100%
-    ),
-    url("/images/img.png"); /* Make sure this path is correct */
-}
-
-/* --- Dark Overlay Layer --- */
-.hero-overlay {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 1;
-  background-color: #10172A; /* darkBlue */
-  opacity: 1;
-  transition: opacity 3s ease-out;
-  pointer-events: none;
-}
-
-.hero-overlay.loaded {
-  opacity: 0.45;
-}
-
-/* --- Content Layer --- */
-.hero-content {
-  z-index: 2;
-  position: relative;
-  opacity: 0;
-  transform: translateY(30px);
-  animation: fadeInUp 1.8s ease-out forwards;
-  animation-delay: 0.6s;
-}
-
-/* This class styles your intro paragraph */
-.intro-text {
-  color: rgba(255, 255, 255, 0.85);
-  max-width: 700px;
-  margin: 0 auto;
-}
+@import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
 
 
-/* --- Animations --- */
-@keyframes fadeInUp {
-  0% {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  100% {
+@keyframes blink {
+  from, to {
     opacity: 1;
-    transform: translateY(0);
   }
+  50% {
+    opacity: 0;
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes type {
+  from { width: 0; }
+  to { width: 100%; }
+}
+
+
+/* --- Base Section Style --- */
+.heroSection {
+  /* This matches your <body> styles */
+  background-color: #000;
+  font-family: 'VT323', monospace;
+  color: #4ade80;
+  
+  /* This centers the terminal */
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  overflow: hidden; /* Important for animations */
+}
+
+/* --- Terminal Window --- */
+.terminalWindow {
+  border: 2px solid rgba(34, 197, 94, 0.5); /* green-500/50 */
+  background-color: rgba(0, 0, 0, 0.5);
+  box-shadow: 0 0 15px rgba(34, 197, 94, 0.4);
+  padding: 1.5rem;
+  position: relative;
+  z-index: 20;
+}
+
+@media (min-width: 640px) {
+  .terminalWindow {
+    padding: 2rem; /* sm:p-8 */
+  }
+}
+
+/* --- Terminal Header --- */
+.terminalHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.windowButtons {
+  display: flex;
+  gap: 0.5rem; /* gap-2 */
+}
+
+.dot {
+  width: 0.75rem; /* w-3 */
+  height: 0.75rem; /* h-3 */
+  border-radius: 9999px; /* rounded-full */
+  background-color: rgba(34, 197, 94, 0.3); /* bg-green-500/50 (adjusted) */
+}
+
+.dotActive {
+  background-color: #22c55e; /* bg-green-500 */
+}
+
+.terminalTitle {
+  font-size: 0.875rem; /* text-sm */
+  color: rgba(34, 197, 94, 0.8); /* text-green-500/80 */
+}
+
+/* --- Terminal Content & Prompts --- */
+.terminalContent {
+  font-size: 1.25rem; /* text-xl */
+  line-height: 1.75; /* leading-relaxed */
+}
+
+@media (min-width: 768px) {
+  .terminalContent {
+    font-size: 1.5rem; /* md:text-2xl */
+  }
+}
+
+.prompt {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem; /* gap-2 */
+}
+
+.promptSymbol {
+  color: #22c55e; /* text-green-500 */
+}
+
+.promptHighlight {
+  color: rgba(34, 197, 94, 0.6); /* text-green-500/60 */
+}
+
+/* --- Utility Class (from your example) --- */
+.textShadowGreen {
+  /* text-shadow: 0 0 5px theme('colors.green.500'), 0 0 10px theme('colors.green.500'); */
+  text-shadow: 0 0 5px #22c55e, 0 0 10px #22c55e;
+}
+
+
+/* --- ANIMATION CLASSES --- */
+
+/* All animated elements start as invisible */
+.animateType1,
+.animateType2,
+.animateType3,
+.animateCursor {
+  opacity: 0;
+}
+
+/* Line 1: Typing */
+.animateType1 {
+  /* This is required for the typing animation */
+  white-space: nowrap;
+  overflow: hidden;
+  
+  /* animation: fadeIn 0.5s forwards, type 1s steps(20, end) 0.5s; */
+  animation: fadeIn 0.5s forwards, 
+             type 1s steps(20, end) 0.5s;
+}
+
+/* Line 2: Fade In */
+.animateType2 {
+  /* animation: fadeIn 0.5s 1.5s forwards; */
+  animation: fadeIn 0.5s 1.5s forwards;
+  margin-top: 1rem;
+}
+
+/* Line 3: Fade In Group */
+.animateType3 {
+  /* animation: fadeIn 0.5s 2s forwards; */
+  animation: fadeIn 0.5s 2s forwards;
+  margin-top: 1rem;
+}
+
+/* Line 4: Blinking Cursor */
+.animateCursor {
+  /* w-2 h-6 bg-green-500 */
+  width: 0.5rem; 
+  height: 1.5rem;
+  background-color: #22c55e;
+
+  /* animation: fadeIn 0.5s 3s forwards, blink 1s step-end infinite 3s; */
+  animation: fadeIn 0.5s 3s forwards, 
+             blink 1s step-end infinite 3s;
 }

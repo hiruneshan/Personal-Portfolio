@@ -1,46 +1,41 @@
-import Container from 'react-bootstrap/Container';
-import Nav from 'react-bootstrap/Nav';
-import Navbar from 'react-bootstrap/Navbar';
+import React from 'react';
+import { Navbar, Container, Nav } from 'react-bootstrap';
+import styles from '../styles/Navbar.module.css'; // Adjust path if needed
 
-export default function NavBar() {
-    // Define the custom styles for the blur effect
-    const customNavbarStyle = {
-        // Dark Blue Background with 80% Opacity (rgba)
-        backgroundColor: 'rgba(30, 41, 59, 0.8)', 
-        // Apply the blur effect (requires a modern browser)
-        backdropFilter: 'blur(10px)',
-        // Ensure the blur effect covers the whole component (optional, but good practice)
-        WebkitBackdropFilter: 'blur(10px)', // For Safari support
-        borderBottom: '1px solid rgba(255, 255, 255, 0.1)', // Subtle light border
-    };
+// Extracted the SVG icon from the HTML
+const LogoIcon = () => (
+  <svg
+    fill="currentColor"
+    viewBox="0 0 24 24"
+    xmlns="http://www.w3.org/2000/svg"
+    className={styles.logoSvg}
+  >
+    <path d="M4 2h16v20H4V2zm2 2v2h12V4H6zm0 4v2h4V8H6zm6 0v2h6V8h-6zm-6 4v2h4v-2H6zm6 0v2h6v-2h-6zm-6 4v2h4v-2H6zm6 0v2h6v-2h-6z"></path>
+  </svg>
+);
 
-    return (
-        <Navbar
-            // We remove the default 'bg' prop so our custom style is used
-            variant="dark"
-            expand="lg"
-            sticky="top"
-            // Apply the custom styles here
-            style={customNavbarStyle} 
-        >
-            <Container>
-                {/* Fixed the markdown bolding issue here */}
-                <Navbar.Brand href="#home">
-                    <strong>Hiru Wijemanne</strong>
-                </Navbar.Brand>
+export default function RetroNavbar() {
+  return (
+    <Navbar as="header" className={styles.retroNavbar} expand="sm" sticky='top'>
+      <Container className={styles.navbarContainer}>
+       
+        <Navbar.Brand href="#home" className={styles.navbarBrand}>
+          <LogoIcon />
+          <span className={styles.brandText}>C:\Hiru_Wijemanne</span>
+        </Navbar.Brand>
 
-                <Navbar.Toggle aria-controls="basic-navbar-nav" />
-
-                <Navbar.Collapse id="basic-navbar-nav">
-                    {/* ms-auto pushes the links to the right */}
-                    <Nav className="ms-auto">
-                        <Nav.Link href="#home">Home</Nav.Link>
-                        <Nav.Link href="#about">About</Nav.Link>
-                        <Nav.Link href="#projects">Projects</Nav.Link>
-                        <Nav.Link href="#contact">Contact</Nav.Link>
-                    </Nav>
-                </Navbar.Collapse>
-            </Container>
-        </Navbar>
-    )
+        <Nav className={`ms-auto d-none d-sm-flex ${styles.navLinks}`}>
+          <Nav.Link href="#home" className={styles.navLink}>
+            HOME
+          </Nav.Link>
+          <Nav.Link href="#about" className={styles.navLink}>
+            ABOUT
+          </Nav.Link>
+          <Nav.Link href="#contact" className={styles.navLink}>
+            CONTACT
+          </Nav.Link>
+        </Nav>
+      </Container>
+    </Navbar>
+  );
 }
