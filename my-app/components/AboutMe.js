@@ -1,18 +1,17 @@
 import React from "react";
 import { Container, Row, Col } from "react-bootstrap";
-import styles from "../styles/HeroSection.module.css"
+import styles from "../styles/HeroSection.module.css";
 
 export default function heroSection() {
   return (
     <section className={styles.heroSection}>
       <Container>
         <Row className="justify-content-center">
-          {/* Use Bootstrap Col to manage the max-width */}
           <Col md={10} lg={9}>
             {/* 1. THE TERMINAL WINDOW */}
             <div className={styles.terminalWindow}>
               
-             
+              {/* 2. THE TERMINAL HEADER (Updated Title from Image) */}
               <div className={styles.terminalHeader}>
                 <div className={styles.windowButtons}>
                   <div className={`${styles.dot} ${styles.dotActive}`}></div>
@@ -20,47 +19,62 @@ export default function heroSection() {
                   <div className={styles.dot}></div>
                 </div>
                 <div className={styles.terminalTitle}>
-                  <span>About_me - C:\</span>
+                  {/* Title from the image */}
+                  <span>Hiru.Wijemanne_PORTFOLIO - C:\ABOUT</span>
                 </div>
               </div>
 
-              {/* 3. THE TERMINAL CONTENT */}
+              {/* 3. THE TERMINAL CONTENT (Modified) */}
               <div className={styles.terminalContent}>
                 
-                {/* Line 1: Typing animation */}
+                {/* Line 1: The command from the image */}
                 <div className={styles.prompt}>
-                  <span className={styles.promptSymbol}></span>
-                  {/* This class handles the typing */}
-                  <p className={styles.animateType1}>
-                    &gt; hiru.wijemanne --init
+                  {/* <span className={styles.promptSymbol}>C:\</span> */}
+                  {/* Use a simple p tag for static text, not animated */}
+                  <p style={{ display: 'inline-block', marginLeft: '0.5rem' }}>
+                    &gt; dir about.me
                   </p>
                 </div>
 
-                {/* Line 2: First fade-in */}
-                <p className={`${styles.animateType2} ${styles.textShadowGreen}`}>
-                  Initializing portfolio...
-                </p>
+                {/* Line 2: Two-column layout */}
+                <Row className="my-3"> {/* my-3 adds vertical margin */}
+                  
+                  {/* Left Column: Image Box */}
+                  <Col md={5} lg={4}>
+                    {/* You need to add this new style to your CSS file */}
+                    <div className={styles.imagePlaceholder}>
+                      <img
+                        src="/images/img2.jpg" // Ensure this path is correct
+                        alt="Profile"
+                        className={styles.profileImage}
+                      />
+                    </div>
+                  </Col>
 
-                {/* Line 3: Second fade-in (group) */}
-                <div className={styles.animateType3}>
-                  <p>&gt; Hey! I'm Hiru.</p>
-                  <p>&gt; A Toronto based Full Stack Developer, trying to make things cooler!.</p>
-                  <p>
-                    &gt;{" "}
-                    <span className={styles.promptHighlight}>
-                      Explore my work below.
-                    </span>
-                  </p>
-                </div>
+                  <Col md={7} lg={8}>
+                    {/* Simple <p> tags for the static text */}
+                    <p>&gt; Hey there, I'm Hiru.</p>
+                    <p>
+                      &gt; I'm a full stack developer based in Toronto.
+                    </p>
+                    <p>
+                      &gt; My journey into tech started with a fascination for
+                      early computer interfaces, and that retro-futuristic
+                      aesthetic still inspires my work today. I thrive on
+                      building things that are not only functional and intuitive
+                      but also have a unique character.
+                    </p>
+                    <p>&gt; Let's create something cool together!</p>
+                  </Col>
+                </Row>
 
-                {/* Line 4: Blinking cursor */}
+                {/* Line 3: Blinking cursor (re-using your existing style) */}
                 <div className={styles.prompt}>
                   <span className={styles.promptSymbol}>&gt;</span>
-                  {/* This class handles the blinking cursor */}
                   <div className={styles.animateCursor}></div>
                 </div>
-              </div>
 
+              </div>
             </div>
           </Col>
         </Row>
