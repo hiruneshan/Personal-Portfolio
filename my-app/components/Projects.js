@@ -1,4 +1,3 @@
-// app/components/Projects.js
 'use client'; // <-- Makes this a Client Component
 
 import React, { useState, useEffect } from 'react'; // <-- Import hooks
@@ -6,9 +5,6 @@ import { Container, Row, Col } from 'react-bootstrap';
 import styles from '../styles/Projects.module.css';
 
 
-// REMOVED: The static projectData array is no longer needed here
-
-// This is the small button component for the card header
 const WindowButton = () => (
     <button className={styles.windowButton}>_</button>
 );
@@ -20,8 +16,6 @@ export default function Projects() {
     // 2. Create state to handle loading
     const [isLoading, setIsLoading] = useState(true);
 
-    // --- DATA FETCHING ---
-    // 3. Fetch data from your API when the component mounts
     useEffect(() => {
         async function fetchProjects() {
             try {
@@ -31,11 +25,11 @@ export default function Projects() {
             } catch (error) {
                 console.error('Failed to fetch projects:', error);
             } finally {
-                setIsLoading(false); // <-- Stop loading
+                setIsLoading(false); 
             }
         }
         fetchProjects();
-    }, []); // The empty array [] means this runs only once
+    }, []);
 
     if (isLoading) {
         return (
@@ -59,58 +53,62 @@ export default function Projects() {
                 <Col xs={12} lg={10} className="text-center">
                     <p className={styles.titleText}>Projects</p>
                     <p className={styles.subTitleText}>
-
                         A directory of recent works, feel free to explore the codebase.
-                        <br></br>
+                        <br />
                     </p>
                 </Col>
             </Row>
 
             {/* === PROJECTS GRID === */}
-            <Row className={styles.projectGrid}>
-                {/* 5. Map over the 'projects' state variable */}
-                {projects.map((project, index) => (
-                    <Col
-                        sm={4}
-                        md={4}
-                        lg={4}
-                        key={project.title}
-                        className={styles.projectColumn}
-                    // style={{ animationDelay: `${index * 100}ms` }}
-                    >
-                        {/* --- PROJECT CARD --- */}
-                        <div className={styles.projectCard}>
-                            {/* Card Header (Window Title Bar) */}
-                            <div className={styles.cardHeader}>
-                                <h3 className={styles.cardTitle}>{project.title}</h3>
-                                <div className={styles.windowButtons}>
-                                    <button className={styles.windowButton}>_</button>
-                                    <button className={styles.windowButton}>□</button>
-                                    <button className={styles.windowButton}>X</button>
+            <Row className="justify-content-center">
+                <Col xs={12}>
+                    <Row className={`${styles.projectGrid} g-4`}>
+                        {/* 5. Map over the 'projects' state variable */}
+                        {projects.map((project, index) => (
+                            <Col
+                                xs={12}
+                                sm={6}
+                                md={4}
+                                lg={4}
+                                key={project.title}
+                                className={styles.projectColumn}
+                            // style={{ animationDelay: `${index * 100}ms` }}
+                            >
+                                {/* --- PROJECT CARD --- */}
+                                <div className={styles.projectCard}>
+                                    {/* Card Header (Window Title Bar) */}
+                                    <div className={styles.cardHeader}>
+                                        <h3 className={styles.cardTitle}>{project.title}</h3>
+                                        <div className={styles.windowButtons}>
+                                            <button className={styles.windowButton}>_</button>
+                                            <button className={styles.windowButton}>□</button>
+                                            <button className={styles.windowButton}>X</button>
+                                        </div>
+                                    </div>
+
+                                    {/* Card Image */}
+                                    <div className={styles.cardImageContainer}>
+                                        <img
+                                            src={project.imageUrl || 'default-image.png'} // Use a fallback image
+                                            alt={project.title}
+                                            className={styles.cardImage}
+                                        />
+                                    </div>
+
+                                    {/* Card Body & 'Execute' Button */}
+                                    <div className={styles.cardBody}>
+                                        <p>{project.description}</p>
+                                        {/* You can map over keyFeatures here if you want */}
+                                        <a href="#" className={styles.btnRetro}>
+                                            View GitHub...
+                                        </a>
+                                    </div>
                                 </div>
-                            </div>
-
-                            {/* Card Image */}
-                            <div className={styles.cardImageContainer}>
-                                <img
-                                    src={project.imageUrl || 'default-image.png'} // Use a fallback image
-                                    alt={project.title}
-                                    className={styles.cardImage}
-                                />
-                            </div>
-
-                            {/* Card Body & 'Execute' Button */}
-                            <div className={styles.cardBody}>
-                                <p>{project.description}</p>
-                                {/* You can map over keyFeatures here if you want */}
-                                <a href="#" className={styles.btnRetro}>
-                                    View GitHub...
-                                </a>
-                            </div>
-                        </div>
-                        {/* --- END PROJECT CARD --- */}
-                    </Col>
-                ))}
+                                {/* --- END PROJECT CARD --- */}
+                            </Col>
+                        ))}
+                    </Row>
+                </Col>
             </Row>
         </Container>
     );

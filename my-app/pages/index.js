@@ -1,11 +1,11 @@
 import { useEffect } from "react";
-import Lenis from "@studio-freight/lenis";
+
 
 import NavBar from "../components/NavBar";
 import HeroSection from "../components/HeroSection";
-import ProjectSection from "../components/ProjectSection";
 import Projects from "@/components/Projects";
 import SocialLinks from "@/components/SocialLinks";
+import AboutMe from "@/components/AboutMe";
 
 export default function Home() {
   // useEffect(() => {
@@ -31,6 +31,7 @@ export default function Home() {
     <>
       <NavBar />
       <HeroSection />
+      <AboutMe />
       <Projects/>
       <SocialLinks />
 
