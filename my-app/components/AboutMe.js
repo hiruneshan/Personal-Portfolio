@@ -20,7 +20,7 @@ export default function heroSection() {
                   <div className={styles.dot}></div>
                 </div>
                 <div className={styles.terminalTitle}>
-                  <span>H.WIJEMANNE_PORTFOLIO - C:\</span>
+                  <span>About_me - C:\</span>
                 </div>
               </div>
 
