@@ -4,10 +4,10 @@ import styles from "../styles/HeroSection.module.css"
 
 export default function heroSection() {
   return (
-    <section className={styles.heroSection}>
+    <section id="home" className={styles.heroSection}>
       <Container>
         <Row className="justify-content-center">
-          {/* Use Bootstrap Col to manage the max-width */}
+  
           <Col md={10} lg={9}>
             {/* 1. THE TERMINAL WINDOW */}
             <div className={styles.terminalWindow}>

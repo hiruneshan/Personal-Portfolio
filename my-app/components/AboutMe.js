@@ -4,7 +4,7 @@ import styles from "../styles/HeroSection.module.css";
 
 export default function heroSection() {
   return (
-    <section className={styles.heroSection}>
+    <section id="about" className={styles.heroSection}>
       <Container>
         <Row className="justify-content-center">
           <Col md={10} lg={9}>

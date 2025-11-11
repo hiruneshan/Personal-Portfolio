@@ -61,21 +61,80 @@
   transition: all 0.3s ease-in-out;
   position: relative;
   z-index: 1;
+  overflow: hidden; /* <-- ADDED: This contains the overlay */
 }
 
+/* --- NEW HOVER OVERLAY --- */
+.projectOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  
+  /* Style */
+  background: rgba(10, 25, 10, 0.95); /* Dark semi-transparent green */
+  color: var(--retro-green);
+  padding: 1rem;
+  
+  /* Center the content */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  
+  /* Animation */
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+  z-index: 5; /* Sits on top of card content */
+  
+}
+
+.projectOverlay h3 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.projectOverlay p {
+  font-size: 0.9rem;
+  margin: 0.5rem 0 1rem 0;
+}
+
+/* Make sure the overlay's button uses the retro style */
+.projectOverlay .btnRetro {
+  margin-top: 1rem;
+}
+
+/* --- MODIFIED HOVER EFFECT --- */
 .projectCard:hover {
   transform: translateY(-10px) scale(1.05);
   box-shadow: 0 0 25px rgba(34, 197, 94, 0.8);
   z-index: 10;
 }
 
-.projectCard:hover .cardBody {
-  max-height: 1000px; /* Expands to show full content */
+/* On hover, show the overlay */
+.projectCard:hover .projectOverlay {
+  opacity: 1;
+  visibility: visible;
 }
+
+/* On hover, hide the original card content */
+.projectCard:hover .cardHeader,
+.projectCard:hover .cardImageContainer,
+.projectCard:hover .cardBody {
+   opacity: 0;
+   visibility: hidden;
+   transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+/* --- END OF HOVER MODIFICATIONS --- */
+
 
 /* --- Card Header (Window Title) --- */
 .cardHeader {
-  /* flex items-center justify-between border-b-2 ... */
+  /* ... (Rest of your file is unchanged) ... */
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -83,6 +142,7 @@
   background-color: var(--retro-green);
   padding: 0.25rem; /* p-1 */
   color: var(--retro-black);
+  transition: opacity 0.3s ease, visibility 0.3s ease; /* Added transition */
 }
 
 .cardTitle {
@@ -130,6 +190,7 @@
   aspect-ratio: 4 / 3;
   overflow: hidden;
   border-bottom: 2px solid var(--retro-green);
+  transition: opacity 0.3s ease, visibility 0.3s ease; /* Added transition */
 }
 
 .cardImage {
@@ -153,7 +214,8 @@
   flex-direction: column;
   flex-grow: 1; /* This makes the body grow to fill height */
   overflow: hidden;
-  transition: max-height 0.3s ease-in-out;
+  /* Removed max-height transition */
+  transition: opacity 0.3s ease, visibility 0.3s ease; /* Added transition */
 }
 
 .cardBody p {
@@ -171,10 +233,12 @@
   transition: all 0.3s ease-in-out;
 }
 
+/* This rule is no longer needed as the body is hidden on hover
 .projectCard:hover .cardFeatures {
   opacity: 1;
   max-height: 300px;
 }
+*/
 
 .cardFeatures ul {
   list-style: none;
@@ -224,6 +288,8 @@
 }
 
 /* === MODAL STYLES === */
+/* (These are fine to leave for other parts of your site, */
+/* but they are no longer used by the project card) */
 .modalOverlay {
   position: fixed;
   top: 0;
