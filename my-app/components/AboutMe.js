@@ -39,15 +39,18 @@ export default function heroSection() {
                 {/* Line 2: Two-column layout */}
                 <Row className="my-3"> {/* my-3 adds vertical margin */}
                   
-                  {/* Left Column: Image Box */}
+                  {/* Left Column: Image Box with NEW LAYERED STRUCTURE */}
                   <Col md={5} lg={4}>
-                    {/* You need to add this new style to your CSS file */}
-                    <div className={styles.imagePlaceholder}>
-                      <img
-                        src="/images/img2.jpg" // Ensure this path is correct
-                        alt="Profile"
-                        className={styles.profileImage}
-                      />
+                    {/* NEW: Layered container structure */}
+                    <div className={styles.profileImageContainer}>
+                      <div className={styles.profileBackLayer}></div>
+                      <div className={styles.profileImageWrapper}>
+                        <img
+                          src="/images/img2.jpg" // Ensure this path is correct
+                          alt="Profile"
+                          className={styles.profileImage}
+                        />
+                      </div>
                     </div>
                   </Col>
 
