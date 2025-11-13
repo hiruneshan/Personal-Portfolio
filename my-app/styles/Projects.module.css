@@ -13,55 +13,62 @@
 }
 
 .projectSection {
-  padding-top: 4rem;    /* py-16 */
+  padding-top: 4rem;
   padding-bottom: 4rem;
-  overflow-x: hidden; /* Important: Prevents scrollbar during animation */
+  overflow-x: hidden;
 }
 
 /* --- Section Header --- */
 .titleText {
-  /* text-4xl sm:text-5xl font-black ... */
-  font-size: clamp(2.25rem, 5vw, 3rem); /* Responsive font size */
+  font-size: clamp(2.25rem, 5vw, 3rem);
   font-weight: 900;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  /* text-shadow-green */
-  text-shadow: 1px 1px 2px var(--retro-green-dark);
+  /* --- UPDATED: Use hero section's glow color --- */
+  color: #00F5D4;
+  text-shadow: 0 0 8px rgba(0, 245, 212, 0.7);
 }
 
 .subTitleText {
-  /* text-lg font-normal ... */
   font-size: 1.125rem;
   font-weight: 400;
-  max-width: 32rem; /* max-w-lg */
+  max-width: 32rem;
   margin: 0 auto;
+  /* --- UPDATED: Use hero section's text color --- */
+  color: #A0AEC0; /* Lighter gray from your theme */
 }
 
-/* --- Projects Grid --- */
+
 .projectGrid {
   /* Removed custom gap - letting Bootstrap handle it with g-4 class */
+  
+  /* --- NEW: Constrain grid width to match navbar --- */
+  max-width: 960px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .projectColumn {
-  /* This is the item that gets animated */
-  opacity: 0; /* Start hidden */
+  opacity: 0;
   animation: slideInFromRight 0.6s ease-out forwards;
 }
 
 /* --- Project Card --- */
 .projectCard {
   height: 100%;
-  max-width: 350px; /* Limits card width */
-  margin: 0 auto; /* Centers the card in its column */
+  max-width: 350px;
+  margin: 0 auto;
   display: flex;
   flex-direction: column;
-  border: 2px solid var(--retro-green);
-  box-shadow: 0 0 10px rgba(34, 197, 94, 0.4); /* green-500 with opacity */
-  background-color: var(--retro-black);
+  /* --- UPDATED: Use hero section's border and glow --- */
+  border: 2px solid rgba(0, 245, 212, 0.5);
+  box-shadow: 0 0 10px rgba(0, 245, 212, 0.4);
+  /* --- UPDATED: Use hero section's terminal background --- */
+  background-color: rgba(0, 0, 0, 0.6);
   transition: all 0.3s ease-in-out;
   position: relative;
   z-index: 1;
-  overflow: hidden; /* <-- ADDED: This contains the overlay */
+  overflow: hidden;
 }
 
 /* --- NEW HOVER OVERLAY --- */
@@ -72,24 +79,21 @@
   width: 100%;
   height: 100%;
   
-  /* Style */
-  background: rgba(10, 25, 10, 0.95); /* Dark semi-transparent green */
-  color: var(--retro-green);
+  /* --- UPDATED: Use hero section's terminal background --- */
+  background: rgba(0, 0, 0, 0.95);
+  color: #00F5D4; /* Neon Teal */
   padding: 1rem;
   
-  /* Center the content */
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   text-align: center;
   
-  /* Animation */
   opacity: 0;
   visibility: hidden;
   transition: opacity 0.3s ease, visibility 0.3s ease;
-  z-index: 5; /* Sits on top of card content */
-  
+  z-index: 5;
 }
 
 .projectOverlay h3 {
@@ -103,7 +107,6 @@
   margin: 0.5rem 0 1rem 0;
 }
 
-/* Make sure the overlay's button uses the retro style */
 .projectOverlay .btnRetro {
   margin-top: 1rem;
 }
@@ -111,7 +114,8 @@
 /* --- MODIFIED HOVER EFFECT --- */
 .projectCard:hover {
   transform: translateY(-10px) scale(1.05);
-  box-shadow: 0 0 25px rgba(34, 197, 94, 0.8);
+  /* --- UPDATED: Use hero section's glow color --- */
+  box-shadow: 0 0 25px rgba(0, 245, 212, 0.8);
   z-index: 10;
 }
 
@@ -125,28 +129,25 @@
 .projectCard:hover .cardHeader,
 .projectCard:hover .cardImageContainer,
 .projectCard:hover .cardBody {
-   opacity: 0;
-   visibility: hidden;
-   transition: opacity 0.3s ease, visibility 0.3s ease;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
 }
-/* --- END OF HOVER MODIFICATIONS --- */
-
 
 /* --- Card Header (Window Title) --- */
 .cardHeader {
-  /* ... (Rest of your file is unchanged) ... */
   display: flex;
   align-items: center;
   justify-content: space-between;
-  border-bottom: 2px solid var(--retro-green);
-  background-color: var(--retro-green);
-  padding: 0.25rem; /* p-1 */
-  color: var(--retro-black);
-  transition: opacity 0.3s ease, visibility 0.3s ease; /* Added transition */
+  /* --- UPDATED: Use hero section's border and colors --- */
+  border-bottom: 2px solid rgba(0, 245, 212, 0.5);
+  background-color: #00F5D4; /* Neon Teal */
+  padding: 0.25rem;
+  color: #1e2433; /* Dark BG color */
+  transition: opacity 0.3s ease, visibility 0.3s ease;
 }
 
 .cardTitle {
-  /* text-lg font-bold uppercase truncate px-2 */
   font-size: 1.125rem;
   font-weight: 700;
   text-transform: uppercase;
@@ -159,29 +160,27 @@
 
 .windowButtons {
   display: flex;
-  gap: 0.25rem; /* space-x-1 */
+  gap: 0.25rem;
 }
 
 .windowButton {
-  /* h-5 w-5 border border-black bg-gray-300 ... */
   height: 1.25rem;
   width: 1.25rem;
-  border: 1px solid var(--retro-black);
-  background-color: #d1d5db; /* gray-300 */
-  color: var(--retro-black);
+  border: 1px solid #1e2433; /* Dark BG */
+  /* --- UPDATED: Use hero section's inactive dot color --- */
+  background-color: rgba(74, 85, 104, 0.5); /* Inactive dot color */
+  color: #1e2433; /* Dark BG */
   display: flex;
   align-items: center;
   justify-content: center;
-  font-family: monospace; /* font-mono */
-  font-size: 0.75rem; /* text-xs */
-  
-  /* shadow-retro-btn */
-  box-shadow: 2px 2px 0px 0px var(--retro-green-dark); /* Using dark for better contrast */
+  font-family: monospace;
+  font-size: 0.75rem;
+  /* --- UPDATED: Use hero section's glow color for shadow --- */
+  box-shadow: 2px 2px 0px 0px rgba(0, 245, 212, 0.7);
 }
 
 .windowButton:active {
-  /* active:shadow-retro-btn-active */
-  box-shadow: inset 1px 1px 0px 0px #000, 1px 1px 0px 0px var(--retro-green-dark);
+  box-shadow: inset 1px 1px 0px 0px #000, 1px 1px 0px 0px rgba(0, 245, 212, 0.7);
   transform: translate(1px, 1px);
 }
 
@@ -189,56 +188,51 @@
 .cardImageContainer {
   aspect-ratio: 4 / 3;
   overflow: hidden;
-  border-bottom: 2px solid var(--retro-green);
-  transition: opacity 0.3s ease, visibility 0.3s ease; /* Added transition */
+  /* --- UPDATED: Use hero section's border color --- */
+  border-bottom: 2px solid rgba(0, 245, 212, 0.5);
+  transition: opacity 0.3s ease, visibility 0.3s ease;
 }
 
 .cardImage {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  /* grayscale */
   filter: grayscale(1);
   transition: filter 0.3s ease-in-out;
 }
 
-/* group-hover:grayscale-0 */
+/* This is fine, it reveals color on hover */
 .projectCard:hover .cardImage {
   filter: grayscale(0);
 }
 
 /* --- Card Body --- */
 .cardBody {
-  padding: 1rem; /* p-4 */
+  padding: 1rem;
   display: flex;
   flex-direction: column;
-  flex-grow: 1; /* This makes the body grow to fill height */
+  flex-grow: 1;
   overflow: hidden;
-  /* Removed max-height transition */
-  transition: opacity 0.3s ease, visibility 0.3s ease; /* Added transition */
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+  /* --- UPDATED: Use hero section's text color --- */
+  color: #A0AEC0; /* Lighter gray */
 }
 
 .cardBody p {
-  font-size: 1rem; /* text-base */
-  flex-grow: 1; /* This pushes the button to the bottom */
+  font-size: 1rem;
+  flex-grow: 1;
 }
 
 .cardFeatures {
   margin-top: 0.5rem;
   padding-top: 0.5rem;
-  border-top: 1px solid var(--retro-green);
+  /* --- UPDATED: Use hero section's border color --- */
+  border-top: 1px solid rgba(0, 245, 212, 0.5);
   opacity: 0;
   max-height: 0;
   overflow: hidden;
   transition: all 0.3s ease-in-out;
 }
-
-/* This rule is no longer needed as the body is hidden on hover
-.projectCard:hover .cardFeatures {
-  opacity: 1;
-  max-height: 300px;
-}
-*/
 
 .cardFeatures ul {
   list-style: none;
@@ -248,54 +242,54 @@
 
 .cardFeatures li {
   font-size: 0.875rem;
-  color: var(--retro-green);
+  /* --- UPDATED: Use hero section's glow color --- */
+  color: #00F5D4; /* Neon Teal */
   padding: 0.25rem 0;
 }
 
 .cardFeatures li:before {
   content: "▸ ";
-  color: var(--retro-green);
+  color: #00F5D4; /* Neon Teal */
 }
 
 /* --- Retro Button --- */
 .btnRetro {
-  /* inline-block mt-4 border-2 border-retro-green bg-black px-4 py-1 ... */
   display: inline-block;
   margin-top: 1rem;
-  border: 2px solid var(--retro-green);
-  background-color: var(--retro-black);
-  color: var(--retro-green);
+  /* --- UPDATED: Use hero section's colors --- */
+  border: 2px solid #00F5D4; /* Neon Teal */
+  background-color: #1e2433; /* Dark BG */
+  color: #00F5D4; /* Neon Teal */
   padding: 0.25rem 1rem;
   font-size: 1rem;
   text-transform: uppercase;
   text-decoration: none;
-  /* shadow-retro-btn */
-  box-shadow: 2px 2px 0px 0px var(--retro-green);
+  box-shadow: 2px 2px 0px 0px #00F5D4; /* Neon Teal */
   transition: all 0.1s ease-out;
-  align-self: flex-start; /* Makes button only as wide as its content */
+  align-self: flex-start;
 }
 
 .btnRetro:hover {
-  /* hover:bg-retro-green hover:text-black */
-  background-color: var(--retro-green);
-  color: var(--retro-black);
+  /* --- UPDATED: Use hero section's ORANGE for hover --- */
+  background-color: #DD6B20; /* Orange */
+  color: #1e2433 !important; /* Dark BG */
+  border-color: #DD6B20; /* Orange */
+  box-shadow: 2px 2px 0px 0px #DD6B20;
 }
 
 .btnRetro:active {
-  /* active:shadow-retro-btn-active active:translate-x-0.5 ... */
   box-shadow: inset 2px 2px 0px 0px #000;
   transform: translate(2px, 2px);
 }
 
 /* === MODAL STYLES === */
-/* (These are fine to leave for other parts of your site, */
-/* but they are no longer used by the project card) */
 .modalOverlay {
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
+  /* --- UPDATED: Use hero section's terminal background --- */
   background-color: rgba(0, 0, 0, 0.9);
   display: flex;
   align-items: center;
@@ -306,18 +300,15 @@
 }
 
 @keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 
 .modalContent {
-  background-color: var(--retro-black);
-  border: 3px solid var(--retro-green);
-  box-shadow: 0 0 30px rgba(34, 197, 94, 0.6);
+  /* --- UPDATED: Use hero section's theme --- */
+  background-color: #1e2433; /* Dark BG */
+  border: 3px solid rgba(0, 245, 212, 0.5); /* Teal border */
+  box-shadow: 0 0 30px rgba(0, 245, 212, 0.6); /* Teal glow */
   max-width: 900px;
   width: 100%;
   max-height: 90vh;
@@ -340,28 +331,32 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background-color: var(--retro-green);
+  /* --- UPDATED: Use hero section's theme --- */
+  background-color: #00F5D4; /* Neon Teal */
   padding: 0.5rem 1rem;
-  border-bottom: 3px solid var(--retro-green);
+  border-bottom: 3px solid rgba(0, 245, 212, 0.5); /* Teal border */
 }
 
 .modalTitle {
   font-size: 1.5rem;
   font-weight: 700;
   text-transform: uppercase;
-  color: var(--retro-black);
+  /* --- UPDATED: Use hero section's theme --- */
+  color: #1e2433; /* Dark BG */
   margin: 0;
 }
 
 .modalBody {
   padding: 2rem;
-  color: var(--retro-green);
+  /* --- UPDATED: Use hero section's theme --- */
+  color: #00F5D4; /* Neon Teal */
 }
 
 .modalImageContainer {
   width: 100%;
   margin-bottom: 2rem;
-  border: 2px solid var(--retro-green);
+  /* --- UPDATED: Use hero section's theme --- */
+  border: 2px solid rgba(0, 245, 212, 0.5); /* Teal border */
   overflow: hidden;
 }
 
@@ -372,7 +367,8 @@
 }
 
 .modalInfo {
-  color: var(--retro-green);
+  /* --- UPDATED: Use hero section's theme --- */
+  color: #00F5D4; /* Neon Teal */
 }
 
 .modalSectionTitle {
@@ -381,8 +377,9 @@
   text-transform: uppercase;
   margin-top: 1.5rem;
   margin-bottom: 0.75rem;
-  color: var(--retro-green);
-  border-bottom: 2px solid var(--retro-green);
+  /* --- UPDATED: Use hero section's theme --- */
+  color: #00F5D4; /* Neon Teal */
+  border-bottom: 2px solid rgba(0, 245, 212, 0.5); /* Teal border */
   padding-bottom: 0.5rem;
 }
 
@@ -400,13 +397,15 @@
   padding: 0.5rem 0;
   padding-left: 1.5rem;
   position: relative;
+  color: #A0AEC0; /* Lighter gray text */
 }
 
 .featureList li:before {
   content: "▸";
   position: absolute;
   left: 0;
-  color: var(--retro-green);
+  /* --- UPDATED: Use hero section's theme --- */
+  color: #00F5D4; /* Neon Teal */
   font-weight: bold;
 }
 
@@ -420,9 +419,10 @@
 .techTag {
   display: inline-block;
   padding: 0.25rem 0.75rem;
-  border: 1px solid var(--retro-green);
-  background-color: rgba(34, 197, 94, 0.1);
-  color: var(--retro-green);
+  /* --- UPDATED: Use hero section's theme --- */
+  border: 1px solid rgba(0, 245, 212, 0.5); /* Teal border */
+  background-color: rgba(0, 245, 212, 0.1); /* Teal bg */
+  color: #00F5D4; /* Neon Teal */
   font-size: 0.875rem;
   text-transform: uppercase;
   font-family: monospace;
@@ -433,7 +433,8 @@
   gap: 1rem;
   margin-top: 2rem;
   padding-top: 2rem;
-  border-top: 2px solid var(--retro-green);
+  /* --- UPDATED: Use hero section's theme --- */
+  border-top: 2px solid rgba(0, 245, 212, 0.5); /* Teal border */
 }
 
 .modalActions .btnRetro {

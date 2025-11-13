@@ -1,251 +1,128 @@
 @import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
 
-@keyframes blink {
-  from, to {
-    opacity: 1;
-  }
-  50% {
-    opacity: 0;
-  }
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-
-@keyframes type {
-  from { width: 0; }
-  to { width: 100%; }
-}
-
 /* --- Base Section Style --- */
 .heroSection {
-  background-color: #1e2433; /* Changed to crt-bg (Dark blue-gray) */
+  background-color: #071952; /* Solid dark blue background */
   font-family: 'VT323', monospace;
-  color: #00F5D4;
-  
   min-height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 1rem;
+  padding: 4rem 1rem; /* Added more padding */
   overflow: hidden;
   position: relative;
 }
 
-/* Texture overlay - same as in the document */
-.heroSection::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background-image: url('https://i.imgur.com/rOSfT0W.png');
-  background-repeat: repeat;
-  background-size: 500px;
-  opacity: 0.05;
-  z-index: 0;
-  pointer-events: none;
+/* --- Text Styles --- */
+.heroTextCol {
+  /* On mobile, text is centered (see media query) */
+  text-align: left;
 }
 
-/* Scanlines effect */
-.heroSection::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
-  background: linear-gradient(to bottom, transparent 50%, rgba(0, 0, 0, 0.3) 51%);
-  background-size: 100% 4px;
-  z-index: 1;
-  pointer-events: none;
-}
-
-/* Vignette effect - add this to a wrapper if needed */
-.vignetteOverlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
-  background: radial-gradient(ellipse at center, transparent 30%, rgba(0, 0, 0, 0.4) 120%);
-  z-index: 2;
-  pointer-events: none;
-}
-
-/* --- Terminal Window --- */
-.terminalWindow {
-  border: 2px solid rgba(0, 245, 212, 0.5);
-  background-color: rgba(0, 0, 0, 0.6); /* Changed to match black/60 from document */
-  backdrop-filter: blur(8px); /* Added backdrop blur */
-  box-shadow: 0 0 15px rgba(0, 245, 212, 0.4);
-  padding: 1.5rem;
-  position: relative;
-  z-index: 20;
-  border-radius: 1rem;
-}
-
-@media (min-width: 640px) {
-  .terminalWindow {
-    padding: 2rem;
-  }
-}
-
-/* --- Terminal Header --- */
-.terminalHeader {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 1rem;
-}
-
-.windowButtons {
-  display: flex;
-  gap: 0.5rem;
-}
-
-.dot {
-  width: 0.75rem;
-  height: 0.75rem;
-  border-radius: 9999px;
-  background-color: rgba(74, 85, 104, 0.5);
-}
-
-.dotActive {
-  background-color: #DD6B20;
-}
-
-.terminalTitle {
-  font-size: 0.875rem;
-  color: rgba(0, 245, 212, 0.8);
-}
-
-/* --- Terminal Content & Prompts --- */
-.terminalContent {
-  font-size: 1.25rem;
-  line-height: 1.75;
-}
-
-@media (min-width: 768px) {
-  .terminalContent {
-    font-size: 1.5rem;
-  }
-}
-
-.prompt {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-}
-
-.promptSymbol {
-  color: #00F5D4;
-}
-
-.promptHighlight {
-  color: rgba(0, 245, 212, 0.6);
-}
-
-/* --- Utility Class --- */
-.textShadowGlow {
-  text-shadow: 0 0 5px #00F5D4, 0 0 10px #00F5D4;
-}
-
-/* --- ANIMATION CLASSES --- */
-
-.animateType1,
-.animateType2,
-.animateType3,
-.animateCursor {
+.heroText {
+  color: #FFFFFF;
   opacity: 0;
+  animation: fadeIn 1s 0.5s forwards;
 }
 
-/* Line 1: Typing */
-.animateType1 {
-  white-space: nowrap;
-  overflow: hidden;
-  animation: fadeIn 0.5s forwards, 
-             type 1s steps(20, end) 0.5s;
+.heroIntro {
+  font-size: 1.75rem;
+  color: #97FEED; /* Light teal */
 }
 
-/* Line 2: Fade In */
-.animateType2 {
-  animation: fadeIn 0.5s 1.5s forwards;
-  margin-top: 1rem;
+.heroName {
+  font-size: 4rem;
+  font-weight: bold;
+  color: #FFFFFF;
+  margin: 0.25rem 0;
+  line-height: 1.1;
 }
 
-/* Line 3: Fade In Group */
-.animateType3 {
-  animation: fadeIn 0.5s 2s forwards;
-  margin-top: 1rem;
+.heroSubtitle {
+  font-size: 1.75rem;
+  color: #35A29F; /* Medium teal */
 }
 
-/* Line 4: Blinking Cursor */
-.animateCursor {
-  width: 0.5rem; 
-  height: 1.5rem;
-  background-color: #00F5D4;
-  animation: fadeIn 0.5s 3s forwards, 
-             blink 1s step-end infinite 3s;
+/* --- Image Styles --- */
+
+.heroImageWrapper {
+  /* --- NEW: Radial Gradient Background --- */
+  background: radial-gradient(ellipse at center, #0B666A 30%, #35A29F 70%);
+  
+  /* Make it a circle */
+  border-radius: 50%;
+  
+  /* Ensure it's responsive and circular */
+  aspect-ratio: 1 / 1;
+  width: 100%;
+  max-width: 350px; /* Constrains the image size on desktop */
+  margin: 0 auto; /* Centers the image wrapper within its column */
+  
+  /* Flexbox to center the image inside */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  /* Animation */
+  opacity: 0;
+  animation: fadeIn 1s 0.2s forwards;
+  
+  /* Transition for the image hover */
+  transition: transform 0.3s ease-out;
 }
 
-.profileImage {
-    height: auto;
-    border: 2px solid #00F5D4;
-    aspect-ratio: 1 / 1;
-    object-fit: cover;
-    max-width: 80%;
-    display: block;
-    margin: 0 auto;
-    border-radius: 0.5rem; /* Reduced for smoother corners */
-    position: relative;
-    /* Add for pixelation effect */
-    image-rendering: pixelated;
-    filter: blur(10px); /* Start blurred/pixelated */
-    animation: unpixelate 1.5s forwards; /* Animation to load the proper picture */
+.heroImage {
+  width: 100%;
+  height: auto;
+  
+  /* This is for the image *itself* */
+  /* Remove any filters or masks from previous versions */
+  filter: none;
+  mask-image: none;
+  border-radius: 0;
+  box-shadow: none;
+
+  /* Transitions for the hover "pop" effect */
+  transition: transform 0.3s ease-out;
 }
 
-/* New keyframe for unpixelating */
-@keyframes unpixelate {
-    0% {
-        filter: blur(10px);
-        image-rendering: pixelated;
-        transform: scale(0.95);
-    }
-    50% {
-        filter: blur(5px);
-        image-rendering: pixelated;
-        transform: scale(1.02);
-    }
-    100% {
-        filter: blur(0);
-        image-rendering: auto;
-        transform: scale(1);
-    }
+/* When hovering the *wrapper*, scale the *image* */
+.heroImageWrapper:hover .heroImage {
+  transform: scale(1.05); /* The "pop" */
 }
 
-/* Gradient glow wrapper for profile image */
-.profileImageWrapper {
-    position: relative;
-    border-radius: 0.6rem; /* Keep this for the overall shape */
+/* --- Keyframes --- */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
-.profileImageWrapper::before {
-    content: '';
-    position: absolute;
-    inset: -0.1rem; /* Reduced inset for a tighter, subtle outline */
-    background: linear-gradient(to bottom, #DD6B20, #00F5D4, #DD6B20); /* Gradient top to bottom */
-    border-radius: 0.7rem; /* Slightly larger than wrapper for smooth glow, matched to inset */
-    opacity: 0.3; /* Significantly reduced opacity for subtlety */
-    filter: blur(2px); /* Greatly reduced blur for a sharper, more defined outline */
-    z-index: -1;
-    /* Removed animation for a static, subtle glow */
-}
+/* --- Responsive Adjustments --- */
+@media (max-width: 767.98px) {
+  .heroSection {
+    padding: 2rem 1rem;
+    text-align: center;
+  }
+  
+  .heroImageWrapper {
+    padding: 0;
+    max-width: 200px; /* Smaller image on mobile */
+    margin: 0 auto 2rem auto; /* Center and add space below */
+  }
 
-/* Remove or comment out any glowPulse keyframes and related animations */
-/* @keyframes glowPulse { ... } */
+  /* Stack order for mobile: Image on top, text below */
+  .heroImageCol {
+    order: 1; 
+  }
+  .heroTextCol {
+    order: 2;
+  }
 
-/* If you still want a very subtle hover, you could add this back with low opacity */
-.profileImageWrapper:hover::before {
-    opacity: 0.5; /* Slightly increase opacity on hover for a subtle highlight */
+  .heroName {
+    font-size: 2.75rem;
+  }
+  
+  .heroIntro, .heroSubtitle {
+    font-size: 1.25rem;
+  }
 }

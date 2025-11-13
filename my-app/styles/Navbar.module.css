@@ -1,12 +1,22 @@
-
-
+/*
+  --- Updated Retro Navbar ---
+  - Matches the Hero Section theme
+  - Added sticky position, blur, and theme colors
+*/
 .retroNavbar {
   font-family: 'VT323', monospace;
-  background-color: #000;
   padding-top: 1rem;
   padding-bottom: 1rem;
   
-
+  /* --- NEW: From hero section's terminal window --- */
+  background-color:rgba(30, 36, 51, 0.6);
+  backdrop-filter: blur(8px);
+  
+  /* --- NEW: Make it stick to the top --- */
+  /* This is necessary for the blur effect to work */
+  position: sticky;
+  top: 0;
+  z-index: 50;
 }
 
 .navbarContainer {
@@ -14,34 +24,33 @@
   padding-right: 1rem;
   max-width: 960px;
   
-  /* ADD THE BORDER HERE:
-  */
-  border-bottom: 2px solid var(--retro-green);
+  /* --- UPDATED: Use hero section's border style --- */
+  border-bottom: 2px solid rgba(0, 245, 212, 0.5); /* Translucent Neon Teal */
 }
-/* Responsive padding from Tailwind */
+
+/* Responsive padding */
 @media (min-width: 640px) {
   .navbarContainer {
-    padding-left: 2.5rem; /* sm:px-10 */
-    padding-right: 2.5rem; /* sm:px-10 */
+    padding-left: 2.5rem;
+    padding-right: 2.5rem;
   }
 }
 
 .navbarBrand {
-  /* 'flex items-center gap-4 text-retro-green' */
   display: flex;
   align-items: center;
   gap: 1rem;
-  color: var(--retro-green) !important; /* Override Bootstrap */
+  
+  /* --- UPDATED: Use hero section's color --- */
+  color: #00F5D4 !important; /* Neon Teal */
 }
 
 .logoSvg {
-  /* 'size-6' */
   width: 1.5rem;
   height: 1.5rem;
 }
 
 .brandText {
-  /* 'text-lg font-bold ... tracking-widest uppercase' */
   font-size: 1.125rem;
   font-weight: 700;
   letter-spacing: 0.1em;
@@ -49,22 +58,24 @@
 }
 
 .navLinks {
-  /* 'gap-9' (approx 2.25rem) */
   gap: 2.25rem;
 }
 
 .navLink {
-  /* 'text-retro-green text-base ... px-2 transition-colors' */
-  color: var(--retro-green) !important;
+  /* --- UPDATED: Use hero section's color --- */
+  color: #00F5D4 !important; /* Neon Teal */
+  
   font-size: 1rem !important;
-  padding: 0 0.5rem !important; /* px-2 */
+  padding: 0 0.5rem !important;
   transition: all 0.2s ease-in-out;
-  border-radius: 0; /* remove default rounding */
+  border-radius: 0;
 }
 
 .navLink:hover,
 .navLink:focus {
-  /* 'hover:bg-retro-green hover:text-black' */
-  background-color: var(--retro-green);
-  color: var(--retro-black) !important;
+  /* --- UPDATED: Use hero section's orange for hover --- */
+  background-color: #DD6B20; /* The orange dot color */
+  
+  /* --- UPDATED: Use hero section's dark bg for text --- */
+  color: #1e2433 !important; /* The dark bg color */
 }
