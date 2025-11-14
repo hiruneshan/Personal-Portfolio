@@ -26,7 +26,7 @@ export default function HeroSection() {
           <Col lg={5} md={6} className={styles.heroImageCol}>
             <div className={styles.heroImageWrapper}>
               <img
-                src="../images/img3.png"
+                src="../image/img3.png"
                 alt="Hiru Wijemanne"
                 className={styles.heroImage}
                 onError={(e) => {

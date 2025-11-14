@@ -2,7 +2,7 @@
 
 /* --- Base Section Style --- */
 .heroSection {
-  background-color: #071952; /* Solid dark blue background */
+  background-color: #051547; /* Solid dark blue background */
   font-family: 'VT323', monospace;
   min-height: 100vh;
   display: flex;
@@ -46,8 +46,10 @@
 /* --- Image Styles --- */
 
 .heroImageWrapper {
-  /* --- NEW: Radial Gradient Background --- */
-  background: radial-gradient(ellipse at center, #0B666A 30%, #35A29F 70%);
+  /* --- Change this line --- */
+  /* FROM: background: radial-gradient(ellipse at center, #333333 30%, #666666 70%); */
+  /* TO: Match the .heroSection background color */
+  background: #071952;
   
   /* Make it a circle */
   border-radius: 50%;
@@ -58,6 +60,9 @@
   max-width: 350px; /* Constrains the image size on desktop */
   margin: 0 auto; /* Centers the image wrapper within its column */
   
+  /* Add padding to show the gradient border */
+  padding: 15px;
+  
   /* Flexbox to center the image inside */
   display: flex;
   align-items: center;
@@ -67,28 +72,40 @@
   opacity: 0;
   animation: fadeIn 1s 0.2s forwards;
   
-  /* Transition for the image hover */
-  transition: transform 0.3s ease-out;
+  /* Transition for smooth gradient change on hover */
+  transition: background 0.6s ease-out, transform 0.3s ease-out;
+  
+  /* Add cursor pointer to indicate it's interactive */
+  cursor: pointer;
+}
+
+/* Hover effect - animated radial gradient with COLOR */
+.heroImageWrapper:hover {
+  background: radial-gradient(ellipse at center, #0B666A 30%, #35A29F 70%, #97FEED 100%);
+  transform: scale(1.02);
 }
 
 .heroImage {
   width: 100%;
   height: auto;
   
-  /* This is for the image *itself* */
-  /* Remove any filters or masks from previous versions */
-  filter: none;
+  /* Start with grayscale filter */
+  filter: grayscale(100%) brightness(0.9);
   mask-image: none;
-  border-radius: 0;
+  border-radius: 50%; /* Make the image circular too */
   box-shadow: none;
 
-  /* Transitions for the hover "pop" effect */
-  transition: transform 0.3s ease-out;
+  /* Transitions for the hover effects */
+  transition: filter 0.6s ease-out, transform 0.3s ease-out;
+  
+  /* Prevent pointer events on the image so hover works on wrapper */
+  pointer-events: none;
 }
 
-/* When hovering the *wrapper*, scale the *image* */
+/* When hovering the *wrapper*, remove grayscale and scale the *image* */
 .heroImageWrapper:hover .heroImage {
-  transform: scale(1.05); /* The "pop" */
+  filter: grayscale(0%) brightness(1);
+  transform: scale(1.05);
 }
 
 /* --- Keyframes --- */
@@ -102,10 +119,12 @@
   .heroSection {
     padding: 2rem 1rem;
     text-align: center;
+    position: relative;
+  z-index: 2;
+    
   }
   
   .heroImageWrapper {
-    padding: 0;
     max-width: 200px; /* Smaller image on mobile */
     margin: 0 auto 2rem auto; /* Center and add space below */
   }

@@ -1,0 +1,230 @@
+@import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Ultra&display=swap');
+
+/* --- Base Section Style --- */
+.aboutSection {
+  background-color: 051547;
+  font-family: 'VT323', monospace;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4rem 1rem;
+  overflow: hidden;
+  position: relative;
+}
+
+/* --- Section Header --- */
+.sectionHeader {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 3rem;
+  opacity: 0;
+  animation: fadeIn 0.8s ease-out forwards;
+}
+
+.sectionNumber {
+  font-size: 2.5rem;
+  color: #35A29F;
+  font-weight: bold;
+  font-family: 'Ultra', serif;
+}
+
+.sectionTitle {
+  font-size: 3rem;
+  color: #FFFFFF;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin: 0;
+  font-family: 'Ultra', serif;
+  font-weight: 900;
+}
+
+.sectionLine {
+  flex: 1;
+  height: 2px;
+  background: linear-gradient(to right, #35A29F, transparent);
+  margin-left: 1rem;
+}
+
+/* --- Content Container --- */
+.contentWrapper {
+  opacity: 0;
+  animation: fadeIn 1s ease-out 0.3s forwards;
+}
+
+/* --- Profile Image Container --- */
+.profileImageContainer {
+  position: relative;
+  margin-bottom: 2rem;
+}
+
+.profileBackLayer {
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  width: 100%;
+  height: 100%;
+  border: 3px solid #35A29F;
+  border-radius: 8px;
+  transition: all 0.4s ease;
+}
+
+.profileImageWrapper {
+  position: relative;
+  border: 3px solid #97FEED;
+  border-radius: 8px;
+  padding: 10px;
+  background: #0B666A;
+  overflow: hidden;
+  transition: all 0.4s ease;
+  cursor: pointer;
+}
+
+.profileImage {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 4px;
+  filter: grayscale(100%) brightness(0.8);
+  transition: filter 0.6s ease, transform 0.4s ease;
+}
+
+/* --- HOVER EFFECTS --- */
+.profileImageWrapper:hover {
+  transform: translate(-8px, -8px);
+  box-shadow: 0 0 25px rgba(151, 254, 237, 0.8);
+  border-color: #35A29F;
+}
+
+.profileImageWrapper:hover + .profileBackLayer {
+  border-color: #97FEED;
+  box-shadow: 0 0 20px rgba(151, 254, 237, 0.5);
+}
+
+.profileImageWrapper:hover .profileImage {
+  filter: grayscale(0%) brightness(1);
+  transform: scale(1.05);
+}
+
+/* --- Text Content --- */
+.textContent {
+  color: #0B666A;
+  font-size: 1.5rem;
+  line-height: 1.8;
+}
+
+.textContent p {
+  margin-bottom: 1.5rem;
+}
+
+.highlight {
+  color: #0B666A;
+  font-weight: bold;
+}
+
+.textContent a {
+  color: #0B666A;
+  text-decoration: underline;
+  transition: color 0.3s ease;
+}
+
+.textContent a:hover {
+  color: #97FEED;
+}
+
+/* --- Technologies Section --- */
+.techSection {
+  margin-top: 2rem;
+}
+
+.techTitle {
+  font-size: 1.75rem;
+  color: #D2C1B6;
+  margin-bottom: 1rem;
+}
+
+.techGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.5rem 2rem;
+}
+
+.techItem {
+  font-size: 1.5rem;
+  color: #008a73;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.techItem:before {
+  content: "▸";
+  color: #0B666A;
+  font-size: 1.5rem;
+}
+
+/* --- Animations --- */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* --- Responsive Adjustments --- */
+@media (max-width: 767.98px) {
+  .aboutSection {
+    padding: 2rem 1rem;
+  }
+
+  .sectionTitle {
+    font-size: 2.5rem;
+  }
+
+  .sectionNumber {
+    font-size: 2rem;
+  }
+
+  .sectionLine {
+    width: 100%;
+    margin-left: 0;
+    margin-top: 0.5rem;
+  }
+
+  .sectionHeader {
+    flex-wrap: wrap;
+  }
+
+  .textContent {
+    font-size: 1.25rem;
+  }
+
+  .profileImageContainer {
+    max-width: 300px;
+    margin: 0 auto 2rem auto;
+  }
+
+  .techGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .techItem {
+    font-size: 1.3rem;
+  }
+}
+
+@media (max-width: 575.98px) {
+  .sectionTitle {
+    font-size: 2rem;
+  }
+
+  .textContent {
+    font-size: 1.1rem;
+  }
+}

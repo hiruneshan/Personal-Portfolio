@@ -5,15 +5,18 @@
 
 :root {
   --retro-green: #2abd2a;
-  --retro-black: #1e2433;
+  --retro-black: #051547;
 }
 
 
 
 
 body {
-  /* Make the body background match the navbar background */
-  background-color: var(--retro-black);
+  padding: 0;
+  margin: 0;
+  background-color: #051547;
+ 
+  /* background-color: var(--retro-black); */
   
   /* The rest of your body styles */
   font-family: 'VT323', monospace;

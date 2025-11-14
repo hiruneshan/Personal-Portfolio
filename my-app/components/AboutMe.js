@@ -1,75 +1,85 @@
 import React from "react";
 import { Container, Row, Col } from "react-bootstrap";
-import styles from "../styles/HeroSection.module.css";
+import styles from "../styles/AboutSection.module.css";
 
-export default function heroSection() {
+export default function AboutSection() {
   return (
     <section id="about" className={styles.heroSection}>
       <Container>
         <Row className="justify-content-center">
-          <Col md={10} lg={9}>
-            {/* 1. THE TERMINAL WINDOW */}
-            <div className={styles.terminalWindow}>
+          <Col lg={10}>
+            
+            {/* Section Header: "01. About Me" */}
+            <div className={styles.sectionHeader}>
+              <span className={styles.sectionNumber}>01.</span>
+              <h2 className={styles.sectionTitle}>About Me</h2>
+              <div className={styles.sectionLine}></div>
+            </div>
 
-              {/* 2. THE TERMINAL HEADER */}
-              <div className={styles.terminalHeader}>
-                <div className={styles.windowButtons}>
-                  <div className={`${styles.dot} ${styles.dotActive}`}></div>
-                  <div className={styles.dot}></div>
-                  <div className={styles.dot}></div>
-                </div>
-                <div className={styles.terminalTitle}>
-                  <span>Hiru.Wijemanne_PORTFOLIO - C:\ABOUT</span>
-                </div>
-              </div>
-
-              {/* 3. THE TERMINAL CONTENT */}
-              <div className={styles.terminalContent}>
-
-                {/* Line 1: The command */}
-                <div className={styles.prompt}>
-                  <p style={{ display: 'inline-block', marginLeft: '0.5rem' }}>
-                    &gt; dir about.me
-                  </p>
-                </div>
-
-                {/* Line 2: Two-column layout */}
-                <Row className="my-3">
-
-                  {/* Left Column: Image Box */}
-                  <Col md={5} lg={4}>
-                    <div className={styles.profileImageContainer}>
-                      <div className={styles.profileBackLayer}></div>
-                      <div className={styles.profileImageWrapper}>
-                        <img
-                          src="/images/img2.jpg" // Ensure this path is correct
-                          alt="Profile"
-                          className={styles.profileImage}
-                        />
-                      </div>
-                    </div>
-                  </Col>
-
-                  {/* Right Column: Text Content */}
-                  <Col md={7} lg={8}>
+            {/* Content Wrapper */}
+            <div className={styles.contentWrapper}>
+              <Row className="align-items-start">
+                
+                {/* Left Column: Text Content */}
+                <Col md={7} lg={8}>
+                  <div className={styles.textContent}>
+                    <p>
+                      Hello! My name is <span className={styles.highlight}>Hiru Wijemanne</span> and I enjoy creating things that live on
+                      the internet. My interest in web development started back in 2012
+                      when I decided to try editing custom Tumblr themes — turns out
+                      hacking together a custom reblog button taught me a lot about
+                      HTML & CSS!
+                    </p>
 
                     <p>
-                      &gt; I'm a full stack developer based in Toronto. My journey into tech started with a fascination for
-                      early computer interfaces, and that retro-futuristic
-                      aesthetic still inspires my work today. I thrive on
-                      building things that are not only functional and intuitive
-                      but also have a unique character.
+                      Fast-forward to today, and I've had the privilege of working at
+                      <span className={styles.highlight}> an advertising agency</span>, <span className={styles.highlight}>a start-up</span>, <span className={styles.highlight}>a huge corporation</span>, and
+                      <span className={styles.highlight}> a student-led design studio</span>. My main focus these days is building
+                      accessible, inclusive products and digital experiences at
+                      <a href="#" className={styles.highlight}> Upstatement</a> for a variety of clients.
                     </p>
-                    <p className={styles.calloutBox}>
-                      &gt; Let's create something cool together!
+
+                    <p>
+                      I also recently <a href="#" className={styles.highlight}>launched a course</a> that covers everything you need
+                      to build a web app with the Spotify API using Node & React.
                     </p>
-                  </Col>
-                </Row>
 
+                    {/* Technologies Section */}
+                    <div className={styles.techSection}>
+                      <p className={styles.techTitle}>Here are a few technologies I've been working with recently:</p>
+                      <div className={styles.techGrid}>
+                        <div className={styles.techItem}>JavaScript (ES6+)</div>
+                        <div className={styles.techItem}>TypeScript</div>
+                        <div className={styles.techItem}>React</div>
+                        <div className={styles.techItem}>Eleventy</div>
+                        <div className={styles.techItem}>Node.js</div>
+                        <div className={styles.techItem}>WordPress</div>
+                      </div>
+                    </div>
+                  </div>
+                </Col>
 
+                {/* Right Column: Profile Image */}
+                <Col md={5} lg={4}>
+                  <div className={styles.profileImageContainer}>
+                    <div className={styles.profileImageWrapper}>
+                      <img
+                        src="/images/img2.jpg"
+                        alt="Hiru Wijemanne"
+                        className={styles.profileImage}
+                        onError={(e) => {
+                          e.target.onerror = null;
+                          e.target.src = "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop";
+                        }}
+                      />
+                    </div>
+                    <div className={styles.profileBackLayer}></div>
+                  </div>
+                </Col>
 
-              </div>
+              </Row>
             </div>
+
           </Col>
         </Row>
       </Container>
