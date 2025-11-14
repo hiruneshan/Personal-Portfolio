@@ -18,7 +18,7 @@ export default function HeroSection() {
             <div className={styles.heroText}>
               <span className={styles.heroIntro}>Hi, I'm</span>
               <h1 className={styles.heroName}>Hiru Wijemanne</h1>
-              <p className={styles.heroSubtitle}>Full stack software developer</p>
+              <p className={styles.heroSubtitle}>I'm Full stack software developer based in Toronto, Canada. I like  build cool things for the world. We shall make create something cool together</p>
             </div>
           </Col>
 

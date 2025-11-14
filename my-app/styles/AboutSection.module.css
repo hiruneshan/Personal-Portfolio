@@ -33,11 +33,11 @@
 
 .sectionTitle {
   font-size: 3rem;
-  color: #FFFFFF;
+  color: #35A29F;
   text-transform: uppercase;
   letter-spacing: 0.05em;
   margin: 0;
-  font-family: 'Ultra', serif;
+  font-family: 'VT323', monospace;
   font-weight: 900;
 }
 
@@ -110,7 +110,7 @@
 
 /* --- Text Content --- */
 .textContent {
-  color: #0B666A;
+  color: #738f91;
   font-size: 1.5rem;
   line-height: 1.8;
 }
