@@ -1,107 +1,62 @@
-'use client'; 
-
-import React, { useState, useEffect } from 'react';
-// <-- We no longer need Modal or Button!
-import { Container, Row, Col } from 'react-bootstrap'; 
+import React from 'react';
 import styles from '../styles/Projects.module.css';
+import { useEffect, useState } from 'react';
 
-// ... (WindowButton component is fine) ...
+const Projects = () => {
+  const [projects, setProjects] = useState([]);
+  const [loading, setLoading] = useState(true);
 
-export default function Projects() {
-    // --- STATE ---
-    const [projects, setProjects] = useState([]);
-    const [isLoading, setIsLoading] = useState(true);
-    
-    // <-- DELETE the [selectedProject, setSelectedProject] state
-    // <-- DELETE the handleCloseModal and handleShowModal functions
+  useEffect(() => {
+    const fetchProjects = async () => {
+      try {
+        const response = await fetch('/api/projects');
+        const data = await response.json();
+        setProjects(data.projects);
+      } catch (error) {
+        console.error('Error fetching projects:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
 
-    // --- DATA FETCHING ---
-    useEffect(() => {
-        async function fetchProjects() {
-            try {
-                const response = await fetch('/api/projects');
-                const data = await response.json();
-                setProjects(data.projects); 
-            } catch (error) {
-                console.error('Failed to fetch projects:', error);
-            } finally {
-                setIsLoading(false); 
-            }
-        }
-        fetchProjects();
-    }, []);
+    fetchProjects();
+  }, []);
 
-    // --- LOADING STATE ---
-    if (isLoading) {
-        // ... (this part is unchanged) ...
-    }
+  if (loading) {
+    return <div className={styles.projectContainer}>Loading...</div>;
+  }
 
+  // FIXED: Wrapped in a React Fragment
+  return (
+    <> 
+      <h2 style={{ textAlign: 'center', color: '#eee'}}>
+        Some projects I've worked on
+      </h2>
 
-    return (
-        <Container id="projects" className={styles.projectSection}>
-            {/* ... (Section Header is unchanged) ... */}
+      <div className={styles.projectContainer}>
+        {projects.map((project, index) => (
+          <div key={index} className={styles.project}>
+            <div className={styles.projectContent}>
+              <div className={styles.projectLabel}>Featured Project</div>
+              <h4 className={styles.projectTitle}>{project.title}</h4>
+              <div className={styles.projectDetails}>
+                <p>{project.description}</p>
+                <ul>
+                  {project.technologies.map((tech, i) => (
+                    <li key={i}>{tech}</li>
+                  ))}
+                </ul>
+              </div>
+            </div>
 
-            {/* === PROJECTS GRID === */}
-            <Row className="justify-content-center">
-                <Col xs={12}>
-                    <Row className={`${styles.projectGrid} g-4`}>
-                        {projects.map((project, index) => (
-                            <Col
-                                xs={12} sm={6} md={4} lg={4}
-                                key={project.title}
-                                className={styles.projectColumn}
-                            >
-                                {/* --- PROJECT CARD --- */}
-                                {/* V V V REMOVED onMouseEnter/onMouseLeave V V V */}
-                                <div className={styles.projectCard}>
-                                    {/* Card Header (Window Title Bar) */}
-                                    <div className={styles.cardHeader}>
-                                        <h3 className={styles.cardTitle}>{project.title}</h3>
-                                        <div className={styles.windowButtons}>
-                                            <button className={styles.windowButton}>_</button>
-                                            <button className={styles.windowButton}>□</button>
-                                            <button className={styles.windowButton}>X</button>
-                                        </div>
-                                    </div>
+            <div className={styles.projectImg}>
+              <img src={project.imageUrl} alt={project.title} />
+            </div>
+          </div>
+        ))}
+      </div>
+    </> /* <-- End of single root element */
+  );
+};
 
-                                    {/* Card Image */}
-                                    <div className={styles.cardImageContainer}>
-                                        <img
-                                            src={project.imageUrl || 'default-image.png'} 
-                                            alt={project.title}
-                                            className={styles.cardImage}
-                                        />
-                                    </div>
-
-                                    {/* Card Body (stays hidden) */}
-                                    <div className={styles.cardBody}>
-                                        <p>{project.description}</p>
-                                    </div>
-
-                                
-                                    <div className={styles.projectOverlay}>
-                                        <h3>{project.title}</h3>
-                                        <p>{project.description}</p>
-                                        <a 
-                                          href={project.githubUrl} 
-                                          target="_blank" 
-                                          rel="noopener noreferrer"
-                                          className={styles.btnRetro}
-                                        >
-                                          View GitHub
-                                        </a>
-                                    </div>
-                                    {/* ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ */}
-
-                                </div>
-                           
-                            </Col>
-                        ))}
-                    </Row>
-                </Col>
-            </Row>
-
-
-        </Container>
-    );
-}
+export default Projects;

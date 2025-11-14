@@ -5,7 +5,7 @@
 
 :root {
   --retro-green: #2abd2a;
-  --retro-black: #051547;
+  --retro-black: #041036;
 }
 
 
@@ -14,7 +14,7 @@
 body {
   padding: 0;
   margin: 0;
-  background-color: #051547;
+  background-color: #041036;
  
   /* background-color: var(--retro-black); */
   
