@@ -6,6 +6,7 @@ import HeroSection from "../components/HeroSection";
 import Projects from "@/components/Projects";
 import SocialLinks from "@/components/SocialLinks";
 import AboutMe from "@/components/AboutMe";
+import ExperienceTimeline from "@/components/ExperienceTimeline";
 
 export default function Home() {
 
@@ -17,6 +18,7 @@ export default function Home() {
       <AboutMe />
       <Projects/>
       <SocialLinks />
+      <ExperienceTimeline />
 
     </>
   );
