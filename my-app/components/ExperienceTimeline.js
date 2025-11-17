@@ -48,7 +48,7 @@ export default function ExperienceTimeline() {
     title: {
       fontSize: '2.5rem',
       fontWeight: 'bold',
-      color: '#22d3ee',
+      color: '#1e293b',
       marginBottom: '10px'
     },
     subtitle: {
@@ -67,7 +67,7 @@ export default function ExperienceTimeline() {
       top: '0',
       bottom: '0',
       width: '3px',
-      background: 'linear-gradient(180deg, #22d3ee 0%, #3b82f6 50%, #2dd4bf 100%)',
+      background: 'linear-gradient(180deg, #4d7379ff 0%, #3b82f6 50%, #2dd4bf 100%)',
       boxShadow: '0 0 10px rgba(34, 211, 238, 0.3)'
     },
     experienceItem: {
@@ -82,13 +82,13 @@ export default function ExperienceTimeline() {
       height: '22px',
       borderRadius: '50%',
       backgroundColor: '#0f172a',
-      border: '4px solid #22d3ee',
+      border: '4px solid #64ffda',
       boxShadow: '0 0 20px rgba(34, 211, 238, 0.6)',
       zIndex: 2
     },
     card: {
       backgroundColor: '#1e293b',
-      borderRadius: '12px',
+      borderRadius: '5px',
       padding: '28px',
       border: '1px solid #334155',
       boxShadow: '0 10px 40px rgba(0, 0, 0, 0.4)',
@@ -97,7 +97,7 @@ export default function ExperienceTimeline() {
     cardTitle: {
       fontSize: '1.4rem',
       fontWeight: 'bold',
-      color: '#22d3ee',
+      color: '#1eb18fff',
       marginBottom: '8px'
     },
     companyRow: {
@@ -118,8 +118,8 @@ export default function ExperienceTimeline() {
     },
     currentBadge: {
       backgroundColor: 'rgba(34, 211, 238, 0.15)',
-      color: '#22d3ee',
-      border: '1px solid rgba(34, 211, 238, 0.3)'
+      color: '#64ffda',
+      border: '1px solid rgba(0, 0, 0, 0.3)'
     },
     pastBadge: {
       backgroundColor: '#334155',
@@ -151,7 +151,7 @@ export default function ExperienceTimeline() {
     skillBadge: {
       padding: '6px 14px',
       backgroundColor: 'rgba(34, 211, 238, 0.1)',
-      color: '#22d3ee',
+      color: '#64ffda',
       border: '1px solid rgba(34, 211, 238, 0.3)',
       borderRadius: '20px',
       fontSize: '0.85rem',

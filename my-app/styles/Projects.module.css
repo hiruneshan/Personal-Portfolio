@@ -48,17 +48,32 @@
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
 }
 
+/* --- UPDATED FOR CAPSULES --- */
 .projectDetails ul {
   display: flex;
+  flex-wrap: wrap; /* Allows capsules to wrap to next line */
   margin-top: 20px;
-  /* Default justification is left */
-  justify-content: flex-start;
+  /* 'gap' handles all spacing between capsules */
+  gap: 5px 15px;
+  /* Justification is now handled in media queries */
+
+  /* --- ADD THESE TWO LINES --- */
+  list-style-type: none; /* Hides the bullet point */
+  padding-left: 0; /* Removes default browser padding */
 }
 
+/* --- UPDATED FOR CAPSULES --- */
 .projectDetails ul li {
-  margin-right: 20px;
-  margin-left: 0;
-  color: #aaa;
+  /* Capsule Styles */
+  color: #64ffda;
+  background-color: #1e293b;
+  padding: 5px 15px;
+  border-radius: 16px;
+  font-size: 13px;
+
+  /* --- All margins removed (handled by 'gap') --- */
+  
+  /* Existing */
   font-family: monospace;
 }
 
@@ -141,12 +156,9 @@ NEW SECTION: Alternating Project Layout
     justify-content: flex-end;
   }
 
-  /* Target the tech list items for even projects */
-  .project:nth-child(even) .projectDetails ul li {
-    /* Flip the margins for right-alignment */
-    margin-right: 0;
-    margin-left: 20px;
-  }
+  /* The '.project:nth-child(even) .projectDetails ul li' rule
+    is no longer needed here because 'gap' handles all spacing.
+  */
 }
 
 /* --- MEDIA QUERY for Tablet --- */
@@ -184,11 +196,9 @@ NEW SECTION: Alternating Project Layout
     justify-content: flex-start;
   }
 
-  .projectDetails ul li {
-    /* Reset margins for mobile */
-    margin-right: 20px;
-    margin-left: 0;
-  }
+  /* The '.projectDetails ul li' rule
+    is no longer needed here because 'gap' handles all spacing.
+  */
 
   .projectImg {
     grid-column: 1 / -1;
