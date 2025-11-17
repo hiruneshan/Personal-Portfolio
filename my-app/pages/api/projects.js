@@ -5,8 +5,8 @@ const projectData = {
   "projects": [
     {
       "title": "Factory Assembly Line Simulation",
-      "technologies": ["C++", "Object-Oriented Programming", "STL"],
-      "description": "A C++ simulation of a factory assembly line using OOP, STL containers, and safe memory management.",
+      "technologies": ["C++", "Object-Oriented Programming", "STL", "Data Structures", "Dynamic Memory Management"],
+      "description": "ADeveloped a full production-line simulation using modern C++ and Object-Oriented Programming principles. The system models real factory behavior by moving customer orders through multiple workstations, each responsible for processing a specific item. Implemented dynamic memory management, custom data structures, and class interactions (aggregation/association) to manage orders efficiently. The simulation tracks pending, completed, and incomplete orders while ensuring proper workflow control across the assembly line.",
       "imageUrl": "/images/image copy.png" 
     },
     {
@@ -19,7 +19,7 @@ const projectData = {
       "title": "Customer System",
       "technologies": ["C++", "SQL", "Oracle", "OCCI"],
       "description": "A C++ application using OCCI to connect to an Oracle database, managing a customer order flow with stored procedures.",
-      "imageUrl": "/images/image.png" // You can update this image path
+      "imageUrl": "/images/DBS_C++_sol.png" 
     }
   ]
 };

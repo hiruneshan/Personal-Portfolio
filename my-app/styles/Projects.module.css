@@ -14,19 +14,14 @@
   align-items: center;
 }
 
-/* --- MEDIA QUERY for Tablet --- */
-@media screen and (max-width: 768px) {
-  .project {
-    align-items: flex-start;
-  }
-}
-
 .projectContent {
   position: relative;
   /* CHANGED: Was 1 / 8. Made narrower to make desc card smaller */
   grid-column: 1 / 7;
   grid-row: 1 / -1;
   z-index: 2;
+  /* Default text-align is left */
+  text-align: left;
 }
 
 .projectLabel {
@@ -56,10 +51,13 @@
 .projectDetails ul {
   display: flex;
   margin-top: 20px;
+  /* Default justification is left */
+  justify-content: flex-start;
 }
 
 .projectDetails ul li {
   margin-right: 20px;
+  margin-left: 0;
   color: #aaa;
   font-family: monospace;
 }
@@ -89,12 +87,6 @@
   filter: grayscale(0%) contrast(1);
 }
 
-@media screen and (max-width: 768px) {
-  .projectImg {
-    height: 100%;
-  }
-}
-
 .projectImg::before {
   content: "";
   position: absolute;
@@ -122,7 +114,49 @@
   transition: filter 0.3s ease;
 }
 
+/* --- 
+NEW SECTION: Alternating Project Layout 
+--- 
+*/
+
+/* Apply these styles only on screens *wider* than the 600px mobile breakpoint */
+@media screen and (min-width: 601px) {
+  /* Target the 2nd, 4th, 6th... project */
+  .project:nth-child(even) .projectContent {
+    /* Move the content block to the right */
+    grid-column: 6 / -1;
+    /* Align the text inside to the right */
+    text-align: right;
+  }
+
+  /* Target the 2nd, 4th, 6th... project */
+  .project:nth-child(even) .projectImg {
+    /* Move the image block to the left */
+    grid-column: 1 / 7;
+  }
+
+  /* Target the tech list for even projects */
+  .project:nth-child(even) .projectDetails ul {
+    /* Justify the tags to the right */
+    justify-content: flex-end;
+  }
+
+  /* Target the tech list items for even projects */
+  .project:nth-child(even) .projectDetails ul li {
+    /* Flip the margins for right-alignment */
+    margin-right: 0;
+    margin-left: 20px;
+  }
+}
+
+/* --- MEDIA QUERY for Tablet --- */
 @media screen and (max-width: 768px) {
+  .project {
+    align-items: flex-start;
+  }
+  .projectImg {
+    height: 100%;
+  }
   .projectImg img {
     object-fit: cover;
     width: auto;
@@ -136,11 +170,24 @@
   .projectContent {
     grid-column: 1 / -1;
     padding: 40px;
+    /* Reset text-align for mobile */
+    text-align: left;
   }
 
   .projectDetails p {
     background-color: transparent;
     padding: 20px 0;
+  }
+
+  .projectDetails ul {
+    /* Reset justification for mobile */
+    justify-content: flex-start;
+  }
+
+  .projectDetails ul li {
+    /* Reset margins for mobile */
+    margin-right: 20px;
+    margin-left: 0;
   }
 
   .projectImg {
