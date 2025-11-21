@@ -9,7 +9,7 @@
   padding-bottom: 0px;
 
   /* --- NEW: From hero section's terminal window --- */
-  background-color: rgba(10, 25, 47, 0.85);
+  background-color: rgba(4, 11, 37, 0.85);
   /* Darker navy for better contrast */
   backdrop-filter: blur(10px);
 
@@ -31,8 +31,8 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: 100px;
-  /* Fixed height for consistency */
+  height: 70px;
+  /* Reduced height */
 }
 
 /* Responsive padding */
@@ -65,8 +65,8 @@
 }
 
 .logoSvg {
-  width: 42px;
-  height: 42px;
+  width: 36px;
+  height: 36px;
   color: #64ffda;
   transition: all 0.25s cubic-bezier(0.645, 0.045, 0.355, 1);
 }
