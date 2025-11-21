@@ -5,34 +5,48 @@
 */
 .retroNavbar {
   font-family: 'VT323', monospace;
-  padding-top: 1rem;
-  padding-bottom: 1rem;
-  
+  padding-top: 0px;
+  padding-bottom: 0px;
+
   /* --- NEW: From hero section's terminal window --- */
-  background-color:rgba(30, 36, 51, 0.6);
-  backdrop-filter: blur(8px);
-  
+  background-color: rgba(10, 25, 47, 0.85);
+  /* Darker navy for better contrast */
+  backdrop-filter: blur(10px);
+
   /* --- NEW: Make it stick to the top --- */
   /* This is necessary for the blur effect to work */
   position: sticky;
   top: 0;
   z-index: 50;
+
+  /* --- NEW: Shadow instead of border --- */
+  box-shadow: 0 10px 30px -10px rgba(2, 12, 27, 0.7);
+  transition: all 0.25s cubic-bezier(0.645, 0.045, 0.355, 1);
 }
 
 .navbarContainer {
-  padding-left: 1rem;
-  padding-right: 1rem;
-  max-width: 960px;
-  
-  /* --- UPDATED: Use hero section's border style --- */
-  border-bottom: 2px solid rgba(0, 245, 212, 0.5); /* Translucent Neon Teal */
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+  max-width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 100px;
+  /* Fixed height for consistency */
 }
 
 /* Responsive padding */
-@media (min-width: 640px) {
+@media (min-width: 768px) {
   .navbarContainer {
-    padding-left: 2.5rem;
-    padding-right: 2.5rem;
+    padding-left: 3rem;
+    padding-right: 3rem;
+  }
+}
+
+@media (min-width: 1080px) {
+  .navbarContainer {
+    padding-left: 50px;
+    padding-right: 50px;
   }
 }
 
@@ -40,42 +54,95 @@
   display: flex;
   align-items: center;
   gap: 1rem;
-  
-  /* --- UPDATED: Use hero section's color --- */
-  color: #00F5D4 !important; /* Neon Teal */
+  color: #64ffda !important;
+  /* Neon Teal */
+}
+
+.logoContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .logoSvg {
-  width: 1.5rem;
-  height: 1.5rem;
+  width: 42px;
+  height: 42px;
+  color: #64ffda;
+  transition: all 0.25s cubic-bezier(0.645, 0.045, 0.355, 1);
 }
 
-.brandText {
-  font-size: 1.125rem;
-  font-weight: 700;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
+.logoSvg:hover {
+  transform: translateY(-3px);
+  color: rgba(100, 255, 218, 0.1);
+  /* Tint on hover */
+}
+
+.logoSvg polygon {
+  fill: rgba(100, 255, 218, 0.1);
+  /* Slight fill */
+  stroke: #64ffda;
+  stroke-width: 5;
+}
+
+.logoText {
+  font-family: 'Calibre', 'Inter', 'San Francisco', 'SF Pro Text', -apple-system, system-ui, sans-serif;
+  /* Use a sans-serif for the B if possible, or keep monospace */
+  font-size: 45px;
+  font-weight: bold;
+  fill: #64ffda;
 }
 
 .navLinks {
-  gap: 2.25rem;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  /* Spacing between links */
 }
 
 .navLink {
-  /* --- UPDATED: Use hero section's color --- */
-  color: #00F5D4 !important; /* Neon Teal */
-  
-  font-size: 1rem !important;
-  padding: 0 0.5rem !important;
-  transition: all 0.2s ease-in-out;
-  border-radius: 0;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  color: #ccd6f6 !important;
+  /* Lightest Slate */
+  font-family: 'SF Mono', 'Fira Code', 'Fira Mono', 'Roboto Mono', monospace;
+  font-size: 13px !important;
+  padding: 10px !important;
+  transition: all 0.25s cubic-bezier(0.645, 0.045, 0.355, 1);
 }
 
 .navLink:hover,
 .navLink:focus {
-  /* --- UPDATED: Use hero section's orange for hover --- */
-  background-color: #DD6B20; /* The orange dot color */
-  
-  /* --- UPDATED: Use hero section's dark bg for text --- */
-  color: #1e2433 !important; /* The dark bg color */
+  color: #64ffda !important;
+  /* Neon Teal */
+}
+
+.navNumber {
+  color: #64ffda;
+  font-size: 13px;
+  margin-right: 5px;
+}
+
+.resumeButtonContainer {
+  margin-left: 15px;
+}
+
+.resumeButton {
+  color: #64ffda;
+  background-color: transparent;
+  border: 1px solid #64ffda;
+  border-radius: 4px;
+  padding: 0.75rem 1rem;
+  font-family: 'SF Mono', 'Fira Code', 'Fira Mono', 'Roboto Mono', monospace;
+  line-height: 1;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.645, 0.045, 0.355, 1);
+  font-size: 13px;
+}
+
+.resumeButton:hover,
+.resumeButton:focus {
+  background-color: rgba(100, 255, 218, 0.1);
+  outline: none;
 }
