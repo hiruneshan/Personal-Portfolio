@@ -1,43 +1,69 @@
 import React from "react";
+import { Github, Linkedin, Instagram, Mail } from "lucide-react";
 import styles from "../styles/SocialLinks.module.css";
 
-
-
-// SVG path for GitHub
-const GitHubIcon = () => (
-  <svg fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-    <path d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5.5.09.68-.22.68-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.45-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.89 1.52 2.34 1.08 2.91.83.09-.65.35-1.08.63-1.34-2.22-.25-4.55-1.11-4.55-4.94 0-1.1.39-1.99 1.03-2.69a3.6 3.6 0 0 1 .1-2.64s.84-.27 2.75 1.02a9.58 9.58 0 0 1 5 0c1.91-1.29 2.75-1.02 2.75-1.02.55 1.37.2 2.4.1 2.64.64.7 1.03 1.6 1.03 2.69 0 3.84-2.34 4.68-4.57 4.93.36.31.68.92.68 1.85v2.72c0 .27.18.58.69.48A10 10 0 0 0 22 12 10 10 0 0 0 12 2Z"></path>
-  </svg>
-);
-
-// SVG path for LinkedIn
-const LinkedInIcon = () => (
-  <svg fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-    <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-11 5v10h4V8h-4Zm-2-2v2h8v-2H6Zm13 2v10h-4V8h4Z"></path>
+// Custom Duolingo Icon SVG
+const DuolingoIcon = () => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 24 24"
+    fill="currentColor"
+    width="24"
+    height="24"
+  >
+    <path d="M12.035 1.002c-2.31 0-4.313 1.02-5.74 2.645a8.43 8.43 0 0 0-1.87 3.742c-.22 1.12-.22 2.27-.02 3.4.15.86.4 1.69.74 2.47.66 1.53 1.68 2.87 2.96 3.89.64.51 1.34.93 2.09 1.25.75.32 1.55.48 2.36.48.81 0 1.61-.16 2.36-.48.75-.32 1.45-.74 2.09-1.25 1.28-1.02 2.3-2.36 2.96-3.89.34-.78.59-1.61.74-2.47.2-1.13.2-2.28-.02-3.4a8.43 8.43 0 0 0-1.87-3.742c-1.427-1.625-3.43-2.645-5.74-2.645h-.05zm-.05 2c1.76 0 3.3.77 4.39 2.02.84.96 1.35 2.18 1.48 3.47.13 1.29-.13 2.6-.76 3.75-.63 1.15-1.6 2.08-2.76 2.64-1.16.56-2.47.66-3.72.28-1.25-.38-2.32-1.2-3.03-2.32-.71-1.12-1.02-2.46-.88-3.77.14-1.31.7-2.51 1.6-3.43 1.1-1.12 2.6-1.8 4.2-1.8h.48z" />
+    <path d="M7.76 18.26c-1.36.7-2.9 1.08-4.52 1.08-1.06 0-2.09-.16-3.06-.46.36 2.3 2.35 4.06 4.75 4.06 1.9 0 3.56-1.1 4.35-2.71-.56-.6-1.06-1.26-1.52-1.97zm8.48 0c-.46.71-.96 1.37-1.52 1.97.79 1.61 2.45 2.71 4.35 2.71 2.4 0 4.39-1.76 4.75-4.06-.97.3-2 .46-3.06.46-1.62 0-3.16-.38-4.52-1.08z" />
   </svg>
 );
 
 export default function SocialLinks() {
+  const links = [
+    {
+      name: "Instagram",
+      url: "https://instagram.com", // Update with actual URL
+      icon: <Instagram size={24} />,
+    },
+    {
+      name: "Email",
+      url: "mailto:hiru.wijemanne@example.com", // Update with actual email
+      icon: <Mail size={24} />,
+    },
+    {
+      name: "GitHub",
+      url: "https://github.com/hiruneshan",
+      icon: <Github size={24} />,
+    },
+    {
+      name: "LinkedIn",
+      url: "https://www.linkedin.com/in/hiru-wijemanne",
+      icon: <Linkedin size={24} />,
+    },
+    {
+      name: "Duolingo",
+      url: "https://www.duolingo.com", // Update with actual URL
+      icon: <DuolingoIcon />,
+    },
+  ];
+
   return (
     <div className={styles.socialContainer}>
-      <a
-        href="https://github.com/hiruneshan" // <-- UPDATE THIS LINK
-        target="_blank"
-        rel="noopener noreferrer"
-        className={styles.socialIcon}
-        aria-label="GitHub"
-      >
-        <GitHubIcon />
-      </a>
-      <a
-        href="www.linkedin.com/in/hiru-wijemanne" // <-- UPDATE THIS LINK
-        target="_blank"
-        rel="noopener noreferrer"
-        className={styles.socialIcon}
-        aria-label="LinkedIn"
-      >
-        <LinkedInIcon />
-      </a>
+      {links.map((link) => (
+        <a
+          key={link.name}
+          href={link.url}
+          target="_blank"
+          rel="noopener noreferrer"
+          className={styles.socialIcon}
+          aria-label={link.name}
+        >
+          {link.icon}
+          {link.name === "Duolingo" && (
+            <span className={styles.tooltip}>
+              pretty cool app, better than SC!
+            </span>
+          )}
+        </a>
+      ))}
     </div>
   );
 }

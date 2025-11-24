@@ -86,20 +86,6 @@ export default function ExperienceTimeline() {
       boxShadow: '0 0 20px rgba(34, 211, 238, 0.6)',
       zIndex: 2
     },
-    card: {
-      backgroundColor: '#1e293b',
-      borderRadius: '5px',
-      padding: '28px',
-      border: '1px solid #334155',
-      boxShadow: '0 10px 40px rgba(0, 0, 0, 0.4)',
-      transition: 'all 0.3s ease'
-    },
-    cardTitle: {
-      fontSize: '1.4rem',
-      fontWeight: 'bold',
-      color: '#1eb18fff',
-      marginBottom: '8px'
-    },
     companyRow: {
       display: 'flex',
       alignItems: 'center',
@@ -180,7 +166,7 @@ export default function ExperienceTimeline() {
               <div style={styles.timelineDot}></div>
 
               {/* Card */}
-              <div 
+              <div
                 style={styles.card}
                 onMouseEnter={(e) => {
                   e.currentTarget.style.transform = 'translateY(-5px)';

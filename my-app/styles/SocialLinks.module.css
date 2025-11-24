@@ -3,25 +3,73 @@
 .socialContainer {
   position: fixed;
   bottom: 2rem;
+  /* Moved up from bottom */
   right: 2rem;
+  /* Positioned to the right */
   display: flex;
   flex-direction: column;
-  gap: 1.5rem; /* Space between icons */
-  z-index: 1000; /* Ensures it's on top of other content */
+  gap: 1.5rem;
+  z-index: 1000;
+  align-items: center;
 }
 
 .socialIcon {
-  /* Match the footer icon style from your other file */
-  width: 2rem;  /* h-8 w-8 */
-  height: 2rem; /* h-8 w-8 */
-  padding: 0.25rem; /* p-1 */
-  
-  color: var(--retro-green);
+  width: 1.5rem;
+  height: 1.5rem;
+  color: #a8b2d1;
+  /* Muted color initially */
   transition: all 0.2s ease-in-out;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  /* Needed for absolute positioning of tooltip */
 }
 
 .socialIcon:hover {
-  /* Match the hover style from your links */
-  background-color: var(--retro-green);
-  color: var(--retro-black);
+  transform: translateY(-3px);
+  color: #64ffda;
+  /* Cyan accent on hover */
+}
+
+/* Terminal Tooltip Styles */
+.tooltip {
+  position: absolute;
+  right: 140%;
+  /* Position to the left of the icon */
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: #1e293b;
+  /* Theme dark blue */
+  color: #64ffda;
+  /* Theme cyan */
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 0.8rem;
+  padding: 8px 12px;
+  border: 1px solid #64ffda;
+  border-radius: 4px;
+  white-space: nowrap;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s, visibility 0.3s;
+  pointer-events: none;
+  box-shadow: 0 0 10px rgba(100, 255, 218, 0.2);
+  z-index: 1001;
+}
+
+/* Add a little arrow pointing to the icon */
+.tooltip::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  right: -6px;
+  margin-top: -6px;
+  border-width: 6px;
+  border-style: solid;
+  border-color: transparent transparent transparent #64ffda;
+}
+
+.socialIcon:hover .tooltip {
+  opacity: 1;
+  visibility: visible;
 }
