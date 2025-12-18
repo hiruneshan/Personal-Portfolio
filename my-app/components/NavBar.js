@@ -2,53 +2,13 @@ import React from 'react';
 import { Navbar, Container, Nav } from 'react-bootstrap';
 import styles from '../styles/Navbar.module.css'; // Adjust path if needed
 
-// Extracted the SVG icon from the HTML
-const LogoIcon = () => (
-  <div className={styles.logoContainer}>
-    <svg
-      id="logo"
-      xmlns="http://www.w3.org/2000/svg"
-      role="img"
-      viewBox="0 0 84 96"
-      className={styles.logoSvg}
-    >
-      <title>Logo</title>
-      <g transform="translate(-8.000000, -2.000000)">
-        <g transform="translate(11.000000, 5.000000)">
-          <polygon
-            id="Shape"
-            stroke="currentColor"
-            strokeWidth="5"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            points="39 0 0 22 0 67 39 90 78 68 78 23"
-            fill="none"
-          />
-          <text
-            x="50%"
-            y="55%"
-            dominantBaseline="middle"
-            textAnchor="middle"
-            fill="currentColor"
-            fontSize="45px"
-            fontWeight="bold"
-            className={styles.logoText}
-          >
-            B
-          </text>
-        </g>
-      </g>
-    </svg>
-  </div>
-);
-
 export default function RetroNavbar() {
   return (
     <Navbar as="header" className={styles.retroNavbar} expand="sm" sticky='top'>
       <Container className={styles.navbarContainer}>
 
         <Navbar.Brand href="#home" className={styles.navbarBrand}>
-          <LogoIcon />
+          {/* Logo Removed */}
         </Navbar.Brand>
 
         <Nav className={`ms-auto d-none d-sm-flex ${styles.navLinks}`}>

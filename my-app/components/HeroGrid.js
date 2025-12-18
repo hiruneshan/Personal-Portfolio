@@ -1,19 +1,45 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styles from '../styles/HeroGrid.module.css';
 
 export default function HeroGrid() {
-    // Create an array of 400 items for a 20x20 grid
-    const cells = Array.from({ length: 400 });
+    const rows = 7;
+    const cols = 5;
+    const cells = Array.from({ length: rows * cols });
+    const [visible, setVisible] = useState([]);
+
+    useEffect(() => {
+        const pattern = [
+            0, 1, 1, 1, 1,
+            0, 0, 1, 1, 1,
+            0, 1, 1, 1, 1,
+            0, 0, 0, 1, 1,
+            0, 0, 1, 1, 1,
+            0, 1, 1, 1, 1,
+            1, 1, 1, 1, 1
+        ];
+        setVisible(pattern.map(Boolean));
+    }, []);
 
     return (
-        <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }}>
-            {/* The image is placed behind the grid */}
-            <div className={styles.imageBackground}></div>
-
+        <div className={styles.gridWrapper}>
             <div className={styles.gridContainer}>
-                {cells.map((_, index) => (
-                    <div key={index} className={styles.gridCell}></div>
-                ))}
+                {cells.map((_, i) => {
+                    const row = Math.floor(i / cols);
+                    const col = i % cols;
+
+                    return (
+                        <div
+                            key={i}
+                            className={`${styles.gridCell} ${!visible[i] ? styles.hiddenCell : ''
+                                }`}
+                            style={{
+                                backgroundPosition: `${(col / (cols - 1)) * 100}% ${(row / (rows - 1)) * 100}%`
+                            }}
+                        >
+                            <div className={styles.cellOverlay} />
+                        </div>
+                    );
+                })}
             </div>
         </div>
     );

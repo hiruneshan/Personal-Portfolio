@@ -1,26 +1,26 @@
-import React from "react";
-import { Container, Row, Col } from "react-bootstrap";
-import styles from "../styles/HeroSection.module.css";
-import HeroGrid from "./HeroGrid";
+import HeroGrid from './HeroGrid';
+import styles from '../styles/HeroSection.module.css';
 
 export default function HeroSection() {
   return (
-    <section id="home" className={styles.heroSection}>
-      {/* HeroGrid as background */}
-      <HeroGrid />
+    <section className={styles.heroSection}>
 
-      <Container style={{ position: 'relative', zIndex: 2 }}>
-        <Row className="align-items-center">
-          {/* --- Left Column: Jumbotron Text --- */}
-          <Col lg={7} md={8} className={styles.heroTextCol}>
-            <div className={styles.jumbotron}>
-              <span className={styles.heroIntro}>Hi, I'm</span>
-              <h1 className={styles.heroName} data-text="Hiru Wijemanne">Hiru Wijemanne</h1>
-              <p className={styles.heroSubtitle}>I'm Full stack software developer based in Toronto, Canada. I like build cool things for the world. We shall make create something cool together</p>
-            </div>
-          </Col>
-        </Row>
-      </Container>
+      {/* LEFT TEXT */}
+      <div className={styles.heroTextCol}>
+        <span className={styles.heroIntro}>Hi, I&apos;m</span>
+        <h1 className={styles.heroName}>Hiru Wijemanne</h1>
+        <p className={styles.heroSubtitle}>
+          I&apos;m a full stack software developer based in Toronto, Canada.
+          I like building cool things for the world. We shall create something
+          cool together.
+        </p>
+      </div>
+
+      {/* RIGHT GRID */}
+      <div className={styles.heroImageCol}>
+        <HeroGrid />
+      </div>
+
     </section>
   );
 }

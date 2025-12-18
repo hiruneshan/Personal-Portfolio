@@ -1,296 +1,78 @@
 @import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
 
-/* --- Base Section Style --- */
 .heroSection {
-  background-color: #041036;
-  /* Solid dark blue background */
+  background-color: #040b25;
   font-family: 'VT323', monospace;
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 4rem 1rem;
-  /* Added more padding */
-  overflow: hidden;
+
+  /* NAVBAR HEIGHT */
+  height: calc(100vh - 80px);
+  margin-top: 80px;
+
   position: relative;
+  overflow: hidden;
+
+  /* 🔥 removed vertical padding */
+  padding: 0 1rem;
 }
 
-/* --- Text Styles --- */
+/* TEXT */
 .heroTextCol {
-  /* On mobile, text is centered (see media query) */
-  text-align: left;
-}
+  position: relative;
+  z-index: 2;
+  max-width: 600px;
 
-.jumbotron {
-  padding: 2rem;
-  border-left: 5px solid #64ffda;
-  background: rgba(2, 12, 27, 0.5);
-  backdrop-filter: blur(5px);
-  animation: slideIn 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+  /* 🔥 aligns with navbar */
+  margin-left: 50px;
+  margin-top: 6rem;
 }
 
 .heroIntro {
   font-size: 1.75rem;
   color: #64ffda;
-  /* Neon Teal */
   display: block;
   margin-bottom: 1rem;
 }
 
 .heroName {
   font-size: 5rem;
-  font-weight: bold;
   color: #e6f1ff;
-  /* Lightest Slate */
   margin: 0;
   line-height: 1;
-  position: relative;
-  text-shadow: 3px 3px 0px #020c1b;
-}
-
-/* Glitch Effect */
-.heroName::before,
-.heroName::after {
-  content: attr(data-text);
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-}
-
-.heroName::before {
-  left: 2px;
-  text-shadow: -1px 0 #00f5d4;
-  clip: rect(44px, 450px, 56px, 0);
-  animation: glitch-anim-1 3s infinite linear alternate-reverse;
-}
-
-.heroName::after {
-  left: -2px;
-  text-shadow: -1px 0 #ff0055;
-  clip: rect(44px, 450px, 56px, 0);
-  animation: glitch-anim-2 2s infinite linear alternate-reverse;
 }
 
 .heroSubtitle {
   font-size: 1.5rem;
   color: #8892b0;
-  /* Slate */
   margin-top: 1.5rem;
   max-width: 540px;
 }
 
-/* --- Game Styles --- */
+/* GRID */
 .heroImageCol {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.gameWrapper {
-  background: #020c1b;
-  padding: 10px;
-  border-radius: 10px;
-  box-shadow: 0 0 20px rgba(100, 255, 218, 0.2);
-  border: 2px solid #64ffda;
-  position: relative;
-  animation: float 6s ease-in-out infinite;
-}
-
-.gameContainer {
-  position: relative;
-  width: 300px;
-  height: 300px;
-}
-
-.gameCanvas {
-  background-color: #041036;
-  border: 1px solid #112240;
-  display: block;
-}
-
-.gameOverlay {
   position: absolute;
   top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+  /* 🔥 grid starts right under navbar */
+  right: 0;
+  bottom: 0;
+
+  width: 45vw;
+  max-width: 720px;
+
   pointer-events: none;
-  /* Let clicks pass through to canvas if needed, but here we use keys */
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  padding: 10px;
 }
 
-.score {
-  color: #64ffda;
-  font-size: 1.2rem;
-  font-weight: bold;
-  text-shadow: 1px 1px 0 #000;
-}
-
-.gameOverText {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  color: #ff0055;
-  font-size: 2rem;
-  font-weight: bold;
-  text-align: center;
-  pointer-events: auto;
-  /* Enable clicking restart button */
-  background: rgba(2, 12, 27, 0.9);
-  padding: 20px;
-  border: 1px solid #ff0055;
-}
-
-.gameOverText button {
-  display: block;
-  margin-top: 10px;
-  background: transparent;
-  border: 1px solid #64ffda;
-  color: #64ffda;
-  padding: 5px 10px;
-  font-family: 'VT323', monospace;
-  font-size: 1.2rem;
-  cursor: pointer;
-}
-
-.gameOverText button:hover {
-  background: rgba(100, 255, 218, 0.1);
-}
-
-.startText {
-  color: rgba(255, 255, 255, 0.5);
-  text-align: center;
-  margin-top: auto;
-  margin-bottom: 10px;
-  animation: blink 1s infinite;
-}
-
-/* --- Animations --- */
-@keyframes slideIn {
-  0% {
-    transform: translateX(-100px);
-    opacity: 0;
-  }
-
-  100% {
-    transform: translateX(0);
-    opacity: 1;
-  }
-}
-
-@keyframes float {
-  0% {
-    transform: translateY(0px);
-  }
-
-  50% {
-    transform: translateY(-20px);
-  }
-
-  100% {
-    transform: translateY(0px);
-  }
-}
-
-@keyframes blink {
-
-  0%,
-  100% {
-    opacity: 1;
-  }
-
-  50% {
-    opacity: 0.5;
-  }
-}
-
-@keyframes glitch-anim-1 {
-  0% {
-    clip: rect(30px, 9999px, 10px, 0);
-  }
-
-  20% {
-    clip: rect(85px, 9999px, 90px, 0);
-  }
-
-  40% {
-    clip: rect(10px, 9999px, 50px, 0);
-  }
-
-  60% {
-    clip: rect(60px, 9999px, 20px, 0);
-  }
-
-  80% {
-    clip: rect(25px, 9999px, 70px, 0);
-  }
-
-  100% {
-    clip: rect(95px, 9999px, 40px, 0);
-  }
-}
-
-@keyframes glitch-anim-2 {
-  0% {
-    clip: rect(65px, 9999px, 100px, 0);
-  }
-
-  20% {
-    clip: rect(15px, 9999px, 30px, 0);
-  }
-
-  40% {
-    clip: rect(90px, 9999px, 10px, 0);
-  }
-
-  60% {
-    clip: rect(40px, 9999px, 80px, 0);
-  }
-
-  80% {
-    clip: rect(75px, 9999px, 50px, 0);
-  }
-
-  100% {
-    clip: rect(20px, 9999px, 60px, 0);
-  }
-}
-
-/* --- Responsive Adjustments --- */
-@media (max-width: 767.98px) {
-  .heroSection {
-    padding: 2rem 1rem;
-    text-align: center;
-    flex-direction: column;
-  }
-
+/* MOBILE */
+@media (max-width: 768px) {
   .heroImageCol {
-    order: 1;
-    margin-bottom: 2rem;
+    display: none;
   }
 
   .heroTextCol {
-    order: 2;
-  }
-
-  .jumbotron {
-    border-left: none;
-    border-top: 5px solid #64ffda;
-    padding: 1.5rem;
+    margin-left: 1.5rem;
+    margin-top: 4rem;
   }
 
   .heroName {
     font-size: 3rem;
-  }
-
-  .gameWrapper {
-    transform: scale(0.8);
-    /* Scale down game on mobile */
   }
 }
