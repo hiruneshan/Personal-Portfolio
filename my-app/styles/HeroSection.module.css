@@ -1,78 +1,68 @@
-@import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
-
 .heroSection {
-  background-color: #040b25;
-  font-family: 'VT323', monospace;
-
-  /* NAVBAR HEIGHT */
   height: calc(100vh - 80px);
-  margin-top: 80px;
-
+  /* ✅ matches navbar */
+  background-color: #040b25;
   position: relative;
   overflow: hidden;
-
-  /* 🔥 removed vertical padding */
-  padding: 0 1rem;
 }
 
-/* TEXT */
-.heroTextCol {
+.heroText {
   position: relative;
   z-index: 2;
-  max-width: 600px;
-
-  /* 🔥 aligns with navbar */
-  margin-left: 50px;
+  margin-left: 150px;
   margin-top: 6rem;
+  max-width: 700px;
+  /* Increased slightly for the tagline */
+  font-family: 'Calibre', 'Inter', 'San Francisco', 'SF Pro Text', -apple-system, system-ui, sans-serif;
+  /* Applied sans-serif globally to text block */
 }
 
 .heroIntro {
-  font-size: 1.75rem;
   color: #64ffda;
+  font-family: 'SF Mono', 'Fira Code', 'Fira Mono', 'Roboto Mono', monospace;
+  /* Monospace for the intro */
+  font-size: 16px;
+  margin-left: 5px;
   display: block;
-  margin-bottom: 1rem;
+  margin-bottom: 20px;
 }
 
 .heroName {
-  font-size: 5rem;
+  font-size: clamp(40px, 8vw, 80px);
+  /* Responsive big font */
+  font-weight: 600;
   color: #e6f1ff;
+  /* Lightest Slate */
   margin: 0;
-  line-height: 1;
+  line-height: 1.1;
+}
+
+.heroTagline {
+  font-size: clamp(40px, 8vw, 80px);
+  /* Same size as name */
+  font-weight: 600;
+  color: #8892b0;
+  /* Slate */
+  margin: 10px 0 0 0;
+  line-height: 1.1;
 }
 
 .heroSubtitle {
-  font-size: 1.5rem;
   color: #8892b0;
-  margin-top: 1.5rem;
+  font-size: 20px;
+  line-height: 1.3;
+  margin-top: 25px;
   max-width: 540px;
 }
 
 /* GRID */
-.heroImageCol {
+.heroGrid {
   position: absolute;
   top: 0;
-  /* 🔥 grid starts right under navbar */
+  /* 🔥 touches navbar perfectly */
   right: 0;
-  bottom: 0;
-
+  height: 100%;
   width: 45vw;
   max-width: 720px;
-
   pointer-events: none;
-}
-
-/* MOBILE */
-@media (max-width: 768px) {
-  .heroImageCol {
-    display: none;
-  }
-
-  .heroTextCol {
-    margin-left: 1.5rem;
-    margin-top: 4rem;
-  }
-
-  .heroName {
-    font-size: 3rem;
-  }
 }

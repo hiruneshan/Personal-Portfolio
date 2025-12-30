@@ -1,121 +1,45 @@
-/*
-  --- Updated Retro Navbar ---
-  - Matches the Hero Section theme
-  - Added sticky position, blur, and theme colors
-*/
 .retroNavbar {
-  font-family: 'VT323', monospace;
-  padding-top: 0px;
-  padding-bottom: 0px;
+  /* ✅ LOCAL variable (allowed in CSS Modules) */
+  --navbar-height: 80px;
 
-  /* --- NEW: From hero section's terminal window --- */
-  background-color: rgba(4, 11, 37, 0.85);
-  /* Darker navy for better contrast */
+  height: var(--navbar-height);
+  padding: 0;
+
+  background-color: rgba(4, 11, 37, 0.95);
   backdrop-filter: blur(10px);
 
-  /* --- NEW: Make it stick to the top --- */
-  /* This is necessary for the blur effect to work */
   position: sticky;
   top: 0;
-  z-index: 50;
-
-  /* --- NEW: Shadow instead of border --- */
-  box-shadow: 0 10px 30px -10px rgba(2, 12, 27, 0.7);
-  transition: all 0.25s cubic-bezier(0.645, 0.045, 0.355, 1);
+  z-index: 100;
 }
 
 .navbarContainer {
-  padding-left: 1.5rem;
-  padding-right: 1.5rem;
+  height: 100%;
   max-width: 100%;
+  padding: 0 50px;
+
   display: flex;
+  align-items: center;
   justify-content: space-between;
-  align-items: center;
-  height: 80px;
-  /* Increased height */
 }
-
-/* Responsive padding */
-@media (min-width: 768px) {
-  .navbarContainer {
-    padding-left: 3rem;
-    padding-right: 3rem;
-  }
-}
-
-@media (min-width: 1080px) {
-  .navbarContainer {
-    padding-left: 50px;
-    padding-right: 50px;
-  }
-}
-
-.navbarBrand {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  color: #64ffda !important;
-  /* Neon Teal */
-}
-
-/* Logo styles removed */
 
 .navLinks {
   display: flex;
   align-items: center;
-  gap: 15px;
-  /* Increased gap */
+  gap: 16px;
 }
 
 .navLink {
-  display: flex;
-  align-items: center;
-  gap: 5px;
   color: #ccd6f6 !important;
-  /* Lightest Slate */
-  font-family: 'SF Mono', 'Fira Code', 'Fira Mono', 'Roboto Mono', monospace;
-  font-size: 16px !important;
-  /* Increased font size */
-  padding: 12px !important;
-  /* Increased padding */
-  transition: all 0.25s cubic-bezier(0.645, 0.045, 0.355, 1);
-}
-
-.navLink:hover,
-.navLink:focus {
-  color: #64ffda !important;
-  /* Neon Teal */
 }
 
 .navNumber {
   color: #64ffda;
-  font-size: 16px;
-  /* Increased font size */
-  margin-right: 5px;
-}
-
-.resumeButtonContainer {
-  margin-left: 20px;
 }
 
 .resumeButton {
-  color: #64ffda;
-  background-color: transparent;
   border: 1px solid #64ffda;
-  border-radius: 4px;
-  padding: 0.75rem 1.25rem;
-  /* Increased padding */
-  font-family: 'SF Mono', 'Fira Code', 'Fira Mono', 'Roboto Mono', monospace;
-  line-height: 1;
+  padding: 0.5rem 1rem;
+  color: #64ffda;
   text-decoration: none;
-  cursor: pointer;
-  transition: all 0.25s cubic-bezier(0.645, 0.045, 0.355, 1);
-  font-size: 16px;
-  /* Increased font size */
-}
-
-.resumeButton:hover,
-.resumeButton:focus {
-  background-color: rgba(100, 255, 218, 0.1);
-  outline: none;
 }

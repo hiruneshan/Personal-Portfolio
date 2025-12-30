@@ -1,9 +1,9 @@
-.gridWrapper {
+.wrapper {
     width: 100%;
     height: 100%;
 }
 
-.gridContainer {
+.grid {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
     grid-template-rows: repeat(7, 1fr);
@@ -11,26 +11,44 @@
     height: 100%;
 }
 
-.gridCell {
+.cell {
     background-image: url('/images/img3.png');
     background-size: 500% 700%;
-    background-repeat: no-repeat;
     border: 1px solid #233554;
+    /* Updated border color (Light Navy) */
     position: relative;
-    box-sizing: border-box;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    pointer-events: auto;
+    /* Enable hover interactions */
 }
 
-.cellOverlay {
+/* Overlay for the blue color */
+.cell::after {
+    content: '';
     position: absolute;
-    inset: 0;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
     background-color: #112240;
+    /* Blue tile color */
     transition: opacity 0.3s ease;
+    opacity: 1;
 }
 
-.gridCell:hover .cellOverlay {
+/* Hover Effects */
+.cell:hover::after {
     opacity: 0;
+    /* Reveal image on hover */
 }
 
-.hiddenCell {
+.cell:hover {
+    border-color: #64ffda;
+    z-index: 2;
+    /* Bring to front */
+    box-shadow: 0 0 15px rgba(100, 255, 218, 0.3);
+}
+
+.hidden {
     visibility: hidden;
 }
