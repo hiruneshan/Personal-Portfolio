@@ -4,11 +4,11 @@ import styles from "../styles/AboutSection.module.css";
 
 export default function AboutSection() {
   return (
-    <section id="about" className={styles.heroSection}>
+    <section id="about" className={styles.aboutSection}>
       <Container>
         <Row className="justify-content-center">
           <Col lg={10}>
-            
+
             {/* Section Header: "01. About Me" */}
             <div className={styles.sectionHeader}>
               <span className={styles.sectionNumber}>01.</span>
@@ -19,23 +19,20 @@ export default function AboutSection() {
             {/* Content Wrapper */}
             <div className={styles.contentWrapper}>
               <Row className="align-items-start">
-                
+
                 {/* Left Column: Text Content */}
                 <Col md={7} lg={8}>
                   <div className={styles.textContent}>
                     <p>
-                      Hello! My name is Hiru Wijemanne and I enjoy creating things that live on
-                      the internet. My interest in web development started back in 2012
-                      when I decided to try editing custom Tumblr themes — turns out
-                      hacking together a custom reblog button taught me a lot about
-                      HTML & CSS!
+                      Hi, I’m Hiru
+                      I’m a software development student in Toronto, Canada, who loves building things with code. I enjoy backend development, solving tricky problems, and learning new technologies. When I’m not coding, you’ll probably find me skating, traveling, or trying new food.
                     </p>
 
 
-                    <p>
+                    {/* <p>
                       I also recently <a href="#" className={styles.highlight}>launched a course</a> that covers everything you need
                       to build a web app with the Spotify API using Node & React.
-                    </p>
+                    </p> */}
 
                     {/* Technologies Section */}
                     <div className={styles.techSection}>
