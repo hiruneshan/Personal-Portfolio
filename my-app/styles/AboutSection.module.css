@@ -66,6 +66,7 @@
   max-width: 300px;
   margin-left: auto;
   margin-right: auto;
+  opacity: 0;
 }
 
 .profileBackLayer {
@@ -187,6 +188,27 @@
     opacity: 1;
     transform: translateY(0);
   }
+}
+
+@keyframes popIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+
+  70% {
+    opacity: 1;
+    transform: scale(1.05);
+  }
+
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.popIn {
+  animation: popIn 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
 }
 
 /* --- Responsive Adjustments --- */

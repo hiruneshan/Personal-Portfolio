@@ -1,5 +1,5 @@
 import React from 'react';
-import { Carousel } from 'react-bootstrap';
+
 import styles from '../styles/ProjectCarousel.module.css';
 
 // Hardcoded project data
@@ -55,51 +55,54 @@ const allProjects = [
   }
 ];
 
+import { Folder, Github, ExternalLink } from 'lucide-react';
+
 /**
  * A single project card component.
  */
 function ProjectCard({ project }) {
   return (
-    <div className="col-lg-4 col-md-6 col-sm-12" style={{ height: '400px' }}>
+    <div style={{ height: '100%' }}>
       <div className={styles.cardContainer}>
-        <div className={styles.cardInner}>
+        <div className={styles.projectCard}>
 
-          {/* Front Face */}
-          <div className={`card h-100 w-100 border-0 shadow-lg ${styles.cardFront}`}>
-            <div className="card-body d-flex flex-column p-4">
-              <h5 className="card-title fw-bold mb-3" style={{ color: '#e6f1ff', fontSize: '1.5rem' }}>{project.title}</h5>
-              <p className="card-text mb-4" style={{ color: '#8892b0', fontSize: '1.1rem' }}>{project.description}</p>
-            </div>
-            <div className="card-footer border-0 p-4 pt-0" style={{ backgroundColor: 'transparent', marginTop: 'auto' }}>
-              <h6 className="small fw-light mb-3" style={{ color: '#64ffda' }}>Technologies Used</h6>
-              <div className="d-flex flex-wrap gap-2">
-                {project.technologies.map(tech => (
-                  <span key={tech} className="badge rounded-pill" style={{
-                    backgroundColor: 'rgba(100, 255, 218, 0.1)',
-                    color: '#64ffda',
-                    border: '1px solid #64ffda',
-                    padding: '8px 16px',
-                    fontSize: '0.9rem'
-                  }}>
-                    {tech}
-                  </span>
-                ))}
-              </div>
+          {/* Card Header: Folder + Links */}
+          <div className={styles.cardHeader}>
+            <Folder className={styles.folderIcon} strokeWidth={1.5} />
+            <div className={styles.cardLinks}>
+              {project.githubUrl && (
+                <a
+                  href={project.githubUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="GitHub Link"
+                >
+                  <Github className={styles.iconLink} strokeWidth={2} />
+                </a>
+              )}
+              {project.externalUrl && (
+                <a
+                  href={project.externalUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="External Link"
+                >
+                  <ExternalLink className={styles.iconLink} strokeWidth={2} />
+                </a>
+              )}
             </div>
           </div>
 
-          {/* Back Face */}
-          <div className={`card h-100 w-100 border-0 shadow-lg ${styles.cardBack}`}>
-            <h4 className="fw-bold mb-3" style={{ color: '#e6f1ff' }}>{project.title}</h4>
-            <p className="text-center mb-4" style={{ color: '#8892b0' }}>
-              {project.description}
-              <br /><br />
-              <span style={{ fontSize: '0.9rem' }}>Check out the source code on GitHub!</span>
-            </p>
-            <a href={project.githubUrl} target="_blank" rel="noopener noreferrer" className={styles.githubBtn}>
-              View GitHub
-            </a>
-          </div>
+          {/* Card Body: Title + Desc */}
+          <h5 className={styles.cardTitle}>{project.title}</h5>
+          <p className={styles.cardDescription}>{project.description}</p>
+
+          {/* Card Footer: Tech List */}
+          <ul className={styles.techList}>
+            {project.technologies.map((tech, i) => (
+              <li key={i} className={styles.techItem}>{tech}</li>
+            ))}
+          </ul>
 
         </div>
       </div>
@@ -110,33 +113,23 @@ function ProjectCard({ project }) {
 
 /**
  * Main ProjectCarousel component
- * Renders the Bootstrap carousel using react-bootstrap.
+ * Renders a horizontally scrolling list of projects.
  */
 export default function ProjectCarousel() {
-  const projectsPerPage = 3;
-  const projectChunks = [];
-
-  // Group projects into chunks of 3
-  for (let i = 0; i < allProjects.length; i += projectsPerPage) {
-    projectChunks.push(allProjects.slice(i, i + projectsPerPage));
-  }
-
   return (
     <div className="container-fluid py-5" style={{ backgroundColor: '#040b25' }}>
-      <div className="container">
-        <h1 className="text-center fw-bold mb-5 text-light">Some Other Projects I Have Worked On</h1>
+      <div className="container-fluid py-5" style={{ backgroundColor: '#040b25' }}>
+        <div style={{ maxWidth: '1000px', margin: '0 auto', padding: '0 1rem' }}>
+          <h1 className="fw-bold mb-5 text-light">Some Other Projects I Have Worked On</h1>
 
-        <Carousel interval={null} indicators={true} variant="dark">
-          {projectChunks.map((chunk, index) => (
-            <Carousel.Item key={index}>
-              <div className="row g-4 p-4 justify-content-center">
-                {chunk.map(project => (
-                  <ProjectCard key={project.id} project={project} />
-                ))}
+          <div className={styles.carouselContainer}>
+            {allProjects.map((project) => (
+              <div key={project.id} className={styles.cardWrapper}>
+                <ProjectCard project={project} />
               </div>
-            </Carousel.Item>
-          ))}
-        </Carousel>
+            ))}
+          </div>
+        </div>
       </div>
     </div>
   );

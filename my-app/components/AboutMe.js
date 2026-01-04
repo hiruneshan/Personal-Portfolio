@@ -1,8 +1,30 @@
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import styles from "../styles/AboutSection.module.css";
 
 export default function AboutSection() {
+  const [isVisible, setIsVisible] = useState(false);
+  const imgRef = useRef(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const [entry] = entries;
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+          observer.disconnect(); // Only animate once
+        }
+      },
+      { threshold: 0.3 }
+    );
+
+    if (imgRef.current) observer.observe(imgRef.current);
+
+    return () => {
+      if (imgRef.current) observer.unobserve(imgRef.current);
+    };
+  }, []);
+
   return (
     <section id="about" className={styles.aboutSection}>
       <Container>
@@ -51,7 +73,10 @@ export default function AboutSection() {
 
                 {/* Right Column: Profile Image */}
                 <Col md={5} lg={4}>
-                  <div className={styles.profileImageContainer}>
+                  <div
+                    ref={imgRef}
+                    className={`${styles.profileImageContainer} ${isVisible ? styles.popIn : ''}`}
+                  >
                     <div className={styles.profileImageWrapper}>
                       <img
                         src="/images/img2.jpg"
