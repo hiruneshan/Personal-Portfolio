@@ -10,18 +10,18 @@
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    margin-bottom: 4rem;
+    margin-bottom: 5rem;
     width: 100%;
 }
 
 .experienceTitle {
     font-size: clamp(40px, 8vw, 60px);
     color: #e6f1ff;
-    /* Lightest Slate */
-    font-weight: 800;
+    font-weight: 600;
     margin: 0 0 10px 0;
     font-family: 'Calibre', 'Inter', sans-serif;
     letter-spacing: -1px;
+    line-height: 1.1;
 }
 
 .experienceSubtitle {
@@ -30,256 +30,189 @@
     max-width: 600px;
     line-height: 1.5;
     margin: 0;
-}
-
-/* Timeline Layout */
-.timelineContainer {
-    display: flex;
-    flex-direction: column;
-    gap: 3rem;
-    position: relative;
-}
-
-.companyGroup {
-    display: flex;
-    gap: 30px;
-    position: relative;
-}
-
-/* Timeline Column */
-.timelineColumn {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    flex-shrink: 0;
-    width: 60px;
-    /* Fixed width matching logo */
-    position: relative;
-}
-
-.logoWrapper {
-    width: 60px;
-    height: 60px;
-    border-radius: 12px;
-    overflow: hidden;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-    z-index: 2;
-    background-color: #fff;
-    /* Ensure logo bg is clean */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.companyLogo {
-    object-fit: cover;
-}
-
-.logoPlaceholder {
-    width: 100%;
-    height: 100%;
-    background-color: #233554;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-/* Vertical Line connecting Logo down to end of roles */
-.verticalLine {
-    position: absolute;
-    top: 60px;
-    /* Start below logo */
-    bottom: 0px;
-    /* Extend to bottom of group */
-    width: 2px;
-    background-color: #8892b0;
-    /* Slate color for visibility */
-    z-index: 0;
-    opacity: 0.5;
-    /* Slightly muted */
-}
-
-.companyGroup:last-child .verticalLine {
-    display: none;
-    /* OR bottom: 0 to stop at last role */
-}
-
-/* Content Column */
-.contentColumn {
-    flex-grow: 1;
-    padding-top: 10px;
-    /* Align company header with logo visually */
-}
-
-.companyHeader {
-    margin-bottom: 30px;
-}
-
-.companyName {
-    color: #e6f1ff;
-    font-size: 24px;
-    font-weight: 700;
-    margin: 0 0 5px 0;
-    font-family: 'Calibre', 'Inter', sans-serif;
-}
-
-.companyLocation {
-    color: #8892b0;
-    font-size: 14px;
-}
-
-/* Role List */
-.roleList {
-    display: flex;
-    flex-direction: column;
-    gap: 30px;
-}
-
-.roleBlock {
-    position: relative;
-}
-
-/* Timeline Dot */
-.timelineDot {
-    position: absolute;
-    left: -48px;
-    /* 
-       Timeline column is 60px wide. Line is at center (30px).
-       Content column padding-top is 10px.
-       Gap is 30px.
-       So from content left edge:
-       - Gap (30px) -> Logo Right Edge
-       - Logo Half (30px) -> Center Line
-       Total = 60px left of content edge.
-       Dot width = 12px. Center of dot is 6px.
-       So Left = -60px - 6px = -66px? (Let's stick to approx logic or flex)
-       Actually, contentColumn is flex-grow.
-       Let's assume precise positioning relative to roleBlock/roleList.
-       Gap is 30px.
-       Line is in timelineColumn (width 60px). Center 30px.
-       RoleBlock is in contentColumn.
-       So dot needs to be: - (Gap + Half Logo width) = -(30 + 30) = -60px.
-       Plus centering the 12px dot: -60 - 6 = -66px.
-    */
-    left: -66px;
-    top: 24px;
-    /* Align with Card Top roughly */
-    width: 12px;
-    height: 12px;
-    background-color: #8892b0;
-    /* Match line color */
-    border-radius: 50%;
-    z-index: 1;
-    border: 2px solid #0a192f;
-    /* dark border to separate from line */
-}
-
-/* Role Card White/Card Style */
-.roleCard {
-    background-color: #112240;
-    /* Or #ffffff for light mode, but keeping dark theme */
-    border-radius: 8px;
-    padding: 24px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-    transition: transform 0.2s ease;
-}
-
-.roleCard:hover {
-    transform: translateY(-2px);
-}
-
-.roleHeader {
-    display: flex;
-    justify-content: space-between;
-    align-items: baseline;
-    flex-wrap: wrap;
-    margin-bottom: 8px;
-}
-
-.roleTitle {
-    color: #e6f1ff;
-    font-size: 18px;
-    font-weight: 700;
-    margin: 0;
     font-family: 'Calibre', sans-serif;
 }
 
-.roleDate {
+/* Timeline Layout: Grid */
+.timelineContainer {
+    display: flex;
+    flex-direction: column;
+}
+
+.timelineRow {
+    display: grid;
+    /* Grid: Date | Line | Content */
+    grid-template-columns: 200px 60px 1fr;
+    gap: 0;
+    position: relative;
+    padding-bottom: 60px;
+    /* Spacing between roles */
+}
+
+/* 1. Date Column */
+.dateColumn {
+    text-align: right;
+    padding-top: 5px;
+    /* Visual alignment with title */
+    padding-right: 20px;
+}
+
+.dateRange {
+    display: block;
+    color: #ccd6f6;
+    font-weight: 600;
+    font-size: 16px;
+    margin-bottom: 4px;
+    font-family: 'Calibre', sans-serif;
+}
+
+.duration {
+    display: block;
     color: #8892b0;
     font-size: 14px;
     font-family: 'SF Mono', monospace;
 }
 
-.roleType {
-    display: inline-block;
-    font-size: 12px;
-    color: #64ffda;
+/* 2. Line Column */
+.lineColumn {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.verticalLine {
+    position: absolute;
+    top: 15px;
+    /* Start slightly below dot center or at dot */
+    bottom: -60px;
+    /* Extend into padding of next item */
+    width: 2px;
+    background-color: #8892b0;
+    opacity: 0.3;
+}
+
+.timelineRow:last-child .verticalLine {
+    display: none;
+}
+
+.timelineDot {
+    width: 12px;
+    height: 12px;
+    background-color: #8892b0;
+    border-radius: 50%;
+    z-index: 2;
+    margin-top: 8px;
+    /* Align with top text */
+    flex-shrink: 0;
+    border: 2px solid #0a192f;
+}
+
+/* 3. Content Column */
+.contentColumn {
+    padding-left: 10px;
+    padding-top: 0;
+}
+
+/* NO BACKGROUND CARDS - Clean Text Layout */
+
+.roleHeader {
+    margin-bottom: 10px;
+}
+
+.roleTitle {
+    color: #e6f1ff;
+    font-size: 22px;
     font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    margin-bottom: 16px;
+    margin: 0;
+    font-family: 'Calibre', 'Inter', sans-serif;
+}
+
+.companySpan {
+    color: #64ffda;
+    /* Neon Teal */
+    font-family: 'Calibre', 'Inter', sans-serif;
 }
 
 .descriptionList {
     list-style: none;
     padding: 0;
-    margin: 0 0 16px 0;
+    margin: 0 0 20px 0;
 }
 
 .descriptionList li {
     position: relative;
-    padding-left: 15px;
-    margin-bottom: 8px;
-    color: #a8b2d1;
-    font-size: 15px;
-    line-height: 1.5;
+    padding-left: 20px;
+    margin-bottom: 10px;
+    color: #8892b0;
+    font-size: 16px;
+    line-height: 1.6;
+    font-family: 'Calibre', sans-serif;
 }
 
 .descriptionList li::before {
-    content: "•";
-    /* Simple bullet matching clean style */
+    content: "▹";
+    /* Triangle Bullet */
     position: absolute;
     left: 0;
     color: #64ffda;
-    /* or blue */
+    line-height: 1.6;
+    /* Align with text */
 }
 
 .techStack {
     display: flex;
-    gap: 8px;
+    gap: 10px;
     flex-wrap: wrap;
 }
 
 .techBadge {
-    background-color: rgba(100, 255, 218, 0.1);
-    color: #64ffda;
+    font-size: 13px;
+    color: #8892b0;
+    background-color: #112240;
+    /* Subtle badge bg */
     padding: 4px 10px;
     border-radius: 4px;
-    font-size: 12px;
     font-family: 'SF Mono', monospace;
 }
 
 @media (max-width: 768px) {
-    .companyGroup {
-        gap: 15px;
+    .timelineRow {
+        grid-template-columns: 40px 1fr;
+        /* Drop Date Column on mobile or stack? */
+        /* Let's Try: Line | Content. Date inside content? */
+        /* Or Stack: Date (row1), Line|Content (row2)? */
     }
 
-    .timelineColumn {
-        width: 40px;
+    .timelineRow {
+        display: flex;
+        flex-direction: column;
+        padding-left: 20px;
+        position: relative;
+        border-left: 2px solid rgba(136, 146, 176, 0.3);
+        margin-left: 10px;
+        padding-bottom: 40px;
     }
 
-    .logoWrapper {
-        width: 40px;
-        height: 40px;
+    .dateColumn {
+        text-align: left;
+        padding: 0;
+        margin-bottom: 5px;
     }
 
-    .verticalLine {
-        left: 20px;
-        /* Center of 40px */
+    .lineColumn {
+        display: none;
+        /* Hide complex center line on mobile, use simple border-left */
     }
 
     .timelineDot {
-        left: -42px;
-        /* Adjusted roughly */
+        position: absolute;
+        left: -27px;
+        /* Align with border-left */
+        top: 0;
+    }
+
+    .contentColumn {
+        padding: 0;
     }
 }
