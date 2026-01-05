@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react'; // Consolidated imports
+import { Container, Row, Col } from 'react-bootstrap';
 import styles from '../styles/Projects.module.css';
-import { useEffect, useState } from 'react';
 
 const ProjectItem = ({ project, index }) => {
   const [isVisible, setIsVisible] = useState(false);
@@ -76,17 +76,21 @@ const Projects = () => {
   // FIXED: Wrapped in a React Fragment
   return (
     <section id="projects" className={styles.projectsSection}>
-      <div className={styles.projectContainer}>
-        <div className={styles.sectionHeader}>
-          <span className={styles.sectionNumber}>03.</span>
-          <h2 className={styles.sectionTitle}>Some Things I&apos;ve Built</h2>
-          <div className={styles.sectionLine}></div>
-        </div>
+      <Container>
+        <Row className="justify-content-center">
+          <Col lg={10}>
+            <div className={styles.sectionHeader}>
+              <span className={styles.sectionNumber}>03.</span>
+              <h2 className={styles.sectionTitle}>Some Things I&apos;ve Built</h2>
+              <div className={styles.sectionLine}></div>
+            </div>
 
-        {projects.map((project, index) => (
-          <ProjectItem key={index} project={project} index={index} />
-        ))}
-      </div>
+            {projects.map((project, index) => (
+              <ProjectItem key={index} project={project} index={index} />
+            ))}
+          </Col>
+        </Row>
+      </Container>
     </section>
   );
 };

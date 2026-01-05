@@ -1,7 +1,8 @@
 import React, { useRef, useState, useEffect } from 'react';
+import { Container, Row, Col } from 'react-bootstrap';
 import styles from '../styles/ProjectCarousel.module.css';
 
-// Hardcoded project data
+
 const allProjects = [
   {
     id: 1,
@@ -156,39 +157,43 @@ export default function ProjectCarousel() {
   };
 
   return (
-    <div className="container-fluid py-5" style={{ backgroundColor: '#040b25' }}>
-      <div style={{ maxWidth: '1000px', margin: '0 auto', padding: '0 1rem', position: 'relative' }}>
-        <h2 className={styles.carouselTitle}>Some Other Projects I Have Worked On</h2>
+    <div className="py-5" style={{ backgroundColor: '#040b25' }}>
+      <Container>
+        <Row className="justify-content-center">
+          <Col lg={10} style={{ position: 'relative' }}>
+            <h2 className={styles.carouselTitle}>Some Other Projects I Have Worked On</h2>
 
-        {/* Navigation Buttons */}
-        {showLeft && (
-          <button
-            className={`${styles.navBtn} ${styles.navBtnLeft}`}
-            onClick={scrollLeft}
-            aria-label="Scroll Left"
-          >
-            <ChevronLeft size={24} />
-          </button>
-        )}
+            {/* Navigation Buttons */}
+            {showLeft && (
+              <button
+                className={`${styles.navBtn} ${styles.navBtnLeft}`}
+                onClick={scrollLeft}
+                aria-label="Scroll Left"
+              >
+                <ChevronLeft size={24} />
+              </button>
+            )}
 
-        {showRight && (
-          <button
-            className={`${styles.navBtn} ${styles.navBtnRight}`}
-            onClick={scrollRight}
-            aria-label="Scroll Right"
-          >
-            <ChevronRight size={24} />
-          </button>
-        )}
+            {showRight && (
+              <button
+                className={`${styles.navBtn} ${styles.navBtnRight}`}
+                onClick={scrollRight}
+                aria-label="Scroll Right"
+              >
+                <ChevronRight size={24} />
+              </button>
+            )}
 
-        <div className={styles.carouselContainer} ref={scrollRef}>
-          {allProjects.map((project) => (
-            <div key={project.id} className={styles.cardWrapper}>
-              <ProjectCard project={project} />
+            <div className={styles.carouselContainer} ref={scrollRef}>
+              {allProjects.map((project) => (
+                <div key={project.id} className={styles.cardWrapper}>
+                  <ProjectCard project={project} />
+                </div>
+              ))}
             </div>
-          ))}
-        </div>
-      </div>
+          </Col>
+        </Row>
+      </Container>
     </div>
   );
 }
