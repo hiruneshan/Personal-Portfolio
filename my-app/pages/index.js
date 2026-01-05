@@ -9,6 +9,7 @@ import AboutMe from "@/components/AboutMe";
 import Experience from "@/components/Experience";
 import ExperienceTimeline from "@/components/ExperienceTimeline";
 import ProjectCarousel from "@/components/ProjectCarousel";
+import Contact from "@/components/Contact";
 import SnakeGameModal, { SnakeGameButton } from "@/components/SnakeGameModal";
 
 export default function Home() {
@@ -23,6 +24,7 @@ export default function Home() {
       <Experience />
       <Projects />
       <ProjectCarousel />
+      <Contact />
       <SocialLinks />
       {/* <ExperienceTimeline /> */}
 

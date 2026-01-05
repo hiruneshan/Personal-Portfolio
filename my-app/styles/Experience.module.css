@@ -1,36 +1,45 @@
 /* Experience.module.css */
 
 .experienceSection {
-    padding: 10rem 1rem 4rem 1rem;
-    max-width: 1000px;
-    margin: 0 auto;
+    padding: 20rem 1rem 4rem 1rem;
+    /* Match About/Projects vertically */
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    /* Max width handled by Bootstrap Container */
 }
 
 .sectionHeader {
     display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    margin-bottom: 5rem;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 3rem;
     width: 100%;
 }
 
-.experienceTitle {
-    font-size: clamp(40px, 8vw, 60px);
-    color: #e6f1ff;
-    font-weight: 600;
-    margin: 0 0 10px 0;
-    font-family: 'Calibre', 'Inter', sans-serif;
-    letter-spacing: -1px;
-    line-height: 1.1;
+.sectionNumber {
+    font-size: 1.5rem;
+    color: #64ffda;
+    font-weight: 400;
+    font-family: 'SF Mono', 'Fira Code', 'Fira Mono', 'Roboto Mono', monospace;
 }
 
-.experienceSubtitle {
+.sectionTitle {
+    font-size: clamp(30px, 6vw, 60px);
     color: #8892b0;
-    font-size: 18px;
-    max-width: 600px;
-    line-height: 1.5;
+    font-weight: 600;
     margin: 0;
-    font-family: 'Calibre', sans-serif;
+    line-height: 1.1;
+    font-family: 'Calibre', 'Inter', 'San Francisco', 'SF Pro Text', -apple-system, system-ui, sans-serif;
+}
+
+.sectionLine {
+    flex: 1;
+    height: 1px;
+    background-color: #233554;
+    margin-left: 1rem;
+    max-width: 300px;
 }
 
 /* Timeline Layout: Grid */
@@ -41,12 +50,11 @@
 
 .timelineRow {
     display: grid;
-    /* Grid: Date | Line | Content */
-    grid-template-columns: 200px 60px 1fr;
+    /* Grid: Shift Left (0.7fr vs 1fr) to visually center the mass (since Right text is wider than Left date) */
+    grid-template-columns: 0.7fr 40px 1fr;
     gap: 0;
     position: relative;
     padding-bottom: 60px;
-    /* Spacing between roles */
 }
 
 /* 1. Date Column */
@@ -117,12 +125,13 @@
 /* NO BACKGROUND CARDS - Clean Text Layout */
 
 .roleHeader {
-    margin-bottom: 10px;
+    margin-bottom: 5px;
 }
 
 .roleTitle {
     color: #e6f1ff;
-    font-size: 22px;
+    font-size: 17px;
+    /* Reduced further */
     font-weight: 600;
     margin: 0;
     font-family: 'Calibre', 'Inter', sans-serif;
@@ -134,10 +143,33 @@
     font-family: 'Calibre', 'Inter', sans-serif;
 }
 
+.companyLink {
+    color: #64ffda;
+    text-decoration: none;
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+}
+
+.companyLink::after {
+    content: '';
+    display: block;
+    width: 0;
+    height: 1px;
+    background: #64ffda;
+    transition: width 0.3s;
+}
+
+.companyLink:hover::after {
+    width: 100%;
+}
+
 .descriptionList {
     list-style: none;
     padding: 0;
     margin: 0 0 20px 0;
+    max-width: 420px;
+    /* Constrain width further for better multi-line balance */
 }
 
 .descriptionList li {
@@ -145,9 +177,11 @@
     padding-left: 20px;
     margin-bottom: 10px;
     color: #8892b0;
-    font-size: 16px;
-    line-height: 1.6;
-    font-family: 'Calibre', sans-serif;
+    /* Slate */
+    font-size: 15px;
+    /* Increased from 14px */
+    line-height: 1.5;
+    font-family: 'Calibre', 'Inter', sans-serif;
 }
 
 .descriptionList li::before {
@@ -156,25 +190,15 @@
     position: absolute;
     left: 0;
     color: #64ffda;
-    line-height: 1.6;
-    /* Align with text */
+    font-size: 12px;
+    /* Adjusted */
+    line-height: 1.4;
+    top: 3px;
 }
 
-.techStack {
-    display: flex;
-    gap: 10px;
-    flex-wrap: wrap;
-}
 
-.techBadge {
-    font-size: 13px;
-    color: #8892b0;
-    background-color: #112240;
-    /* Subtle badge bg */
-    padding: 4px 10px;
-    border-radius: 4px;
-    font-family: 'SF Mono', monospace;
-}
+
+
 
 @media (max-width: 768px) {
     .timelineRow {

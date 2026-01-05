@@ -5,6 +5,7 @@ const experiences = [
     {
         id: 2,
         company: "NeedList.ORG",
+        url: "https://needlist.org/",
         location: "Toronto, Canada",
         logo: null,
         roles: [
@@ -40,6 +41,7 @@ const experiences = [
     {
         id: 1,
         company: "Seneca Polytechnic",
+        url: "https://www.senecapolytechnic.ca/home.html",
         location: "Toronto, Ontario, Canada",
         logo: null,
         roles: [
@@ -99,83 +101,81 @@ const experiences = [
     }
 ];
 
+import { Container, Row, Col } from "react-bootstrap";
+// ... imports
+
 export default function Experience() {
     return (
         <section className={styles.experienceSection} id="experience">
-            <div className={styles.sectionHeader}>
-                <h2 className={styles.experienceTitle}>Experience.</h2>
-                <p className={styles.experienceSubtitle}>
-                    A chronological curation of my technical journey, designing systems and crafting interfaces.
-                </p>
-            </div>
+            <Container>
+                <Row className="justify-content-center">
+                    <Col lg={10}>
+                        <div className={styles.sectionHeader}>
+                            <span className={styles.sectionNumber}>02.</span>
+                            <h2 className={styles.sectionTitle}>Work Experience</h2>
+                            <div className={styles.sectionLine}></div>
+                        </div>
 
-            <div className={styles.timelineContainer}>
-                {experiences.map((company) => (
-                    // Render a fragment to flatten the company->roles structure into a single list of rows
-                    <React.Fragment key={company.id}>
-                        {company.roles.map((role, rIndex) => (
-                            <div key={role.id} className={styles.timelineRow}>
+                        <div className={styles.timelineContainer}>
+                            {experiences.map((company) => (
+                                <React.Fragment key={company.id}>
+                                    {company.roles.map((role, rIndex) => (
+                                        <div key={role.id} className={styles.timelineRow}>
 
-                                {/* 1. Date Column (Left) */}
-                                <div className={styles.dateColumn}>
-                                    <span className={styles.dateRange}>{role.date}</span>
-                                    {role.duration && <span className={styles.duration}>{role.duration}</span>}
-                                </div>
-
-                                {/* 2. Line Column (Center) */}
-                                <div className={styles.lineColumn}>
-                                    <div className={styles.timelineDot}></div>
-                                    <div className={styles.verticalLine}></div>
-                                </div>
-
-                                {/* 3. Content Column (Right) */}
-                                <div className={styles.contentColumn}>
-
-                                    {/* Role Title */}
-                                    <div className={styles.roleHeader}>
-                                        <h3 className={styles.roleTitle}>{role.title}</h3>
-                                        {role.type && <span className={styles.roleType}>{role.type}</span>}
-                                    </div>
-
-                                    {/* Company Name + Logo */}
-                                    <div className={styles.companyRow}>
-                                        <span className={styles.companyName}>{company.company}</span>
-                                        {company.logo && (
-                                            <div className={styles.miniLogo}>
-                                                <Image
-                                                    src={company.logo}
-                                                    alt={`${company.company} logo`}
-                                                    width={20}
-                                                    height={20}
-                                                />
+                                            {/* 1. Date Column (Left) */}
+                                            <div className={styles.dateColumn}>
+                                                <span className={styles.dateRange}>{role.date}</span>
+                                                {role.duration && <span className={styles.duration}>{role.duration}</span>}
                                             </div>
-                                        )}
-                                        <span className={styles.location}>{company.location}</span>
-                                    </div>
 
-                                    {/* Description */}
-                                    {role.description && role.description.length > 0 && (
-                                        <div className={styles.roleDescription}>
-                                            {role.description.map((item, i) => (
-                                                <p key={i}>{item}</p>
-                                            ))}
-                                        </div>
-                                    )}
+                                            {/* 2. Line Column (Center) */}
+                                            <div className={styles.lineColumn}>
+                                                <div className={styles.timelineDot}></div>
+                                                <div className={styles.verticalLine}></div>
+                                            </div>
 
-                                    {/* Tags */}
-                                    {role.skills && (
-                                        <div className={styles.techStack}>
-                                            {role.skills.map((skill, s) => (
-                                                <span key={s} className={styles.techBadge}>{skill}</span>
-                                            ))}
+                                            {/* 3. Content Column (Right) */}
+                                            <div className={styles.contentColumn}>
+
+                                                {/* Role Title @ Company */}
+                                                <div className={styles.roleHeader}>
+                                                    <h3 className={styles.roleTitle}>
+                                                        {role.title} <span className={styles.companySpan}>
+                                                            @ {company.url ? (
+                                                                <a
+                                                                    href={company.url}
+                                                                    target="_blank"
+                                                                    rel="noopener noreferrer"
+                                                                    className={styles.companyLink}
+                                                                >
+                                                                    {company.company}
+                                                                </a>
+                                                            ) : (
+                                                                company.company
+                                                            )}
+                                                        </span>
+                                                    </h3>
+                                                </div>
+
+                                                {/* Description */}
+                                                {role.description && role.description.length > 0 && (
+                                                    <div className={styles.roleDescription}>
+                                                        <ul className={styles.descriptionList}>
+                                                            {role.description.map((item, i) => (
+                                                                <li key={i}>{item}</li>
+                                                            ))}
+                                                        </ul>
+                                                    </div>
+                                                )}
+                                            </div>
                                         </div>
-                                    )}
-                                </div>
-                            </div>
-                        ))}
-                    </React.Fragment>
-                ))}
-            </div>
+                                    ))}
+                                </React.Fragment>
+                            ))}
+                        </div>
+                    </Col>
+                </Row>
+            </Container>
         </section>
     );
 }

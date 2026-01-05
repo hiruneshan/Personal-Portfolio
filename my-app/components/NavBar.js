@@ -8,16 +8,16 @@ export default function RetroNavbar() {
         <Navbar.Brand />
 
         <Nav className={`ms-auto d-none d-sm-flex ${styles.navLinks}`}>
-          <Nav.Link className={styles.navLink}>
+          <Nav.Link href="#about" className={styles.navLink}>
             <span className={styles.navNumber}>01.</span> About
           </Nav.Link>
-          <Nav.Link className={styles.navLink}>
+          <Nav.Link href="#experience" className={styles.navLink}>
             <span className={styles.navNumber}>02.</span> Experience
           </Nav.Link>
-          <Nav.Link className={styles.navLink}>
+          <Nav.Link href="#projects" className={styles.navLink}>
             <span className={styles.navNumber}>03.</span> Work
           </Nav.Link>
-          <Nav.Link className={styles.navLink}>
+          <Nav.Link href="#contact" className={styles.navLink}>
             <span className={styles.navNumber}>04.</span> Contact
           </Nav.Link>
 
