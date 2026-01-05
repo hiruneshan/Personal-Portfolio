@@ -1,6 +1,6 @@
 .retroNavbar {
   /* ✅ LOCAL variable (allowed in CSS Modules) */
-  --navbar-height: 80px;
+  --navbar-height: 60px;
 
   height: var(--navbar-height);
   padding: 0;
@@ -26,22 +26,16 @@
 .navLinks {
   display: flex;
   align-items: center;
-  gap: 16px;
+  gap: 30px;
 }
 
 .navLink {
   color: #ccd6f6 !important;
-  font-size: 20px;
+  font-size: 14px;
+  font-family: "SF Mono", "Fira Code", "Fira Mono", "Roboto Mono", "Lucida Console", Monaco, monospace;
 }
 
 .navNumber {
   color: #64ffda;
-}
-
-.resumeButton {
-  border: 1px solid #64ffda;
-  padding: 0.5rem 1rem;
-  color: #64ffda;
-  text-decoration: none;
-  font-size: 20px;
+  font-family: "SF Mono", "Fira Code", "Fira Mono", "Roboto Mono", "Lucida Console", Monaco, monospace;
 }

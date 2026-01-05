@@ -1,12 +1,13 @@
 /* Experience.module.css */
 
 .experienceSection {
-    padding: 20rem 1rem 4rem 1rem;
-    /* Match About/Projects vertically */
+    padding: 150px 1rem 4rem 1rem;
+    /* Reduced top padding */
     min-height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
+    scroll-margin-top: 70px;
     /* Max width handled by Bootstrap Container */
 }
 

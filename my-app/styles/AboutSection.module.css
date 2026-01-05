@@ -10,8 +10,9 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 20rem 1rem 4rem 1rem;
-  /* Significantly increased top padding */
+  padding: 150px 1rem 4rem 1rem;
+  /* Reduced top padding */
+  scroll-margin-top: 70px;
   overflow: hidden;
   position: relative;
 }
