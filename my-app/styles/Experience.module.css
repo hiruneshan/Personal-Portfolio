@@ -8,134 +8,278 @@
 
 .sectionHeader {
     display: flex;
-    align-items: center;
-    margin-bottom: 3rem;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-bottom: 4rem;
     width: 100%;
 }
 
-.sectionNumber {
-    color: #64ffda;
-    font-family: 'SF Mono', 'Fira Code', 'Fira Mono', 'Roboto Mono', monospace;
-    font-size: clamp(20px, 5vw, 24px);
-    margin-right: 10px;
-    font-weight: 400;
+.experienceTitle {
+    font-size: clamp(40px, 8vw, 60px);
+    color: #e6f1ff;
+    /* Lightest Slate */
+    font-weight: 800;
+    margin: 0 0 10px 0;
+    font-family: 'Calibre', 'Inter', sans-serif;
+    letter-spacing: -1px;
 }
 
-.sectionTitle {
-    font-size: clamp(26px, 5vw, 32px);
-    color: #ccd6f6;
-    font-weight: 600;
+.experienceSubtitle {
+    color: #8892b0;
+    font-size: 18px;
+    max-width: 600px;
+    line-height: 1.5;
     margin: 0;
-    white-space: nowrap;
-    font-family: 'Calibre', 'Inter', 'San Francisco', 'SF Pro Text', -apple-system, system-ui, sans-serif;
 }
 
-.sectionLine {
-    height: 1px;
-    background-color: #233554;
-    width: 300px;
-    margin-left: 20px;
-    flex-grow: 0;
-}
-
-/* Card Styles */
-.card {
-    background-color: #112240;
-    border-radius: 4px;
-    padding: 2rem;
-    margin-bottom: 24px;
-    box-shadow: 0 10px 30px -15px rgba(2, 12, 27, 0.7);
-    transition: transform 0.25s cubic-bezier(0.645, 0.045, 0.355, 1);
+/* Timeline Layout */
+.timelineContainer {
     display: flex;
-    align-items: flex-start;
-    gap: 24px;
+    flex-direction: column;
+    gap: 3rem;
+    position: relative;
 }
 
-.card:hover {
-    transform: translateY(-5px);
+.companyGroup {
+    display: flex;
+    gap: 30px;
+    position: relative;
 }
 
-.logoContainer {
-    background-color: #233554;
+/* Timeline Column */
+.timelineColumn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-shrink: 0;
+    width: 60px;
+    /* Fixed width matching logo */
+    position: relative;
+}
+
+.logoWrapper {
     width: 60px;
     height: 60px;
-    border-radius: 4px;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    z-index: 2;
+    background-color: #fff;
+    /* Ensure logo bg is clean */
     display: flex;
     align-items: center;
     justify-content: center;
-    flex-shrink: 0;
-    color: #64ffda;
 }
 
-.contentContainer {
+.companyLogo {
+    object-fit: cover;
+}
+
+.logoPlaceholder {
+    width: 100%;
+    height: 100%;
+    background-color: #233554;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Vertical Line connecting Logo down to end of roles */
+.verticalLine {
+    position: absolute;
+    top: 60px;
+    /* Start below logo */
+    bottom: 0px;
+    /* Extend to bottom of group */
+    width: 2px;
+    background-color: #8892b0;
+    /* Slate color for visibility */
+    z-index: 0;
+    opacity: 0.5;
+    /* Slightly muted */
+}
+
+.companyGroup:last-child .verticalLine {
+    display: none;
+    /* OR bottom: 0 to stop at last role */
+}
+
+/* Content Column */
+.contentColumn {
     flex-grow: 1;
+    padding-top: 10px;
+    /* Align company header with logo visually */
 }
 
-.headerRow {
+.companyHeader {
+    margin-bottom: 30px;
+}
+
+.companyName {
+    color: #e6f1ff;
+    font-size: 24px;
+    font-weight: 700;
+    margin: 0 0 5px 0;
+    font-family: 'Calibre', 'Inter', sans-serif;
+}
+
+.companyLocation {
+    color: #8892b0;
+    font-size: 14px;
+}
+
+/* Role List */
+.roleList {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.roleBlock {
+    position: relative;
+}
+
+/* Timeline Dot */
+.timelineDot {
+    position: absolute;
+    left: -48px;
+    /* 
+       Timeline column is 60px wide. Line is at center (30px).
+       Content column padding-top is 10px.
+       Gap is 30px.
+       So from content left edge:
+       - Gap (30px) -> Logo Right Edge
+       - Logo Half (30px) -> Center Line
+       Total = 60px left of content edge.
+       Dot width = 12px. Center of dot is 6px.
+       So Left = -60px - 6px = -66px? (Let's stick to approx logic or flex)
+       Actually, contentColumn is flex-grow.
+       Let's assume precise positioning relative to roleBlock/roleList.
+       Gap is 30px.
+       Line is in timelineColumn (width 60px). Center 30px.
+       RoleBlock is in contentColumn.
+       So dot needs to be: - (Gap + Half Logo width) = -(30 + 30) = -60px.
+       Plus centering the 12px dot: -60 - 6 = -66px.
+    */
+    left: -66px;
+    top: 24px;
+    /* Align with Card Top roughly */
+    width: 12px;
+    height: 12px;
+    background-color: #8892b0;
+    /* Match line color */
+    border-radius: 50%;
+    z-index: 1;
+    border: 2px solid #0a192f;
+    /* dark border to separate from line */
+}
+
+/* Role Card White/Card Style */
+.roleCard {
+    background-color: #112240;
+    /* Or #ffffff for light mode, but keeping dark theme */
+    border-radius: 8px;
+    padding: 24px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease;
+}
+
+.roleCard:hover {
+    transform: translateY(-2px);
+}
+
+.roleHeader {
     display: flex;
     justify-content: space-between;
     align-items: baseline;
-    margin-bottom: 8px;
     flex-wrap: wrap;
-    gap: 10px;
+    margin-bottom: 8px;
 }
 
-.role {
+.roleTitle {
     color: #e6f1ff;
-    font-size: 20px;
-    font-weight: 600;
+    font-size: 18px;
+    font-weight: 700;
     margin: 0;
-    font-family: 'Calibre', 'Inter', 'San Francisco', 'SF Pro Text', -apple-system, system-ui, sans-serif;
+    font-family: 'Calibre', sans-serif;
 }
 
-.company {
-    color: #64ffda;
-    font-size: 16px;
-    margin-bottom: 12px;
-    display: block;
-    font-family: 'SF Mono', 'Fira Code', 'Fira Mono', 'Roboto Mono', monospace;
+.roleDate {
+    color: #8892b0;
+    font-size: 14px;
+    font-family: 'SF Mono', monospace;
 }
 
-.dateBadge {
-    background-color: #233554;
+.roleType {
+    display: inline-block;
+    font-size: 12px;
     color: #64ffda;
-    padding: 4px 12px;
-    border-radius: 20px;
-    font-size: 13px;
-    font-family: 'SF Mono', 'Fira Code', 'Fira Mono', 'Roboto Mono', monospace;
-    white-space: nowrap;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 16px;
 }
 
 .descriptionList {
     list-style: none;
     padding: 0;
-    margin: 0;
+    margin: 0 0 16px 0;
 }
 
-.descriptionItem {
+.descriptionList li {
     position: relative;
-    padding-left: 20px;
+    padding-left: 15px;
     margin-bottom: 8px;
-    color: #8892b0;
-    font-size: 16px;
+    color: #a8b2d1;
+    font-size: 15px;
     line-height: 1.5;
 }
 
-.descriptionItem::before {
-    content: "▹";
+.descriptionList li::before {
+    content: "•";
+    /* Simple bullet matching clean style */
     position: absolute;
     left: 0;
     color: #64ffda;
+    /* or blue */
+}
+
+.techStack {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.techBadge {
+    background-color: rgba(100, 255, 218, 0.1);
+    color: #64ffda;
+    padding: 4px 10px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-family: 'SF Mono', monospace;
 }
 
 @media (max-width: 768px) {
-    .card {
-        flex-direction: column;
-        align-items: flex-start;
+    .companyGroup {
+        gap: 15px;
     }
 
-    .headerRow {
-        flex-direction: column;
-        align-items: flex-start;
+    .timelineColumn {
+        width: 40px;
+    }
+
+    .logoWrapper {
+        width: 40px;
+        height: 40px;
+    }
+
+    .verticalLine {
+        left: 20px;
+        /* Center of 40px */
+    }
+
+    .timelineDot {
+        left: -42px;
+        /* Adjusted roughly */
     }
 }
