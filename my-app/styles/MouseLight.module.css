@@ -1,18 +1,24 @@
 .mouseLight {
+  opacity: 1;
   position: fixed;
-  z-index: 1; /* Sits above the background */
+  z-index: 1;
+  /* Sits above the background */
   width: 950px;
   height: 950px;
   border-radius: 50%;
-  
+
   /* Your light teal color */
-  background: radial-gradient(
-    circle at center,
-    rgba(151, 254, 237, 0.08), 
-    transparent 60%
-  );
-  
+  background: radial-gradient(circle at center,
+      rgba(151, 254, 237, 0.08),
+      transparent 60%);
+
   transform: translate(-50%, -50%);
   pointer-events: none;
   filter: blur(10px);
+}
+
+@media (max-width: 768px) {
+  .mouseLight {
+    display: none !important;
+  }
 }

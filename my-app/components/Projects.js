@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'; // Consolidated imports
 import { Container, Row, Col } from 'react-bootstrap';
 import styles from '../styles/Projects.module.css';
+import ProjectCard from './ProjectCard';
 
 const ProjectItem = ({ project, index }) => {
   const [isVisible, setIsVisible] = useState(false);
@@ -86,7 +87,14 @@ const Projects = () => {
             </div>
 
             {projects.map((project, index) => (
-              <ProjectItem key={index} project={project} index={index} />
+              <React.Fragment key={index}>
+                <div className="d-none d-md-block">
+                  <ProjectItem project={project} index={index} />
+                </div>
+                <div className="d-block d-md-none mb-4">
+                  <ProjectCard project={project} />
+                </div>
+              </React.Fragment>
             ))}
           </Col>
         </Row>

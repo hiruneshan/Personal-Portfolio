@@ -49,6 +49,13 @@
     box-shadow: 0 0 15px rgba(100, 255, 218, 0.3);
 }
 
+
 .hidden {
     visibility: hidden;
+}
+
+@media (max-width: 768px) {
+    .wrapper {
+        display: none;
+    }
 }

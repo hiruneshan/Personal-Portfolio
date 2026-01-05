@@ -16,7 +16,7 @@ const DuolingoIcon = () => (
   </svg>
 );
 
-export default function SocialLinks() {
+export default function SocialLinks({ isMobile = false }) {
   const links = [
     {
       name: "Instagram",
@@ -46,7 +46,7 @@ export default function SocialLinks() {
   ];
 
   return (
-    <div className={styles.socialContainer}>
+    <div className={isMobile ? styles.mobileSocials : styles.socialContainer}>
       {links.map((link) => (
         <a
           key={link.name}
@@ -57,7 +57,7 @@ export default function SocialLinks() {
           aria-label={link.name}
         >
           {link.icon}
-          {link.name === "Duolingo" && (
+          {link.name === "Duolingo" && !isMobile && (
             <span className={styles.tooltip}>
               pretty cool app, better than SC!
             </span>

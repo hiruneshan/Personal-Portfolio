@@ -17,6 +17,25 @@
   /* Applied sans-serif globally to text block */
 }
 
+@media (max-width: 768px) {
+  .heroSection {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .heroText {
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-top: 0;
+    /* Let flexbox handle centering */
+  }
+
+  .heroGrid {
+    display: none !important;
+  }
+}
+
 .heroIntro {
   color: #64ffda;
   font-family: 'SF Mono', 'Fira Code', 'Fira Mono', 'Roboto Mono', monospace;
@@ -65,4 +84,10 @@
   width: 45vw;
   max-width: 720px;
   pointer-events: none;
+}
+
+@media (max-width: 768px) {
+  .heroGrid {
+    display: none !important;
+  }
 }

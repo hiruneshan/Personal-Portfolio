@@ -25,10 +25,14 @@ export default function Home() {
       <Projects />
       <ProjectCarousel />
       <Contact />
-      <SocialLinks />
+      <div className="d-none d-md-block">
+        <SocialLinks />
+      </div>
       {/* <ExperienceTimeline /> */}
 
-      <SnakeGameButton onClick={() => setIsGameOpen(true)} />
+      <div className="d-none d-md-block">
+        <SnakeGameButton onClick={() => setIsGameOpen(true)} />
+      </div>
       <SnakeGameModal isOpen={isGameOpen} onClose={() => setIsGameOpen(false)} />
 
     </>

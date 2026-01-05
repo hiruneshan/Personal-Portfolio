@@ -4,13 +4,29 @@
   position: fixed;
   bottom: 2rem;
   /* Moved up from bottom */
-  right: 2rem;
+  right: 4rem;
+  /* Increased from 2rem to 4rem */
   /* Positioned to the right */
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
   z-index: 1000;
   align-items: center;
+}
+
+@media (max-width: 768px) {
+  .socialContainer {
+    display: none;
+  }
+}
+
+.mobileSocials {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  padding: 3rem 0;
+  width: 100%;
+  background-color: #040b25;
 }
 
 .socialIcon {
