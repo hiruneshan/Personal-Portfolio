@@ -1,9 +1,10 @@
 import React, { useEffect, useRef, useState } from 'react';
-import styles from '../styles/HeroSection.module.css';
+import styles from '../styles/SnakeGame.module.css';
 
 const CANVAS_SIZE = 300;
-const GRID_SIZE = 15;
-const SPEED = 100;
+const TILE_COUNT = 15;
+const TILE_SIZE = CANVAS_SIZE / TILE_COUNT;
+const SPEED = 250;
 
 export default function SnakeGame() {
     const canvasRef = useRef(null);
@@ -17,9 +18,10 @@ export default function SnakeGame() {
     // Initialize game
     useEffect(() => {
         const context = canvasRef.current.getContext('2d');
-        context.setTransform(CANVAS_SIZE / GRID_SIZE, 0, 0, CANVAS_SIZE / GRID_SIZE, 0, 0);
+        context.setTransform(TILE_SIZE, 0, 0, TILE_SIZE, 0, 0);
         spawnFood();
     }, []);
+
 
     // Game Loop
     useEffect(() => {
@@ -64,8 +66,8 @@ export default function SnakeGame() {
     }, [direction, isAutoPlaying]);
 
     const spawnFood = () => {
-        const x = Math.floor(Math.random() * (CANVAS_SIZE / GRID_SIZE));
-        const y = Math.floor(Math.random() * (CANVAS_SIZE / GRID_SIZE));
+        const x = Math.floor(Math.random() * TILE_COUNT);
+        const y = Math.floor(Math.random() * TILE_COUNT);
         setFood({ x, y });
     };
 
@@ -77,10 +79,10 @@ export default function SnakeGame() {
         head.y += direction.y;
 
         // Wrap around
-        if (head.x < 0) head.x = (CANVAS_SIZE / GRID_SIZE) - 1;
-        if (head.x >= CANVAS_SIZE / GRID_SIZE) head.x = 0;
-        if (head.y < 0) head.y = (CANVAS_SIZE / GRID_SIZE) - 1;
-        if (head.y >= CANVAS_SIZE / GRID_SIZE) head.y = 0;
+        if (head.x < 0) head.x = TILE_COUNT - 1;
+        if (head.x >= TILE_COUNT) head.x = 0;
+        if (head.y < 0) head.y = TILE_COUNT - 1;
+        if (head.y >= TILE_COUNT) head.y = 0;
 
         // Check collision with self
         if (newSnake.some(segment => segment.x === head.x && segment.y === head.y)) {
@@ -125,7 +127,7 @@ export default function SnakeGame() {
     useEffect(() => {
         const context = canvasRef.current.getContext('2d');
         context.fillStyle = '#041036'; // Background
-        context.fillRect(0, 0, GRID_SIZE, GRID_SIZE); // Clear canvas (using scaled coords)
+        context.fillRect(0, 0, TILE_COUNT, TILE_COUNT); // Clear canvas
 
         // Draw Food
         context.fillStyle = '#FF0055'; // Neon Red/Pink
@@ -139,29 +141,32 @@ export default function SnakeGame() {
     }, [snake, food]);
 
     return (
-        <div className={styles.gameContainer}>
-            <canvas
-                ref={canvasRef}
-                width={CANVAS_SIZE}
-                height={CANVAS_SIZE}
-                className={styles.gameCanvas}
-            />
-            <div className={styles.gameOverlay}>
-                {gameOver ? (
-                    <div className={styles.gameOverText}>
-                        GAME OVER
-                        <button onClick={() => {
-                            setSnake([{ x: 10, y: 10 }]);
-                            setGameOver(false);
-                            setScore(0);
-                            setDirection({ x: 0, y: 0 });
-                            setIsAutoPlaying(true);
-                        }}>RESTART</button>
-                    </div>
-                ) : (
-                    <div className={styles.score}>SCORE: {score}</div>
-                )}
-                {isAutoPlaying && <div className={styles.startText}>PRESS ARROWS TO PLAY</div>}
+        <div className={styles.gameWrapper}>
+            <div className={styles.scoreBoard}>SCORE: {score}</div>
+            <div className={styles.gameContainer}>
+                <canvas
+                    ref={canvasRef}
+                    width={CANVAS_SIZE}
+                    height={CANVAS_SIZE}
+                    className={styles.gameCanvas}
+                />
+                <div className={styles.gameOverlay}>
+                    {gameOver && (
+                        <div className={styles.gameOverText}>
+                            GAME OVER
+                            <button onClick={() => {
+                                setSnake([{ x: 10, y: 10 }]);
+                                setGameOver(false);
+                                setScore(0);
+                                setDirection({ x: 0, y: 0 });
+                                setIsAutoPlaying(false);
+                            }}>RESTART</button>
+                        </div>
+                    )}
+                    {!gameOver && direction.x === 0 && direction.y === 0 && (
+                        <div className={styles.startText}>Use Arrow Keys to Start</div>
+                    )}
+                </div>
             </div>
         </div>
     );
