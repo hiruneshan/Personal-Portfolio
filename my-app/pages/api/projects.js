@@ -13,7 +13,7 @@ const projectData = {
       "title": "Olympic Data ETL Pipeline",
       "technologies": ["Python", "Python Core Data Structures", "CSV File Parsing & Generation", "File I/O Systems", "Algorithmic Data Aggregation"],
       "description": "Processed large Olympic open datasets by identifying missing, inconsistent, and incorrect data. Designed a Python-based workflow to clean and standardize records, integrate Paris 2024 data without duplicates, and generate new cleaned CSV files along with a summarized medal tally for analysis.",
-      "imageUrl": "/images/ETL image.png",
+      "imageUrl": "/images/ETLImage.png",
       "GitHub": "https://github.com/hiruneshan/end-to-end-data-pipeline-design"
     },
     {
@@ -21,7 +21,8 @@ const projectData = {
       "technologies": ["React", "Node.js", "Express.js", "Passport.js", "JWT", "Vercel", "MongoDB"],
       "description": "A full-stack user authentication system with secure JWT-based authorization. The project supports user registration and login, token-based session handling, and protected API routes for managing user favourites. Authentication is handled using Passport.js with a JWT strategy, and the frontend securely stores and decodes tokens to manage authenticated UI state. The backend is deployed on Vercel and uses environment variables for secure configuration.",
       "imageUrl": "/images/AuthFlow.png",
-      "GitHub": "https://github.com/hiruneshan/WEB---APP"
+      "GitHub": "https://github.com/hiruneshan/WEB---APP",
+      "Link": "https://web-app-p792.vercel.app/login"
     },
     {
       "title": "Media Management System",

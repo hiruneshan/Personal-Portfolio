@@ -19,14 +19,9 @@ const DuolingoIcon = () => (
 export default function SocialLinks({ isMobile = false }) {
   const links = [
     {
-      name: "Instagram",
-      url: "https://instagram.com", // Update with actual URL
-      icon: <Instagram size={24} />,
-    },
-    {
-      name: "Email",
-      url: "mailto:hiru.wijemanne@example.com", // Update with actual email
-      icon: <Mail size={24} />,
+      name: "LinkedIn",
+      url: "https://www.linkedin.com/in/hiru-wijemanne",
+      icon: <Linkedin size={24} />,
     },
     {
       name: "GitHub",
@@ -34,9 +29,14 @@ export default function SocialLinks({ isMobile = false }) {
       icon: <Github size={24} />,
     },
     {
-      name: "LinkedIn",
-      url: "https://www.linkedin.com/in/hiru-wijemanne",
-      icon: <Linkedin size={24} />,
+      name: "Email",
+      url: "mailto:hiru.wijemanne@example.com", // Update with actual email
+      icon: <Mail size={24} />,
+    },
+    {
+      name: "Instagram",
+      url: "https://instagram.com", // Update with actual URL
+      icon: <Instagram size={24} />,
     },
     {
       name: "Duolingo",
@@ -59,7 +59,7 @@ export default function SocialLinks({ isMobile = false }) {
           {link.icon}
           {link.name === "Duolingo" && !isMobile && (
             <span className={styles.tooltip}>
-              pretty cool app, better than SC!
+              let&apos;s learn something new!
             </span>
           )}
         </a>

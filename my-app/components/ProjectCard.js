@@ -12,9 +12,9 @@ export default function ProjectCard({ project }) {
                     <div className={styles.cardHeader}>
                         <Folder className={styles.folderIcon} strokeWidth={1.5} />
                         <div className={styles.cardLinks}>
-                            {project.githubUrl && (
+                            {(project.githubUrl || project.GitHub) && (
                                 <a
-                                    href={project.githubUrl}
+                                    href={project.githubUrl || project.GitHub}
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     aria-label="GitHub Link"

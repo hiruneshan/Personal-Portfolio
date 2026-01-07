@@ -74,7 +74,8 @@
 }
 
 /* Add a little arrow pointing to the icon */
-.tooltip::after {
+/* Arrow removed */
+/* .tooltip::after {
   content: '';
   position: absolute;
   top: 50%;
@@ -83,7 +84,7 @@
   border-width: 6px;
   border-style: solid;
   border-color: transparent transparent transparent #64ffda;
-}
+} */
 
 .socialIcon:hover .tooltip {
   opacity: 1;

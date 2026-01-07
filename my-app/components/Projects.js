@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'; // Consolidated imports
 import { Container, Row, Col } from 'react-bootstrap';
+import { Github, ExternalLink } from 'lucide-react';
 import styles from '../styles/Projects.module.css';
 import ProjectCard from './ProjectCard';
 
@@ -32,7 +33,31 @@ const ProjectItem = ({ project, index }) => {
     >
       <div className={styles.projectContent}>
         <div className={styles.projectLabel}>Featured Project</div>
-        <h4 className={styles.projectTitle}>{project.title}</h4>
+        <h4 className={styles.projectTitle}>
+          {project.title}
+          {project.GitHub && (
+            <a
+              href={project.GitHub}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={styles.iconLink}
+              aria-label="GitHub Repo"
+            >
+              <Github size={22} />
+            </a>
+          )}
+          {project.Link && (
+            <a
+              href={project.Link}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={styles.iconLink}
+              aria-label="External Link"
+            >
+              <ExternalLink size={22} />
+            </a>
+          )}
+        </h4>
         <div className={styles.projectDetails}>
           <p>{project.description}</p>
           <ul>
