@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
+import Image from "next/image"; // Added Image import
 import { Container, Row, Col } from "react-bootstrap";
 import styles from "../styles/AboutSection.module.css";
 
@@ -7,6 +8,7 @@ export default function AboutSection() {
   const imgRef = useRef(null);
 
   useEffect(() => {
+    const currentRef = imgRef.current; // Capture ref value
     const observer = new IntersectionObserver(
       (entries) => {
         const [entry] = entries;
@@ -18,10 +20,10 @@ export default function AboutSection() {
       { threshold: 0.3 }
     );
 
-    if (imgRef.current) observer.observe(imgRef.current);
+    if (currentRef) observer.observe(currentRef);
 
     return () => {
-      if (imgRef.current) observer.unobserve(imgRef.current);
+      if (currentRef) observer.unobserve(currentRef); // Use captured value
     };
   }, []);
 
@@ -78,9 +80,11 @@ export default function AboutSection() {
                     className={`${styles.profileImageContainer} ${isVisible ? styles.popIn : ''}`}
                   >
                     <div className={styles.profileImageWrapper}>
-                      <img
+                      <Image
                         src="/images/img2.jpg"
                         alt="Hiru Wijemanne"
+                        width={500}
+                        height={500}
                         className={styles.profileImage}
                       />
                     </div>

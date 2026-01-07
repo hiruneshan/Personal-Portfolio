@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'; // Consolidated imports
+import Image from 'next/image'; // Added Image import
 import { Container, Row, Col } from 'react-bootstrap';
 import { Github, ExternalLink } from 'lucide-react';
 import styles from '../styles/Projects.module.css';
@@ -9,6 +10,7 @@ const ProjectItem = ({ project, index }) => {
   const ref = React.useRef(null);
 
   useEffect(() => {
+    const currentRef = ref.current; // Capture ref
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
@@ -19,10 +21,10 @@ const ProjectItem = ({ project, index }) => {
       { threshold: 0.2 }
     );
 
-    if (ref.current) observer.observe(ref.current);
+    if (currentRef) observer.observe(currentRef);
 
     return () => {
-      if (ref.current) observer.unobserve(ref.current);
+      if (currentRef) observer.unobserve(currentRef); // Use captured ref
     };
   }, []);
 
@@ -69,7 +71,7 @@ const ProjectItem = ({ project, index }) => {
       </div>
 
       <div className={styles.projectImg}>
-        <img src={project.imageUrl} alt={project.title} />
+        <Image src={project.imageUrl} alt={project.title} fill style={{ objectFit: 'cover' }} />
       </div>
     </div>
   );

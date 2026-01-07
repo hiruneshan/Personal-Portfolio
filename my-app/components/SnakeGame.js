@@ -36,7 +36,7 @@ export default function SnakeGame() {
         }, SPEED);
 
         return () => clearInterval(interval);
-    }, [snake, direction, gameOver, isAutoPlaying]);
+    }, [snake, direction, gameOver, isAutoPlaying, autoPlay, moveSnake]);
 
     // Handle Key Press
     useEffect(() => {
