@@ -1,2 +1,3 @@
+Personal portfolio built on a modern JavaScript stack including Next.js, React, React-Bootstrap, and Framer Motion for animations. Features a modern, sea-inspired dark blue design.
 
- My personal portfolio with a retro terminal finish, built on a modern JavaScript stack including Next.js, React, React-Bootstrap, and Framer Motion for animations.
+Projects are dynamically loaded via a custom internal API (pages/api/projects.js), simulating a backend-frontend separation. The frontend fetches this API on load and renders the project cards, making it easy to later switch to a real database without changing the UI.
