@@ -118,17 +118,12 @@
 
 /* --- UPDATED FOR CAPSULES --- */
 .projectDetails ul li {
-  /* Capsule Styles */
-  color: #64ffda;
-  background-color: #1e293b;
-  padding: 5px 15px;
-  border-radius: 16px;
+  /* Removed Capsule Styles */
+  color: #a8b2d1;
+  /* Muted Slate color */
   font-size: 13px;
-
-  /* --- All margins removed (handled by 'gap') --- */
-
-  /* Existing */
-  font-family: monospace;
+  font-family: 'SF Mono', 'Fira Code', 'Fira Mono', 'Roboto Mono', monospace;
+  /* Ensure mono font matches reference */
 }
 
 .projectImg {
