@@ -58,7 +58,7 @@ export default function AboutSection() {
 
                     {/* Technologies Section */}
                     <div className={styles.techSection}>
-                      <p className={styles.techTitle}>Here are a few technologies I've been working with recently:</p>
+                      <p className={styles.techTitle}>Here are a few technologies I&apos;ve been working with recently:</p>
                       <div className={styles.techGrid}>
                         <div className={styles.techItem}>C</div>
                         <div className={styles.techItem}>C++</div>

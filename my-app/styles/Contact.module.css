@@ -50,4 +50,6 @@
     background-color: rgba(100, 255, 218, 0.1);
     color: #64ffda;
     text-decoration: none;
+    transform: translate(-5px, -5px);
+    box-shadow: 5px 5px 0 0 #64ffda;
 }
