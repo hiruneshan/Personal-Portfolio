@@ -16,11 +16,27 @@
 .navbarContainer {
   height: 100%;
   max-width: 100%;
-  padding: 0 50px;
+  padding: 0 40px;
 
   display: flex;
   align-items: center;
   justify-content: space-between;
+}
+
+.logoContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: transform 0.2s ease-in-out;
+}
+
+.logoContainer:hover {
+  transform: scale(1.1);
+}
+
+.navLogo {
+  display: block;
 }
 
 .navLinks {

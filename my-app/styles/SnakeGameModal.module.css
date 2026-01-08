@@ -43,8 +43,8 @@
 .floatingButton {
     position: fixed;
     bottom: 20px;
-    left: 4rem;
-    /* Increased from 20px to 4rem */
+    left: 40px;
+    /* Adjusted to align with navbar */
     background-color: #0a192f;
     color: #64ffda;
     border: 1px solid #64ffda;

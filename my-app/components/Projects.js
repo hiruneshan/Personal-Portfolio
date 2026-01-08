@@ -101,7 +101,7 @@ const Projects = () => {
     return <div className={styles.projectContainer}>Loading...</div>;
   }
 
-  // FIXED: Wrapped in a React Fragment
+
   return (
     <section id="projects" className={styles.projectsSection}>
       <Container>

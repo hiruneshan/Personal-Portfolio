@@ -4,8 +4,8 @@
   position: fixed;
   bottom: 2rem;
   /* Moved up from bottom */
-  right: 4rem;
-  /* Increased from 2rem to 4rem */
+  right: 40px;
+  /* Adjusted to align with navbar */
   /* Positioned to the right */
   display: flex;
   flex-direction: column;
