@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import styles from '../styles/Experience.module.css';
 
 const experiences = [
@@ -105,6 +105,27 @@ import { Container, Row, Col } from "react-bootstrap";
 // ... imports
 
 export default function Experience() {
+    const [isVisible, setIsVisible] = useState(false);
+    const sectionRef = useRef(null);
+
+    useEffect(() => {
+        const observer = new IntersectionObserver(
+            ([entry]) => {
+                if (entry.isIntersecting) {
+                    setIsVisible(true);
+                    observer.disconnect();
+                }
+            },
+            { threshold: 0.1 }
+        );
+
+        if (sectionRef.current) {
+            observer.observe(sectionRef.current);
+        }
+
+        return () => observer.disconnect();
+    }, []);
+
     return (
         <section className={styles.experienceSection} id="experience">
             <Container>
@@ -116,7 +137,7 @@ export default function Experience() {
                             <div className={styles.sectionLine}></div>
                         </div>
 
-                        <div className={styles.timelineContainer}>
+                        <div ref={sectionRef} className={`${styles.timelineContainer} ${isVisible ? styles.visible : ''}`}>
                             {experiences.map((company) => (
                                 <React.Fragment key={company.id}>
                                     {company.roles.map((role, rIndex) => (

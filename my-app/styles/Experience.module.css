@@ -56,6 +56,38 @@
     gap: 0;
     position: relative;
     padding-bottom: 60px;
+
+    /* Animation Initial State */
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+/* Trigger Animation */
+.visible .timelineRow {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Stagger Delays for children */
+.visible .timelineRow:nth-child(1) {
+    transition-delay: 0.1s;
+}
+
+.visible .timelineRow:nth-child(2) {
+    transition-delay: 0.2s;
+}
+
+.visible .timelineRow:nth-child(3) {
+    transition-delay: 0.3s;
+}
+
+.visible .timelineRow:nth-child(4) {
+    transition-delay: 0.4s;
+}
+
+.visible .timelineRow:nth-child(5) {
+    transition-delay: 0.5s;
 }
 
 /* 1. Date Column */
