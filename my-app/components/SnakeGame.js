@@ -4,7 +4,7 @@ import styles from '../styles/SnakeGame.module.css';
 const CANVAS_SIZE = 300;
 const TILE_COUNT = 15;
 const TILE_SIZE = CANVAS_SIZE / TILE_COUNT;
-const SPEED = 250;
+const SPEED = 100;
 
 export default function SnakeGame() {
     const canvasRef = useRef(null);
@@ -14,12 +14,80 @@ export default function SnakeGame() {
     const [gameOver, setGameOver] = useState(false);
     const [score, setScore] = useState(0);
     const [isAutoPlaying, setIsAutoPlaying] = useState(true);
+    const [showBanner, setShowBanner] = useState(true);
+
+    const spawnFood = () => {
+        const x = Math.floor(Math.random() * TILE_COUNT);
+        const y = Math.floor(Math.random() * TILE_COUNT);
+        setFood({ x, y });
+    };
+
+    const autoPlay = () => {
+        const head = snake[0];
+
+        // Simple AI: Move towards food
+        if (head.x < food.x) setDirection({ x: 1, y: 0 });
+        else if (head.x > food.x) setDirection({ x: -1, y: 0 });
+        else if (head.y < food.y) setDirection({ x: 0, y: 1 });
+        else if (head.y > food.y) setDirection({ x: 0, y: -1 });
+
+        // Very basic collision avoidance (random turn if about to hit self)
+        // This is a placeholder for better AI
+    };
+
+    const moveSnake = () => {
+        const newSnake = [...snake];
+        const head = { ...newSnake[0] };
+
+        head.x += direction.x;
+        head.y += direction.y;
+
+        // Wrap around
+        if (head.x < 0) head.x = TILE_COUNT - 1;
+        if (head.x >= TILE_COUNT) head.x = 0;
+        if (head.y < 0) head.y = TILE_COUNT - 1;
+        if (head.y >= TILE_COUNT) head.y = 0;
+
+        // Check collision with self
+        if (newSnake.some(segment => segment.x === head.x && segment.y === head.y)) {
+            if (!isAutoPlaying) {
+                setGameOver(true);
+                return;
+            } else {
+                // Simple reset for autoplay to keep it going
+                setSnake([{ x: 10, y: 10 }]);
+                setDirection({ x: 1, y: 0 });
+                return;
+            }
+        }
+
+        newSnake.unshift(head);
+
+        // Check collision with food
+        if (head.x === food.x && head.y === food.y) {
+            setScore(score + 1);
+            spawnFood();
+        } else {
+            newSnake.pop();
+        }
+
+        setSnake(newSnake);
+    };
 
     // Initialize game
     useEffect(() => {
         const context = canvasRef.current.getContext('2d');
         context.setTransform(TILE_SIZE, 0, 0, TILE_SIZE, 0, 0);
         spawnFood();
+    }, []);
+
+    // Banner Timer
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            setShowBanner(false);
+        }, 30000); // 30 seconds
+
+        return () => clearTimeout(timer);
     }, []);
 
 
@@ -65,63 +133,7 @@ export default function SnakeGame() {
         return () => window.removeEventListener('keydown', handleKeyDown);
     }, [direction, isAutoPlaying]);
 
-    const spawnFood = () => {
-        const x = Math.floor(Math.random() * TILE_COUNT);
-        const y = Math.floor(Math.random() * TILE_COUNT);
-        setFood({ x, y });
-    };
 
-    const moveSnake = () => {
-        const newSnake = [...snake];
-        const head = { ...newSnake[0] };
-
-        head.x += direction.x;
-        head.y += direction.y;
-
-        // Wrap around
-        if (head.x < 0) head.x = TILE_COUNT - 1;
-        if (head.x >= TILE_COUNT) head.x = 0;
-        if (head.y < 0) head.y = TILE_COUNT - 1;
-        if (head.y >= TILE_COUNT) head.y = 0;
-
-        // Check collision with self
-        if (newSnake.some(segment => segment.x === head.x && segment.y === head.y)) {
-            if (!isAutoPlaying) {
-                setGameOver(true);
-                return;
-            } else {
-                // Simple reset for autoplay to keep it going
-                setSnake([{ x: 10, y: 10 }]);
-                setDirection({ x: 1, y: 0 });
-                return;
-            }
-        }
-
-        newSnake.unshift(head);
-
-        // Check collision with food
-        if (head.x === food.x && head.y === food.y) {
-            setScore(score + 1);
-            spawnFood();
-        } else {
-            newSnake.pop();
-        }
-
-        setSnake(newSnake);
-    };
-
-    const autoPlay = () => {
-        const head = snake[0];
-
-        // Simple AI: Move towards food
-        if (head.x < food.x) setDirection({ x: 1, y: 0 });
-        else if (head.x > food.x) setDirection({ x: -1, y: 0 });
-        else if (head.y < food.y) setDirection({ x: 0, y: 1 });
-        else if (head.y > food.y) setDirection({ x: 0, y: -1 });
-
-        // Very basic collision avoidance (random turn if about to hit self)
-        // This is a placeholder for better AI
-    }
 
     // Render
     useEffect(() => {
@@ -142,6 +154,11 @@ export default function SnakeGame() {
 
     return (
         <div className={styles.gameWrapper}>
+            {showBanner && (
+                <div className={styles.welcomeBanner}>
+                    This is a small game i created, enjoy!
+                </div>
+            )}
             <div className={styles.scoreBoard}>SCORE: {score}</div>
             <div className={styles.gameContainer}>
                 <canvas
