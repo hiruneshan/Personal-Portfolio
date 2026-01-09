@@ -12,7 +12,7 @@
 }
 
 .cell {
-    background-image: url('/images/img3.png');
+    background-image: url('/images/homeBoxImg.png');
     background-size: 500% 700%;
     border: 1px solid #233554;
     /* Updated border color (Light Navy) */
@@ -32,13 +32,15 @@
     height: 100%;
     background-color: #112240;
     /* Blue tile color */
-    transition: opacity 0.3s ease;
+    /* Blue tile color */
+    transition: opacity 2s ease;
     opacity: 1;
 }
 
 /* Hover Effects */
 .cell:hover::after {
     opacity: 0;
+    transition: opacity 0s;
     /* Reveal image on hover */
 }
 
