@@ -11,6 +11,7 @@ export default function SnakeGame() {
     const [snake, setSnake] = useState([{ x: 10, y: 10 }]);
     const [food, setFood] = useState({ x: 15, y: 15 });
     const [direction, setDirection] = useState({ x: 0, y: 0 });
+    const directionQueue = useRef([]); // Input buffering queue
     const [gameOver, setGameOver] = useState(false);
     const [score, setScore] = useState(0);
     const [isAutoPlaying, setIsAutoPlaying] = useState(true);
@@ -36,11 +37,22 @@ export default function SnakeGame() {
     };
 
     const moveSnake = () => {
+        // consume next direction from queue if available
+        if (directionQueue.current.length > 0) {
+            const nextDir = directionQueue.current.shift();
+            setDirection(nextDir);
+            // We use nextDir directly for calculation to avoid state update delay issues
+            // inside this closure, although we still set state for rendering/collisions
+            var currentDir = nextDir;
+        } else {
+            var currentDir = direction;
+        }
+
         const newSnake = [...snake];
         const head = { ...newSnake[0] };
 
-        head.x += direction.x;
-        head.y += direction.y;
+        head.x += currentDir.x;
+        head.y += currentDir.y;
 
         // Wrap around
         if (head.x < 0) head.x = TILE_COUNT - 1;
@@ -111,21 +123,33 @@ export default function SnakeGame() {
         const handleKeyDown = (e) => {
             if (isAutoPlaying) setIsAutoPlaying(false);
 
+            // Determine the "last known direction" - either the last queued one, or current state
+            const currentLastDir = directionQueue.current.length > 0
+                ? directionQueue.current[directionQueue.current.length - 1]
+                : direction;
+
+            let newDir = null;
+
             switch (e.key) {
                 case 'ArrowUp':
-                    if (direction.y === 0) setDirection({ x: 0, y: -1 });
+                    if (currentLastDir.y === 0) newDir = { x: 0, y: -1 };
                     break;
                 case 'ArrowDown':
-                    if (direction.y === 0) setDirection({ x: 0, y: 1 });
+                    if (currentLastDir.y === 0) newDir = { x: 0, y: 1 };
                     break;
                 case 'ArrowLeft':
-                    if (direction.x === 0) setDirection({ x: -1, y: 0 });
+                    if (currentLastDir.x === 0) newDir = { x: -1, y: 0 };
                     break;
                 case 'ArrowRight':
-                    if (direction.x === 0) setDirection({ x: 1, y: 0 });
+                    if (currentLastDir.x === 0) newDir = { x: 1, y: 0 };
                     break;
                 default:
                     break;
+            }
+
+            if (newDir) {
+                directionQueue.current.push(newDir);
+                // We'll update state in the game loop to sync with movement
             }
         };
 
@@ -176,6 +200,7 @@ export default function SnakeGame() {
                                 setGameOver(false);
                                 setScore(0);
                                 setDirection({ x: 0, y: 0 });
+                                directionQueue.current = []; // Clear queue
                                 setIsAutoPlaying(false);
                             }}>RESTART</button>
                         </div>

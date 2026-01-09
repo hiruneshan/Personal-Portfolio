@@ -60,6 +60,10 @@
 
 /* Mobile Menu Styles */
 @media (max-width: 768px) {
+  .navbarContainer {
+    padding: 0 20px;
+  }
+
   .navLinks {
     flex-direction: column;
     align-items: flex-start;
