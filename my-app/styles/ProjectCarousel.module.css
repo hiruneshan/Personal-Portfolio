@@ -195,3 +195,43 @@
     font-family: 'SF Mono', 'Fira Code', 'Fira Mono', 'Roboto Mono', monospace;
     font-size: 12px;
 }
+
+/* Tooltip Styles matching Duolingo hover */
+.repoLink {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+/* 
+   Targeting Bootstrap Tooltip structure passed via className={styles.repoTooltip}
+   Bootstrap renders: <div class="tooltip ... [hashed-repoTooltip]"> <div class="tooltip-inner">...</div> </div>
+*/
+.repoTooltip.fade {
+    opacity: 0;
+    transition: opacity 0.25s ease-out !important;
+    /* Smooth transition */
+}
+
+.repoTooltip.show {
+    opacity: 1 !important;
+}
+
+.repoTooltip :global(.tooltip-inner) {
+    background-color: #1e293b !important;
+    color: #64ffda !important;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 0.8rem;
+    padding: 8px 12px;
+    border: 1px solid #64ffda;
+    border-radius: 4px;
+    box-shadow: 0 0 10px rgba(100, 255, 218, 0.2);
+    white-space: pre-wrap;
+    /* Allow wrapping if needed */
+    max-width: 250px;
+}
+
+.repoTooltip :global(.tooltip-arrow)::before {
+    border-top-color: #64ffda !important;
+    /* Arrow color */
+}

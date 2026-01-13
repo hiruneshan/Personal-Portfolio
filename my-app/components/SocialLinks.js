@@ -30,7 +30,7 @@ export default function SocialLinks({ isMobile = false }) {
     },
     {
       name: "Email",
-      url: "mailto:hiru.wijemanne@example.com", // Update with actual email
+      url: "mailto:hiruneshan@gmail.com",
       icon: <Mail size={24} />,
     },
     {

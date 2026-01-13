@@ -1,5 +1,6 @@
 import React from 'react';
 import { Folder, Github, ExternalLink } from 'lucide-react';
+import { OverlayTrigger, Tooltip } from 'react-bootstrap';
 import styles from '../styles/ProjectCarousel.module.css';
 
 export default function ProjectCard({ project }) {
@@ -13,14 +14,41 @@ export default function ProjectCard({ project }) {
                         <Folder className={styles.folderIcon} strokeWidth={1.5} />
                         <div className={styles.cardLinks}>
                             {(project.githubUrl || project.GitHub) && (
-                                <a
-                                    href={project.githubUrl || project.GitHub}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    aria-label="GitHub Link"
-                                >
-                                    <Github className={styles.iconLink} strokeWidth={2} />
-                                </a>
+                                (() => {
+                                    const url = project.githubUrl || project.GitHub;
+                                    const isPrivate = url === 'https://github.com';
+
+                                    const linkElement = (
+                                        <a
+                                            href={url}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            aria-label="GitHub Link"
+                                            className={styles.repoLink}
+                                            style={isPrivate ? { cursor: 'pointer' } : {}}
+                                        >
+                                            <Github className={styles.iconLink} strokeWidth={2} />
+                                        </a>
+                                    );
+
+                                    if (isPrivate) {
+                                        return (
+                                            <OverlayTrigger
+                                                placement="top"
+                                                overlay={
+                                                    <Tooltip id={`tooltip-${project.id}`} className={styles.repoTooltip}>
+                                                        This is a private repository, please contact the owner for a code review
+                                                    </Tooltip>
+                                                }
+                                            >
+                                                {/* OverlayTrigger requires the ref to be forwarded, which standard HTML tags using className handle if passed correctly, but span wrapper is safer */}
+                                                <span>{linkElement}</span>
+                                            </OverlayTrigger>
+                                        );
+                                    }
+
+                                    return linkElement;
+                                })()
                             )}
                             {project.externalUrl && (
                                 <a

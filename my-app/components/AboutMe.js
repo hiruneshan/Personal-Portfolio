@@ -31,7 +31,7 @@ export default function AboutSection() {
     <section id="about" className={styles.aboutSection}>
       <Container>
         <Row className="justify-content-center">
-          <Col lg={10}>
+          <Col lg={9}>
 
             {/* Section Header: "01. About Me" */}
             <div className={styles.sectionHeader}>
@@ -43,9 +43,8 @@ export default function AboutSection() {
             {/* Content Wrapper */}
             <div className={styles.contentWrapper}>
               <Row className="align-items-start">
-
-                {/* Left Column: Text Content */}
-                <Col md={7} lg={8}>
+                {/* Left Column: Text Content - Reduced width for compactness */}
+                <Col md={6} lg={6}>
                   <div className={styles.textContent}>
                     <p>
                       Hi, I’m Hiru
@@ -65,16 +64,18 @@ export default function AboutSection() {
                         <div className={styles.techItem}>C</div>
                         <div className={styles.techItem}>C++</div>
                         <div className={styles.techItem}>Python</div>
+                        <div className={styles.techItem}>Java</div>
                         <div className={styles.techItem}>JavaScript</div>
-                        <div className={styles.techItem}>Node.js</div>
                         <div className={styles.techItem}>React</div>
+                        <div className={styles.techItem}>Node.js</div>
+                        <div className={styles.techItem}>Express.js</div>
                       </div>
                     </div>
                   </div>
                 </Col>
 
                 {/* Right Column: Profile Image */}
-                <Col md={5} lg={4}>
+                <Col md={6} lg={6}>
                   <div
                     ref={imgRef}
                     className={`${styles.profileImageContainer} ${isVisible ? styles.popIn : ''}`}

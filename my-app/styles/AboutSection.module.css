@@ -22,7 +22,8 @@
   display: flex;
   align-items: center;
   gap: 1rem;
-  margin-bottom: 3rem;
+  margin-bottom: 1.5rem;
+  /* Increased gap */
   opacity: 0;
   animation: fadeIn 0.8s ease-out forwards;
 }
@@ -36,7 +37,7 @@
 }
 
 .sectionTitle {
-  font-size: clamp(30px, 6vw, 60px);
+  font-size: clamp(26px, 5vw, 50px);
   color: #8892b0;
   /* Matching Hero Tagline */
   font-weight: 600;
@@ -60,11 +61,13 @@
   animation: fadeIn 1s ease-out 0.3s forwards;
 }
 
-/* --- Profile Image Container --- */
 .profileImageContainer {
   position: relative;
+  margin-top: 10px;
+  /* Align with text */
   margin-bottom: 2rem;
-  max-width: 300px;
+  max-width: 250px;
+  /* Reduced from 300px */
   margin-left: auto;
   margin-right: auto;
   opacity: 0;
@@ -154,7 +157,6 @@
   font-size: 18px;
   color: #e6f1ff;
   margin-bottom: 1rem;
-  font-family: 'SF Mono', 'Fira Code', 'Fira Mono', 'Roboto Mono', monospace;
 }
 
 .techGrid {
@@ -169,7 +171,6 @@
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  font-family: 'SF Mono', 'Fira Code', 'Fira Mono', 'Roboto Mono', monospace;
 }
 
 .techItem:before {

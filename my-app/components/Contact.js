@@ -13,7 +13,7 @@ export default function Contact() {
                         <p className={styles.description}>
                             I’m currently looking for a summer internship and new opportunities. My inbox is always open. Thank you for checking out my work!
                         </p>
-                        <a href="mailto:hiruwije@gmail.com" className={styles.emailButton}>
+                        <a href="mailto:hiruneshan@gmail.com" className={styles.emailButton}>
                             Say Hello
                         </a>
                     </Col>
