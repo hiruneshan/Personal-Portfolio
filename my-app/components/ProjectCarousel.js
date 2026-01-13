@@ -6,16 +6,16 @@ import styles from '../styles/ProjectCarousel.module.css';
 const allProjects = [
   {
     id: 1,
-    title: 'E-Commerce Platform',
-    description: 'A full-stack e-commerce solution with product listings, a shopping cart, and a payment gateway.',
-    technologies: ['React', 'Node.js', 'Express', 'MongoDB', 'Stripe'],
-    githubUrl: 'https://github.com'
+    title: 'project management platform',
+    description: 'A secure project management web app that allows users to browse, add, edit, and manage projects by sector with user authentication and session-based access control.',
+    technologies: ['JavaScript', 'Tailwind CSS', 'Node.js', 'Express.js', 'EJS', 'MongoDB'],
+    githubUrl: 'https://github.com/hiruneshan/Climate-Solutions-project'
   },
   {
     id: 2,
-    title: 'Data Visualization Dashboard',
-    description: 'A web app for visualizing complex datasets using interactive charts and graphs.',
-    technologies: ['React', 'D3.js', 'Tailwind CSS'],
+    title: 'Dictionary System',
+    description: 'a C++ dictionary system that loads word data from files, supports configurable searches, and logs execution events.',
+    technologies: ['C++', 'STL', 'Object-Oriented Programming', 'Dynamic Memory Management'],
     githubUrl: 'https://github.com'
   },
   {

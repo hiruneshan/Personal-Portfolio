@@ -79,29 +79,46 @@
     width: 300px;
     /* Fixed width for standard card size */
     scroll-snap-align: start;
-    height: 320px;
-    /* Match internal card height */
+    /* Height is now controlled by the card itself + hover state */
+    /* Removed fixed height to allow expansion */
+    padding-bottom: 20px;
+    /* Add some buffer for shadow/hover movement */
 }
 
 .cardContainer {
     height: 100%;
+    /* Ensure container respects child height changes */
+    display: flex;
+    align-items: flex-start;
+    /* top align so it grows down */
     transition: all 0.25s cubic-bezier(0.645, 0.045, 0.355, 1);
 }
 
 .cardContainer:hover {
-    transform: translateY(-7px);
+    transform: translateY(-7px) scale(1.02);
+    z-index: 10;
+    /* Ensure it stays on top if it slightly overlaps */
+}
+
+.cardContainer:hover .projectCard {
+    height: 380px;
+    /* Expanded height (reduced from 420px) */
 }
 
 .projectCard {
     background-color: #112240;
     /* Light Navy */
-    height: 100%;
+    height: 320px;
+    /* Default collapsed height */
     padding: 1.75rem 1.5rem;
     border-radius: 4px;
     display: flex;
     flex-direction: column;
     box-shadow: 0 10px 30px -15px rgba(2, 12, 27, 0.7);
     transition: all 0.25s cubic-bezier(0.645, 0.045, 0.355, 1);
+    overflow: hidden;
+    /* Hide content that exceeds the height */
+    position: relative;
 }
 
 .cardHeader {
@@ -148,10 +165,9 @@
     /* Updated to match Experience/Featured Projects */
     line-height: 1.5;
     /* Updated to match Experience/Featured Projects */
-    margin-bottom: 2rem;
-    /* Make room for tech list at bottom */
-    flex-grow: 1;
-    /* Push tech list down */
+    margin-bottom: 1rem;
+    /* Reduced margin */
+    /* Removed flex-grow to reduce gap between desc and tech list */
     font-family: 'Calibre', 'Inter', sans-serif;
 }
 
@@ -162,6 +178,16 @@
     padding: 0;
     margin: 0;
     list-style: none;
+
+    /* Default hidden state */
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.25s cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+
+.cardContainer:hover .techList {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 .techItem {

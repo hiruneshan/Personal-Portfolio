@@ -4,7 +4,7 @@ import styles from '../styles/ProjectCarousel.module.css';
 
 export default function ProjectCard({ project }) {
     return (
-        <div style={{ height: '100%' }}>
+        <div>
             <div className={styles.cardContainer}>
                 <div className={styles.projectCard}>
 
