@@ -11,6 +11,7 @@ import ExperienceTimeline from "@/components/ExperienceTimeline";
 import ProjectCarousel from "@/components/ProjectCarousel";
 import Contact from "@/components/Contact";
 import SnakeGameModal, { SnakeGameButton } from "@/components/SnakeGameModal";
+import styles from "../styles/Home.module.css";
 
 export default function Home() {
   const [isGameOpen, setIsGameOpen] = useState(false);
@@ -36,7 +37,7 @@ export default function Home() {
       <SnakeGameModal isOpen={isGameOpen} onClose={() => setIsGameOpen(false)} />
 
       <div className="text-center py-4" style={{ fontFamily: '"SF Mono", "Fira Code", monospace', fontSize: '0.9rem', color: '#8892b0' }}>
-        Built and designed by <span style={{ color: '#64ffda' }}>Hiru Wijemanne</span>
+        Built and designed by <a href="https://github.com/hiruneshan/Personal-Portfolio" target="_blank" rel="noopener noreferrer" className={styles.linkHighlight}>Hiru Wijemanne</a>
       </div>
 
     </>

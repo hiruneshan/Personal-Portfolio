@@ -166,3 +166,26 @@ a.secondary {
     filter: invert();
   }
 }
+
+.linkHighlight {
+  color: #64ffda;
+  text-decoration: none;
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+}
+
+.linkHighlight::after {
+  content: '';
+  display: block;
+  width: 0;
+  height: 1px;
+  background: #64ffda;
+  transition: width 0.3s;
+}
+
+.footer a:hover,
+/* Override previous generic hover if needed */
+.linkHighlight:hover::after {
+  width: 100%;
+}

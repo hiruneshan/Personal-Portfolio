@@ -20,39 +20,33 @@ const allProjects = [
   },
   {
     id: 3,
-    title: 'Social Media App',
-    description: 'A clone of a popular social media platform allowing users to post, comment, and follow others.',
-    technologies: ['React Native', 'Firebase', 'Firestore'],
+    title: 'Hero & Guild System',
+    description: 'Engineered a template-based character system that adapts to different health types (Numeric, Super, Infinite) and implemented strict resource management for "Guilds" and "Teams" using deep-cloning and manual memory control.',
+    technologies: ['C++', 'Dynamic Memory', 'Templates', 'STL', 'OOP'],
     githubUrl: 'https://github.com'
   },
   {
     id: 4,
-    title: 'Project Management Tool',
-    description: 'A Trello-like board for managing tasks, assigning users, and tracking project progress.',
-    technologies: ['Angular', 'TypeScript', 'Node.js', 'PostgreSQL'],
-    githubUrl: 'https://github.com'
-  },
-  {
-    id: 5,
-    title: 'Recipe Finder',
-    description: 'An application that finds recipes based on the ingredients you have at home, using a third-party API.',
-    technologies: ['Vue.js', 'Axios', 'Tailwind CSS'],
+    title: 'Delivery System',
+    description: 'Integrated the A* routing algorithm to determine optimal delivery paths. Engineered logic to manage physical constraints (weight and volume) for truck assignments, ensuring efficient resource allocation while maintaining code integrity through version control.',
+    technologies: ['C', 'A* Search Algorithm', 'Git', 'Unit Testing'],
     githubUrl: 'https://github.com'
   },
   {
     id: 6,
-    title: 'Fitness Tracker',
-    description: 'A mobile app to log workouts, track calories, and monitor fitness goals over time.',
-    technologies: ['Flutter', 'Dart', 'SQLite'],
+    title: 'Database Design',
+    description: 'Designed a normalized database with a complete data dictionary and schema scripts, and developed custom SQL views for inventory and revenue insights to support data-driven decision-making.',
+    technologies: ['SQL/Oracle', 'C++', 'ERD', 'OCI', 'PL/SQL'],
     githubUrl: 'https://github.com'
   },
   {
-    id: 7,
-    title: 'Blog Platform',
-    description: 'A simple, clean blogging platform with a Markdown editor and user authentication.',
-    technologies: ['React', 'Next.js', 'Tailwind CSS', 'Auth0'],
+    id: 5,
+    title: 'Music App',
+    description: 'Built a dynamic UI using DOM manipulation for artist menus and song cards. Implemented custom data filtering and client-side validation to ensure a seamless search and user experience.',
+    technologies: ['JavaScript', 'HTML', 'CSS3'],
     githubUrl: 'https://github.com'
-  }
+  },
+
 ];
 
 import { Folder, Github, ExternalLink, ChevronLeft, ChevronRight } from 'lucide-react';

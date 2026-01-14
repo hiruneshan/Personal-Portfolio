@@ -61,7 +61,10 @@ const experiences = [
                 type: "Contract Part-time",
                 date: "May 2025 - Aug 2025",
                 duration: "4 mos",
-                description: []
+                description: [
+                    "Guided first-year students through the transition from high school to college, helping with course selection and registration",
+                    "Served as a main resource for student questions, connecting peers with the right campus services for a smooth experience."
+                ]
             }
         ]
     },
