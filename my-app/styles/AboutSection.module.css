@@ -37,7 +37,7 @@
 }
 
 .sectionTitle {
-  font-size: clamp(26px, 5vw, 50px);
+  font-size: clamp(26px, 5vw, 40px);
   color: #8892b0;
   /* Matching Hero Tagline */
   font-weight: 600;
