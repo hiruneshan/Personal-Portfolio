@@ -42,9 +42,9 @@ export default function AboutSection() {
 
             {/* Content Wrapper */}
             <div className={styles.contentWrapper}>
-              <Row className="align-items-start">
-                {/* Left Column: Text Content - Reduced width for compactness */}
-                <Col md={6} lg={6}>
+              <Row className="align-items-start justify-content-center">
+                {/* Left Column: Text Content - Increased width for better text flow */}
+                <Col md={7} lg={7}>
                   <div className={styles.textContent}>
                     <p>
                       Hi, I’m Hiru
@@ -75,7 +75,7 @@ export default function AboutSection() {
                 </Col>
 
                 {/* Right Column: Profile Image */}
-                <Col md={6} lg={6}>
+                <Col md={5} lg={4}>
                   <div
                     ref={imgRef}
                     className={`${styles.profileImageContainer} ${isVisible ? styles.popIn : ''}`}
