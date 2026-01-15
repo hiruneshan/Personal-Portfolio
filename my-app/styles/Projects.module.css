@@ -64,8 +64,8 @@
 
 .projectContent {
   position: relative;
-  /* CHANGED: Was 1 / 8. Made narrower to make desc card smaller */
-  grid-column: 1 / 7;
+  /* CHANGED: Was 1 / 7. Extended to 1 / 8 for overlap with shifted image */
+  grid-column: 1 / 8;
   grid-row: 1 / -1;
   z-index: 2;
   /* Default text-align is left */
@@ -145,8 +145,8 @@
   z-index: 1;
   background: linear-gradient(0.4turn, #64ffda, #64ff8d);
   border-radius: 4px;
-  /* CHANGED: Was 6 / -1. Changed to 6 / 12 to reduce size and padding */
-  grid-column: 6 / 12;
+  /* CHANGED: Was 6 / -1 (7 cols). Reverting to 6 cols (7/-1) but right-aligned */
+  grid-column: 7 / -1;
   grid-row: 1 / -1;
   /* REMOVED: max-height: 400px - allows image to fill space */
   aspect-ratio: 16 / 9;
@@ -216,8 +216,8 @@ NEW SECTION: Alternating Project Layout
 
   /* Target the 2nd, 4th, 6th... project */
   .project:nth-child(even) .projectImg {
-    /* Move the image block to the left, padded from side */
-    grid-column: 2 / 8;
+    /* Move the image block to the left, 6 cols wide */
+    grid-column: 1 / 7;
   }
 
   /* Target the tech list for even projects */

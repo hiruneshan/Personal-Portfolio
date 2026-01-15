@@ -41,7 +41,7 @@ export default function ProjectCard({ project }) {
                                                     </Tooltip>
                                                 }
                                             >
-                                                {/* OverlayTrigger requires the ref to be forwarded, which standard HTML tags using className handle if passed correctly, but span wrapper is safer */}
+
                                                 <span>{linkElement}</span>
                                             </OverlayTrigger>
                                         );

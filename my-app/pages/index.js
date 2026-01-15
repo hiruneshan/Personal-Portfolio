@@ -7,7 +7,6 @@ import Projects from "@/components/Projects";
 import SocialLinks from "@/components/SocialLinks";
 import AboutMe from "@/components/AboutMe";
 import Experience from "@/components/Experience";
-import ExperienceTimeline from "@/components/ExperienceTimeline";
 import ProjectCarousel from "@/components/ProjectCarousel";
 import Contact from "@/components/Contact";
 import SnakeGameModal, { SnakeGameButton } from "@/components/SnakeGameModal";
@@ -29,7 +28,7 @@ export default function Home() {
       <div className="d-none d-md-block">
         <SocialLinks />
       </div>
-      {/* <ExperienceTimeline /> */}
+
 
       <div className="d-none d-md-block">
         <SnakeGameButton onClick={() => setIsGameOpen(true)} />

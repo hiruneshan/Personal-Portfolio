@@ -134,6 +134,7 @@ export default function Experience() {
             <Container>
                 <Row className="justify-content-center">
                     <Col lg={10}>
+                        {/* Section Header */}
                         <div className={styles.sectionHeader}>
                             <span className={styles.sectionNumber}>02.</span>
                             <h2 className={styles.sectionTitle}>Work Experience</h2>
