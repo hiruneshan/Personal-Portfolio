@@ -65,7 +65,7 @@ export default function ProjectCard({ project }) {
 
                     {/* Card Body: Title + Desc */}
                     <h5 className={styles.cardTitle}>{project.title}</h5>
-                    <p className={styles.cardDescription}>{project.description}</p>
+                    <p className={styles.cardDescription} dangerouslySetInnerHTML={{ __html: project.description }} />
 
                     {/* Card Footer: Tech List */}
                     <ul className={styles.techList}>

@@ -101,14 +101,14 @@
 }
 
 .cardContainer:hover .projectCard {
-    height: 380px;
+    height: 460px;
     /* Expanded height (reduced from 420px) */
 }
 
 .projectCard {
     background-color: #112240;
     /* Light Navy */
-    height: 320px;
+    height: 400px;
     /* Default collapsed height */
     padding: 1.75rem 1.5rem;
     border-radius: 4px;

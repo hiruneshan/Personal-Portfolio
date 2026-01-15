@@ -63,8 +63,8 @@
 
 .profileImageContainer {
   position: relative;
-  margin-top: 10px;
-  /* Align with text */
+  margin-top: 85px;
+  /* Align with text (Header ~65px + gap) */
   margin-bottom: 2rem;
   max-width: 225px;
   /* Reduced from 300px */

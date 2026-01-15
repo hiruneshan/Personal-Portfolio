@@ -61,7 +61,7 @@ const ProjectItem = ({ project, index }) => {
           )}
         </h4>
         <div className={styles.projectDetails}>
-          <p>{project.description}</p>
+          <p dangerouslySetInnerHTML={{ __html: project.description }} />
           <ul>
             {project.technologies.map((tech, i) => (
               <li key={i}>{tech}</li>
