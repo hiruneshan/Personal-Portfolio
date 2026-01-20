@@ -1,7 +1,8 @@
-import React, { useRef, useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
 import styles from '../styles/ProjectCarousel.module.css';
-
+import { motion, AnimatePresence } from 'framer-motion';
+import ProjectCard from './ProjectCard';
 
 const allProjects = [
   {
@@ -46,97 +47,101 @@ const allProjects = [
     technologies: ['JavaScript', 'HTML', 'CSS3'],
     githubUrl: 'https://github.com'
   },
-
 ];
 
-import { Folder, Github, ExternalLink, ChevronLeft, ChevronRight } from 'lucide-react';
-import ProjectCard from './ProjectCard';
-
-/**
- * A single project card component.
- */
-
-
-
-/**
- * Main ProjectCarousel component
- * Renders a horizontally scrolling list of projects.
- */
 export default function ProjectCarousel() {
-  const scrollRef = useRef(null);
-  const [showLeft, setShowLeft] = useState(false);
-  const [showRight, setShowRight] = useState(true);
+  const [cards, setCards] = useState(allProjects);
+  const [isAutoPlaying, setIsAutoPlaying] = useState(true);
 
-  // Check scroll position to toggle buttons
-  const checkScroll = () => {
-    if (!scrollRef.current) return;
-    const { scrollLeft, scrollWidth, clientWidth } = scrollRef.current;
-    setShowLeft(scrollLeft > 0);
-    // Use a small buffer (e.g. 1px) to avoid precision issues
-    setShowRight(scrollLeft < scrollWidth - clientWidth - 1);
-  };
+  // Stable callback for moving cards
+  const moveToEnd = useCallback(() => {
+    setCards((currentCards) => {
+      const newCards = [...currentCards];
+      const movedCard = newCards.shift();
+      newCards.push(movedCard);
+      return newCards;
+    });
+  }, []); // Logic doesn't depend on props, only state updater
 
-  useEffect(() => {
-    const el = scrollRef.current;
-    if (el) {
-      el.addEventListener('scroll', checkScroll);
-      // Check initial state
-      checkScroll();
-      // Also check on resize
-      window.addEventListener('resize', checkScroll);
-    }
-    return () => {
-      if (el) el.removeEventListener('scroll', checkScroll);
-      window.removeEventListener('resize', checkScroll);
-    };
+  const moveToFront = useCallback(() => {
+    setCards((currentCards) => {
+      const newCards = [...currentCards];
+      const movedCard = newCards.pop();
+      newCards.unshift(movedCard);
+      return newCards;
+    });
   }, []);
 
-  const scrollLeft = () => {
-    if (scrollRef.current) {
-      scrollRef.current.scrollBy({ left: -320, behavior: 'smooth' });
-    }
+  const handleManualInteraction = () => {
+    setIsAutoPlaying(false);
   };
 
-  const scrollRight = () => {
-    if (scrollRef.current) {
-      scrollRef.current.scrollBy({ left: 320, behavior: 'smooth' });
+  // Auto-Play Effect
+  useEffect(() => {
+    let interval;
+    if (isAutoPlaying) {
+      interval = setInterval(() => {
+        moveToEnd();
+      }, 3000);
     }
-  };
+    return () => clearInterval(interval);
+  }, [isAutoPlaying, moveToEnd]); // Dependency included
+
+  // Keyboard Navigation
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === 'ArrowUp') {
+        handleManualInteraction();
+        moveToEnd();
+      } else if (e.key === 'ArrowDown') {
+        handleManualInteraction();
+        moveToFront();
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [moveToEnd, moveToFront]);
 
   return (
-    <div className="py-5" style={{ backgroundColor: '#040b25' }}>
+    <div className={styles.sectionWrapper}>
       <Container>
         <Row className="justify-content-center">
-          <Col lg={10} style={{ position: 'relative' }}>
+          <Col lg={10} className="text-center">
             <h2 className={styles.carouselTitle}>Some Other Projects I Have Worked On</h2>
 
-            {/* Navigation Buttons */}
-            {showLeft && (
-              <button
-                className={`${styles.navBtn} ${styles.navBtnLeft}`}
-                onClick={scrollLeft}
-                aria-label="Scroll Left"
-              >
-                <ChevronLeft size={24} />
-              </button>
-            )}
+            <div
+              className={styles.stackContainer}
+              // Stop only on interaction events
+              onMouseEnter={handleManualInteraction}
+              onTouchStart={handleManualInteraction}
+            >
+              <ul className={styles.cardStack}>
+                <AnimatePresence initial={true} mode="popLayout">
+                  {cards.map((project, index) => {
+                    if (index > 3) return null;
 
-            {showRight && (
-              <button
-                className={`${styles.navBtn} ${styles.navBtnRight}`}
-                onClick={scrollRight}
-                aria-label="Scroll Right"
-              >
-                <ChevronRight size={24} />
-              </button>
-            )}
+                    const isTop = index === 0;
 
-            <div className={styles.carouselContainer} ref={scrollRef}>
-              {allProjects.map((project) => (
-                <div key={project.id} className={styles.cardWrapper}>
-                  <ProjectCard project={project} />
-                </div>
-              ))}
+                    return (
+                      <Card
+                        key={project.id}
+                        project={project}
+                        index={index}
+                        moveToEnd={() => {
+                          handleManualInteraction();
+                          moveToEnd();
+                        }}
+                        isTop={isTop}
+                      />
+                    );
+                  })}
+                </AnimatePresence>
+              </ul>
+            </div>
+
+            <div className={styles.instructionText}>
+              Swipe up or use Arrow Keys to navigate
             </div>
           </Col>
         </Row>
@@ -145,3 +150,59 @@ export default function ProjectCarousel() {
   );
 }
 
+const Card = ({ project, index, moveToEnd, isTop }) => {
+  // Enhanced Stack Visuals: Stack visually UPWARDS
+  const offset = index * -35;
+  const scale = 1 - index * 0.05;
+  const brightness = 1 - index * 0.15;
+
+  return (
+    <motion.li
+      className={styles.cardItem}
+      style={{
+        zIndex: 100 - index,
+        cursor: isTop ? 'grab' : 'default',
+      }}
+      // Entrance Animation: Fly in from bottom
+      initial={{
+        y: 800, // Start way below
+        opacity: 0,
+        scale: 0.9
+      }}
+      animate={{
+        scale: scale,
+        y: offset, // Move to stack position
+        filter: `brightness(${brightness})`,
+        opacity: index > 3 ? 0 : 1,
+      }}
+      exit={{ scale: 0.5, opacity: 0 }}
+      transition={{
+        type: "spring",
+        stiffness: 100,
+        damping: 30,
+        mass: 1.5,
+        restDelta: 0.001,
+        // Stagger entrance slightly based on index? 
+        // Or just let spring handle natural arrival
+        delay: index * 0.1 // Stagger effect on load
+      }}
+      // Hover Pop Effect for top card
+      whileHover={isTop ? {
+        scale: 1.05,
+        transition: { duration: 0.2 }
+      } : {}}
+
+      drag={isTop ? "y" : false}
+      dragConstraints={{ top: 0, bottom: 0 }}
+      onDragEnd={(event, info) => {
+        if (info.offset.y < -50) {
+          moveToEnd();
+        }
+      }}
+    >
+      <div className={styles.projectCardWrapper}>
+        <ProjectCard project={project} />
+      </div>
+    </motion.li>
+  );
+};

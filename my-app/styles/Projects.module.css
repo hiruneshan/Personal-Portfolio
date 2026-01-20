@@ -5,48 +5,50 @@
   overflow: hidden;
 }
 
-
-
 .sectionHeader {
   display: flex;
   align-items: center;
+  justify-content: center;
+  /* Center the content */
   gap: 1rem;
   margin-bottom: 3rem;
   width: 100%;
 }
 
 .sectionNumber {
-  font-size: 1.5rem;
-  color: var(--color-accent);
-  font-weight: 400;
-  font-family: 'SF Mono', 'Fira Code', 'Fira Mono', 'Roboto Mono', monospace;
+  display: none;
+  /* Hide numbering */
 }
 
 .sectionLine {
-  flex: 1;
-  height: 1px;
-  background-color: var(--color-bg-secondary);
-  margin-left: 1rem;
-  max-width: 300px;
+  display: none;
+  /* Hide line */
 }
 
 .sectionTitle {
-  font-size: clamp(26px, 5vw, 40px);
-  color: var(--color-text-secondary);
-  font-weight: 600;
+  font-size: clamp(40px, 8vw, 60px);
+  /* Increased size */
+  color: var(--color-text-primary);
+  font-weight: 500;
   margin: 0;
   line-height: 1.1;
-  font-family: 'Calibre', 'Inter', 'San Francisco', 'SF Pro Text', -apple-system, system-ui, sans-serif;
+  font-family: 'VT323', monospace;
+  /* Pixel font */
+  text-align: center;
+
+  /* PIXELATED TEXT SHADOW EFFECT */
+  text-shadow:
+    2px 2px 0px #000,
+    -2px -2px 0px #000,
+    2px -2px 0px #000,
+    -2px 2px 0px #000,
+    2px 0px 0px #000,
+    -2px 0px 0px #000,
+    0px 2px 0px #000,
+    0px -2px 0px #000,
+    4px 4px 0px #1a2c38,
+    6px 6px 0px #1a2c38;
 }
-
-/* Old .project styles removed */
-
-.projectLabel {
-  color: var(--color-accent);
-  font-family: monospace;
-}
-
-/* Old .projectDetails, .projectImg, and media queries removed */
 
 /* --- NEW CARD GRID LAYOUT --- */
 
@@ -69,71 +71,58 @@
   }
 }
 
-.projectCard {
-  position: relative;
-  border-radius: 12px;
-  overflow: hidden;
-  height: 500px;
-  /* Fixed height for vertical card look */
-  transition: transform 0.3s ease;
-  cursor: default;
-  background-color: var(--color-bg-secondary);
-}
-
-/* Broken Pixelated Animated Border via Pseudo-element */
-/* Corner Border Effect: White lines at corners only */
+/* Corner Border Removed/Replaced with Pixel Border */
 .projectCard::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  border-radius: 12px;
-  pointer-events: none;
-  z-index: 10;
-
-  /* Create 4 white corners using gradients */
-  background:
-    linear-gradient(to right, #ffffff 4px, transparent 4px) 0 0,
-    linear-gradient(to bottom, #ffffff 4px, transparent 4px) 0 0,
-    linear-gradient(to left, #ffffff 4px, transparent 4px) 100% 0,
-    linear-gradient(to bottom, #ffffff 4px, transparent 4px) 100% 0,
-    linear-gradient(to left, #ffffff 4px, transparent 4px) 100% 100%,
-    linear-gradient(to top, #ffffff 4px, transparent 4px) 100% 100%,
-    linear-gradient(to right, #ffffff 4px, transparent 4px) 0 100%,
-    linear-gradient(to top, #ffffff 4px, transparent 4px) 0 100%;
-
-  background-repeat: no-repeat;
-  background-size: 20px 20px;
-  /* Size of the corners */
-
-  opacity: 0.6;
-  transition: all 0.3s ease;
+  content: none;
 }
 
-.projectCard:hover::after {
-  opacity: 1;
-  background-size: 30px 30px;
-  /* Expand corners slightly on hover */
-  box-shadow: inset 0 0 20px rgba(255, 255, 255, 0.05);
-}
-
+/* Pixelated 3D Card Border */
 .projectCard {
   position: relative;
-  border-radius: 12px;
+  border-radius: 4px;
+  /* Sharper corners for pixel look, was 12px */
+  overflow: visible;
+  /* Use visible to allow shadow to render outside if needed, though standard box-shadow renders anyway */
+  /* Reverting to hidden to clip image if needed, but shadow works on container */
   overflow: hidden;
+
   height: 500px;
   transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   cursor: default;
-  background-color: var(--color-bg-secondary);
+  background-color: #163E40;
+  /* Updated to Darker Teal as requested */
   z-index: 1;
+
+  /* PIXELATED 3D BORDER EFFECT (Box Shadow Stack) */
+  box-shadow:
+    /* 1. Thin Black Outline */
+    2px 2px 0 0 #000,
+    -2px -2px 0 0 #000,
+    2px -2px 0 0 #000,
+    -2px 2px 0 0 #000,
+
+    /* 2. 3D Block Shadow (Dark Primary/Navy) */
+    4px 4px 0 0 #1a2c38,
+    6px 6px 0 0 #1a2c38,
+    8px 8px 0 0 #1a2c38,
+    10px 10px 0 0 #1a2c38;
 }
 
 .projectCard:hover {
-  transform: scale(1.05) translateY(-10px);
+  transform: scale(1.02) translateY(-5px);
   z-index: 100;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+
+  /* Enhanced Shadow on Hover */
+  box-shadow:
+    2px 2px 0 0 #000,
+    -2px -2px 0 0 #000,
+    2px -2px 0 0 #000,
+    -2px 2px 0 0 #000,
+
+    6px 6px 0 0 #1a2c38,
+    9px 9px 0 0 #1a2c38,
+    12px 12px 0 0 #1a2c38,
+    15px 15px 0 0 #1a2c38;
 }
 
 .cardBackground {
@@ -185,22 +174,37 @@
 }
 
 .cardTitle {
-  font-size: 28px;
-  font-weight: 700;
+  font-size: 32px;
+  /* Increased size for pixel font */
+  font-weight: 500;
   margin-bottom: 1rem;
   color: #fff;
-  font-family: 'Calibre', 'Inter', sans-serif;
+  font-family: 'VT323', monospace;
+  /* Pixel font */
   display: flex;
   flex-direction: column;
   gap: 10px;
   align-items: center;
   width: 100%;
 
-  /* Added Title Border */
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  padding: 10px;
-  border-radius: 6px;
-  background: rgba(0, 0, 0, 0.2);
+  /* PIXELATED TEXT SHADOW EFFECT */
+  text-shadow:
+    2px 2px 0px #000,
+    -2px -2px 0px #000,
+    2px -2px 0px #000,
+    -2px 2px 0px #000,
+    2px 0px 0px #000,
+    -2px 0px 0px #000,
+    0px 2px 0px #000,
+    0px -2px 0px #000,
+    4px 4px 0px #1a2c38,
+    4px 6px 0px #1a2c38,
+    6px 6px 0px #1a2c38;
+
+  /* REMOVED Box Border as per 'design we did here' request */
+  border: none;
+  background: transparent;
+  padding: 0;
 
   /* Transition for hiding */
   transition: all 0.3s ease;
@@ -271,11 +275,6 @@
   transition: all 0.3s ease;
 }
 
-/* Hide links if inside hidden title, but if we want them visible we'd need to move them in JS.
-   Assuming "remove name" implies removing the whole title block including icons for now to show info.
-   User said "shows all infor". If links are needed, they are missing.
-   See next step for refinement if needed.
-*/
 .cardLink {
   color: var(--color-accent);
   /* Accent color by default */

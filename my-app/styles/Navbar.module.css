@@ -5,7 +5,7 @@
   height: var(--navbar-height);
   padding: 0;
 
-  background-color: rgba(33, 94, 97, 0.85);
+  background-color: var(--color-bg-primary);
   backdrop-filter: blur(10px);
 
   position: sticky;
@@ -69,7 +69,8 @@
     align-items: flex-start;
     padding: 2rem 0;
     gap: 20px;
-    background-color: rgba(33, 94, 97, 0.98);
+    /* Darker mobile menu background to match theme */
+    background-color: rgba(11, 22, 30, 0.98);
     backdrop-filter: blur(10px);
     position: absolute;
     top: 60px;

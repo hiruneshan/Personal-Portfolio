@@ -1,62 +1,11 @@
 /* ProjectCarousel.module.css */
 
-.carouselContainer {
-    display: flex;
-    overflow-x: auto;
-    gap: 20px;
-    padding: 20px 0;
-    /* Top/bottom padding for shadow/hover space */
-    scroll-snap-type: x mandatory;
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: none;
-    /* Firefox */
-}
-
-/* Nav Button Styles */
-.navBtn {
-    position: absolute;
-    top: 60%;
-    /* Center vertically relative to the cards (approx) */
-    transform: translateY(-50%);
-    z-index: 10;
-    background-color: rgba(23, 42, 69, 0.9);
-    /* Dark background */
-    border: 1px solid var(--color-accent);
-    color: var(--color-accent);
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    padding: 0;
-}
-
-.navBtn:hover {
-    background-color: var(--color-accent);
-    color: var(--color-bg-primary);
-}
-
-.navBtnLeft {
-    left: -20px;
-    /* Pull it slightly outside the content area if possible, or 0 if contained */
-}
-
-.navBtnRight {
-    right: -20px;
-}
-
-/* Adjust for mobile to keep buttons inside */
-@media (max-width: 768px) {
-    .navBtnLeft {
-        left: 10px;
-    }
-
-    .navBtnRight {
-        right: 10px;
-    }
+.sectionWrapper {
+    padding: 80px 0;
+    /* Use global background by making specific transparent */
+    background-color: transparent;
+    overflow: hidden;
+    /* Prevent dragging from creating scrollbars */
 }
 
 .carouselTitle {
@@ -64,40 +13,73 @@
     color: var(--color-text-secondary);
     font-weight: 600;
     line-height: 1.1;
-    font-family: 'Calibre', 'Inter', 'San Francisco', 'SF Pro Text', -apple-system, system-ui, sans-serif;
+    font-family: 'Calibre', 'Inter', sans-serif;
     text-align: center;
-    margin-bottom: 3rem;
+    margin-bottom: 5rem;
 }
 
-.carouselContainer::-webkit-scrollbar {
-    display: none;
-    /* Chrome/Safari */
-}
-
-.cardWrapper {
-    flex: 0 0 auto;
-    width: 300px;
-    /* Fixed width for standard card size */
-    scroll-snap-align: start;
-    /* Height is now controlled by the card itself + hover state */
-    /* Removed fixed height to allow expansion */
-    padding-bottom: 20px;
-    /* Add some buffer for shadow/hover movement */
-}
-
-.cardContainer {
-    height: 100%;
-    /* Ensure container respects child height changes */
+.stackContainer {
+    position: relative;
+    width: 100%;
+    /* Increase height to fit upward stack + card (480px + ~80px buffer) */
+    height: 600px;
     display: flex;
-    align-items: flex-start;
-    /* top align so it grows down */
-    transition: all 0.25s cubic-bezier(0.645, 0.045, 0.355, 1);
+    justify-content: center;
+    perspective: 1000px;
+    /* Add top padding to push the 'main' card down, allowing back cards to peek UP into this space */
+    padding-top: 80px;
 }
 
-.cardContainer:hover {
-    transform: translateY(-7px) scale(1.02);
-    z-index: 10;
-    /* Ensure it stays on top if it slightly overlaps */
+.cardStack {
+    position: relative;
+    width: 100%;
+    max-width: 400px;
+    /* Restrict width of the stack */
+    height: 100%;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    display: flex;
+    justify-content: center;
+}
+
+.cardItem {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    max-width: 350px;
+    height: auto;
+    cursor: grab;
+    list-style: none;
+    transform-style: preserve-3d;
+}
+
+.cardItem:active {
+    cursor: grabbing;
+}
+
+.projectCardWrapper {
+    pointer-events: none;
+    /* Let clicks pass through if needed, or handle inside */
+}
+
+/* Allow interactions inside the top card */
+.cardItem[style*="z-index: 100"] .projectCardWrapper {
+    pointer-events: auto;
+}
+
+.instructionText {
+    margin-top: 30px;
+    color: var(--color-text-secondary);
+    font-family: monospace;
+    font-size: 14px;
+    opacity: 0.6;
+}
+
+/* Hide Scrollbar/Nav leftovers */
+.carouselContainer,
+.navBtn {
+    display: none;
 }
 
 .cardContainer:hover .projectCard {
@@ -105,59 +87,46 @@
     /* Expanded height (reduced from 420px) */
 }
 
-/* Corner Border for Carousel Cards */
+/* Corner Border Removed */
 .projectCard::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    border-radius: 4px;
-    /* Matches card border-radius */
-    pointer-events: none;
-    z-index: 10;
-
-    /* Create 4 white corners using gradients */
-    background:
-        linear-gradient(to right, #ffffff 3px, transparent 3px) 0 0,
-        linear-gradient(to bottom, #ffffff 3px, transparent 3px) 0 0,
-        linear-gradient(to left, #ffffff 3px, transparent 3px) 100% 0,
-        linear-gradient(to bottom, #ffffff 3px, transparent 3px) 100% 0,
-        linear-gradient(to left, #ffffff 3px, transparent 3px) 100% 100%,
-        linear-gradient(to top, #ffffff 3px, transparent 3px) 100% 100%,
-        linear-gradient(to right, #ffffff 3px, transparent 3px) 0 100%,
-        linear-gradient(to top, #ffffff 3px, transparent 3px) 0 100%;
-
-    background-repeat: no-repeat;
-    background-size: 15px 15px;
-    /* Slightly smaller for carousel cards */
-
-    opacity: 0.6;
-    transition: all 0.3s ease;
-}
-
-.cardContainer:hover .projectCard::after {
-    opacity: 1;
-    background-size: 20px 20px;
-    box-shadow: inset 0 0 15px rgba(255, 255, 255, 0.05);
+    content: none;
 }
 
 .projectCard {
-    background-color: var(--color-bg-secondary);
-    /* Light Navy */
+    background-color: #163E40;
+    /* Requested Darker Teal color */
     height: 480px;
-    /* Increased to avoid cut-off */
     /* Default collapsed height */
     padding: 1.75rem 1.5rem;
     border-radius: 4px;
+    /* Sharper */
     display: flex;
     flex-direction: column;
-    box-shadow: 0 10px 30px -15px rgba(2, 12, 27, 0.7);
     transition: all 0.25s cubic-bezier(0.645, 0.045, 0.355, 1);
     overflow: hidden;
     /* Hide content that exceeds the height */
     position: relative;
+
+    /* PIXELATED 3D BORDER EFFECT */
+    box-shadow:
+        2px 2px 0 0 #000,
+        -2px -2px 0 0 #000,
+        2px -2px 0 0 #000,
+        -2px 2px 0 0 #000,
+        4px 4px 0 0 #1a2c38,
+        6px 6px 0 0 #1a2c38;
+}
+
+.cardContainer:hover .projectCard {
+    height: 460px;
+    box-shadow:
+        2px 2px 0 0 #000,
+        -2px -2px 0 0 #000,
+        2px -2px 0 0 #000,
+        -2px 2px 0 0 #000,
+        6px 6px 0 0 #1a2c38,
+        9px 9px 0 0 #1a2c38,
+        12px 12px 0 0 #1a2c38;
 }
 
 .cardHeader {
@@ -192,17 +161,28 @@
 
 .cardTitle {
     color: var(--color-text-primary);
-    font-size: 20px;
-    font-weight: 600;
-    font-family: 'Calibre', 'Inter', 'San Francisco', 'SF Pro Text', -apple-system, system-ui, sans-serif;
+    font-size: 24px;
+    font-weight: 500;
+    font-family: 'VT323', monospace;
 
-    /* Added Title Border */
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    padding: 6px 10px;
-    border-radius: 4px;
-    background: rgba(0, 0, 0, 0.2);
+    /* PIXELATED TEXT SHADOW EFFECT */
+    text-shadow:
+        2px 2px 0px #000,
+        -2px -2px 0px #000,
+        2px -2px 0px #000,
+        -2px 2px 0px #000,
+        2px 0px 0px #000,
+        -2px 0px 0px #000,
+        0px 2px 0px #000,
+        0px -2px 0px #000,
+        4px 4px 0px #1a2c38;
+
+    /* REMOVED Box Border */
+    border: none;
+    background: transparent;
+    padding: 0;
+
     display: inline-block;
-    /* Wrap tightly */
     margin-bottom: 15px;
 }
 
@@ -226,6 +206,9 @@
     margin: 0;
     list-style: none;
 
+    /* Centered Tech List */
+    justify-content: center;
+
     /* Default hidden state */
     opacity: 0;
     transform: translateY(20px);
@@ -238,7 +221,8 @@
 }
 
 .techItem {
-    color: var(--color-text-secondary);
+    color: var(--color-accent);
+    /* Updated to Accent Color */
     font-family: 'SF Mono', 'Fira Code', 'Fira Mono', 'Roboto Mono', monospace;
     font-size: 12px;
 }
