@@ -168,7 +168,7 @@ a.secondary {
 }
 
 .linkHighlight {
-  color: #64ffda;
+  color: var(--color-accent);
   text-decoration: none;
   position: relative;
   display: inline-block;
@@ -180,7 +180,7 @@ a.secondary {
   display: block;
   width: 0;
   height: 1px;
-  background: #64ffda;
+  background: var(--color-accent);
   transition: width 0.3s;
 }
 

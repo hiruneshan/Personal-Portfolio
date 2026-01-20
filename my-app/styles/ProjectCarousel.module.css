@@ -21,8 +21,8 @@
     z-index: 10;
     background-color: rgba(23, 42, 69, 0.9);
     /* Dark background */
-    border: 1px solid #64ffda;
-    color: #64ffda;
+    border: 1px solid var(--color-accent);
+    color: var(--color-accent);
     width: 40px;
     height: 40px;
     border-radius: 50%;
@@ -35,8 +35,8 @@
 }
 
 .navBtn:hover {
-    background-color: #64ffda;
-    color: #0a192f;
+    background-color: var(--color-accent);
+    color: var(--color-bg-primary);
 }
 
 .navBtnLeft {
@@ -61,7 +61,7 @@
 
 .carouselTitle {
     font-size: 26px;
-    color: #8892b0;
+    color: var(--color-text-secondary);
     font-weight: 600;
     line-height: 1.1;
     font-family: 'Calibre', 'Inter', 'San Francisco', 'SF Pro Text', -apple-system, system-ui, sans-serif;
@@ -106,7 +106,7 @@
 }
 
 .projectCard {
-    background-color: #112240;
+    background-color: var(--color-bg-secondary);
     /* Light Navy */
     height: 400px;
     /* Default collapsed height */
@@ -129,7 +129,7 @@
 }
 
 .folderIcon {
-    color: #64ffda;
+    color: var(--color-accent);
     width: 40px;
     height: 40px;
 }
@@ -141,18 +141,18 @@
 }
 
 .iconLink {
-    color: #a8b2d1;
+    color: var(--color-text-secondary);
     width: 20px;
     height: 20px;
     transition: color 0.3s ease;
 }
 
 .iconLink:hover {
-    color: #64ffda;
+    color: var(--color-accent);
 }
 
 .cardTitle {
-    color: #e6f1ff;
+    color: var(--color-text-primary);
     font-size: 20px;
     font-weight: 600;
     margin-bottom: 10px;
@@ -160,7 +160,7 @@
 }
 
 .cardDescription {
-    color: #a8b2d1;
+    color: var(--color-text-secondary);
     font-size: 15px;
     /* Updated to match Experience/Featured Projects */
     line-height: 1.5;
@@ -191,7 +191,7 @@
 }
 
 .techItem {
-    color: #8892b0;
+    color: var(--color-text-secondary);
     font-family: 'SF Mono', 'Fira Code', 'Fira Mono', 'Roboto Mono', monospace;
     font-size: 12px;
 }
@@ -218,20 +218,20 @@
 }
 
 .repoTooltip :global(.tooltip-inner) {
-    background-color: #1e293b !important;
-    color: #64ffda !important;
+    background-color: var(--color-bg-secondary) !important;
+    color: var(--color-accent) !important;
     font-family: 'Courier New', Courier, monospace;
     font-size: 0.8rem;
     padding: 8px 12px;
-    border: 1px solid #64ffda;
+    border: 1px solid var(--color-accent);
     border-radius: 4px;
-    box-shadow: 0 0 10px rgba(100, 255, 218, 0.2);
+    box-shadow: 0 0 10px rgba(254, 127, 45, 0.2);
     white-space: pre-wrap;
     /* Allow wrapping if needed */
     max-width: 250px;
 }
 
 .repoTooltip :global(.tooltip-arrow)::before {
-    border-top-color: #64ffda !important;
+    border-top-color: var(--color-accent) !important;
     /* Arrow color */
 }

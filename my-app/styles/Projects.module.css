@@ -17,7 +17,7 @@
 
 .sectionNumber {
   font-size: 1.5rem;
-  color: #64ffda;
+  color: var(--color-accent);
   font-weight: 400;
   font-family: 'SF Mono', 'Fira Code', 'Fira Mono', 'Roboto Mono', monospace;
 }
@@ -25,14 +25,14 @@
 .sectionLine {
   flex: 1;
   height: 1px;
-  background-color: #233554;
+  background-color: var(--color-bg-secondary);
   margin-left: 1rem;
   max-width: 300px;
 }
 
 .sectionTitle {
   font-size: clamp(26px, 5vw, 40px);
-  color: #8892b0;
+  color: var(--color-text-secondary);
   font-weight: 600;
   margin: 0;
   line-height: 1.1;
@@ -73,14 +73,14 @@
 }
 
 .projectLabel {
-  color: #64ffda;
+  color: var(--color-accent);
   font-family: monospace;
 }
 
 .projectTitle {
   font-size: 28px;
   margin: 0 0 20px;
-  color: #e6f1ff;
+  color: var(--color-text-primary);
   font-weight: 600;
   font-family: 'Calibre', 'Inter', 'San Francisco', 'SF Pro Text', -apple-system, system-ui, sans-serif;
   display: flex;
@@ -89,25 +89,25 @@
 }
 
 .iconLink {
-  color: #a8b2d1;
+  color: var(--color-text-secondary);
   transition: color 0.2s cubic-bezier(0.645, 0.045, 0.355, 1);
   display: flex;
   align-items: center;
 }
 
 .iconLink:hover {
-  color: #64ffda;
+  color: var(--color-accent);
 }
 
 .projectDetails {
   font-size: 15px;
   line-height: 1.5;
-  color: #8892b0;
+  color: var(--color-text-secondary);
   font-family: 'Calibre', 'Inter', sans-serif;
 }
 
 .projectDetails p {
-  background-color: #1e293b;
+  background-color: var(--color-bg-secondary);
   padding: 25px;
   border-radius: 4px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
@@ -133,7 +133,7 @@
 /* --- UPDATED FOR CAPSULES --- */
 .projectDetails ul li {
   /* Removed Capsule Styles */
-  color: #a8b2d1;
+  color: var(--color-text-secondary);
   /* Muted Slate color */
   font-size: 13px;
   font-family: 'SF Mono', 'Fira Code', 'Fira Mono', 'Roboto Mono', monospace;
@@ -143,7 +143,7 @@
 .projectImg {
   position: relative;
   z-index: 1;
-  background: linear-gradient(0.4turn, #64ffda, #64ff8d);
+  background: linear-gradient(0.4turn, var(--color-accent), var(--color-bg-primary));
   border-radius: 4px;
   /* CHANGED: Was 6 / -1 (7 cols). Reverting to 6 cols (7/-1) but right-aligned */
   grid-column: 7 / -1;
@@ -177,7 +177,7 @@
   right: 0;
   bottom: 0;
   z-index: 3;
-  background-color: #0a192f;
+  background-color: var(--color-bg-primary);
   mix-blend-mode: screen;
   border-radius: 4px;
   transition: opacity 0.3s ease;
