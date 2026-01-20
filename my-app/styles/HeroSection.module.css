@@ -47,15 +47,62 @@
   margin-bottom: 20px;
 }
 
-.heroName {
-  font-size: clamp(50px, 9vw, 90px);
-  /* Responsive big font, slightly larger for pixel font */
+.heroNameWrapper {
+  display: flex;
+  flex-direction: column;
+  /* Stack the lines vertically */
+  gap: 0px;
+  /* Minimal gap between lines */
+  margin-bottom: 25px;
+  align-items: flex-start;
+  /* Align text to left */
+}
+
+.heroNameLine {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  /* Gap between letters */
+}
+
+.heroNameChar {
+  /* Increased size greatly as requested */
+  font-size: clamp(70px, 12vw, 130px);
   font-weight: 600;
-  color: var(--color-text-primary);
-  /* Lightest Slate */
-  margin: 0;
-  line-height: 1.1;
+  color: var(--color-accent);
+  /* Text color itself */
   font-family: 'VT323', monospace;
+
+  /* Reset Box Model - No more background plate */
+  display: inline-block;
+  line-height: 1;
+  padding: 0 3px;
+
+  /* PIXELATED TEXT SHADOW EFFECT */
+  /* This creates the outline and the 3D depth directly on the text */
+  text-shadow:
+    /* 1. Thin Black Outline */
+    3px 3px 0px #000,
+    -3px -3px 0px #000,
+    3px -3px 0px #000,
+    -3px 3px 0px #000,
+    3px 0px 0px #000,
+    -3px 0px 0px #000,
+    0px 3px 0px #000,
+    0px -3px 0px #000,
+
+    /* 2. 3D Block Shadow (Dark Primary/Navy) */
+    6px 6px 0px #1a2c38,
+    6px 9px 0px #1a2c38,
+    9px 9px 0px #1a2c38,
+    9px 12px 0px #1a2c38,
+    12px 12px 0px #1a2c38,
+    12px 15px 0px #1a2c38;
+
+  margin: 0 2px;
+  /* Adjust spacing between letters */
+  cursor: default;
+  transition: transform 0.2s ease;
 }
 
 .heroTagline {

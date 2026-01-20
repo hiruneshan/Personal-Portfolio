@@ -8,7 +8,8 @@
   --color-text-primary: #F5FBE6;
   --color-text-secondary: rgba(245, 251, 230, 0.7);
   --color-accent: #FE7F2D;
-  --color-bg-primary: #233D4D;
+  /* Darker background color as requested */
+  --color-bg-primary: #12222E;
   --color-bg-secondary: #1a2c38;
   /* Darker shade of 233D4D for gradient depth if needed, or keep same */
   --color-bg-gradient: linear-gradient(to bottom, var(--color-bg-primary), var(--color-bg-secondary));
