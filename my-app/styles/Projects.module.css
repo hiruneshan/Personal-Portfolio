@@ -39,241 +39,247 @@
   font-family: 'Calibre', 'Inter', 'San Francisco', 'SF Pro Text', -apple-system, system-ui, sans-serif;
 }
 
-.project {
-  margin: 80px 0;
-  display: grid;
-  grid-gap: 10px;
-  grid-template-columns: repeat(12, 1fr);
-  /* REMOVED: grid-template-rows - let content define height */
-  align-items: center;
-
-  /* Animation Logic */
-  opacity: 0;
-  transform: translateY(40px);
-  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-}
-
-.sectionHeader+.project {
-  margin-top: 0;
-}
-
-.projectVisible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.projectContent {
-  position: relative;
-  /* CHANGED: Was 1 / 7. Extended to 1 / 8 for overlap with shifted image */
-  grid-column: 1 / 8;
-  grid-row: 1 / -1;
-  z-index: 2;
-  /* Default text-align is left */
-  text-align: left;
-}
+/* Old .project styles removed */
 
 .projectLabel {
   color: var(--color-accent);
   font-family: monospace;
 }
 
-.projectTitle {
-  font-size: 28px;
-  margin: 0 0 20px;
-  color: var(--color-text-primary);
-  font-weight: 600;
-  font-family: 'Calibre', 'Inter', 'San Francisco', 'SF Pro Text', -apple-system, system-ui, sans-serif;
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
+/* Old .projectDetails, .projectImg, and media queries removed */
 
-.iconLink {
-  color: var(--color-text-secondary);
-  transition: color 0.2s cubic-bezier(0.645, 0.045, 0.355, 1);
-  display: flex;
-  align-items: center;
-}
+/* --- NEW CARD GRID LAYOUT --- */
 
-.iconLink:hover {
-  color: var(--color-accent);
-}
-
-.projectDetails {
-  font-size: 15px;
-  line-height: 1.5;
-  color: var(--color-text-secondary);
-  font-family: 'Calibre', 'Inter', sans-serif;
-}
-
-.projectDetails p {
-  background-color: var(--color-bg-secondary);
-  padding: 25px;
-  border-radius: 4px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-}
-
-/* --- UPDATED FOR CAPSULES --- */
-.projectDetails ul {
-  display: flex;
-  flex-wrap: wrap;
-  /* Allows capsules to wrap to next line */
-  margin-top: 20px;
-  /* 'gap' handles all spacing between capsules */
+.projectsGrid {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
   gap: 20px;
-  /* Justification is now handled in media queries */
-
-  /* --- ADD THESE TWO LINES --- */
-  list-style-type: none;
-  /* Hides the bullet point */
-  padding-left: 0;
-  /* Removes default browser padding */
-}
-
-/* --- UPDATED FOR CAPSULES --- */
-.projectDetails ul li {
-  /* Removed Capsule Styles */
-  color: var(--color-text-secondary);
-  /* Muted Slate color */
-  font-size: 13px;
-  font-family: 'SF Mono', 'Fira Code', 'Fira Mono', 'Roboto Mono', monospace;
-  /* Ensure mono font matches reference */
-}
-
-.projectImg {
-  position: relative;
-  z-index: 1;
-  background: linear-gradient(0.4turn, var(--color-accent), var(--color-bg-primary));
-  border-radius: 4px;
-  /* CHANGED: Was 6 / -1 (7 cols). Reverting to 6 cols (7/-1) but right-aligned */
-  grid-column: 7 / -1;
-  grid-row: 1 / -1;
-  /* REMOVED: max-height: 400px - allows image to fill space */
-  aspect-ratio: 16 / 9;
-  overflow: hidden;
-  transition: transform 0.3s ease;
-}
-
-.projectImg:hover {
-  transform: translateY(-5px);
-}
-
-.projectImg:hover::before {
-  opacity: 0;
-}
-
-.projectImg:hover img {
-  filter: grayscale(0%) contrast(1);
-  mix-blend-mode: normal;
-}
-
-.projectImg::before {
-  content: "";
-  position: absolute;
   width: 100%;
-  height: 100%;
+}
+
+@media (min-width: 600px) {
+  .projectsGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .projectsGrid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.projectCard {
+  position: relative;
+  border-radius: 12px;
+  overflow: hidden;
+  height: 500px;
+  /* Fixed height for vertical card look */
+  transition: transform 0.3s ease;
+  cursor: default;
+  background-color: var(--color-bg-secondary);
+}
+
+/* Broken Pixelated Animated Border via Pseudo-element */
+/* Broken Pixelated Animated Border via Pseudo-element */
+.projectCard::after {
+  content: '';
+  position: absolute;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  z-index: 3;
-  background-color: var(--color-bg-primary);
-  mix-blend-mode: screen;
-  border-radius: 4px;
+  border-radius: 12px;
+  border: 4px dashed var(--color-accent);
+  pointer-events: none;
+  z-index: 10;
+  opacity: 0;
+  /* Hidden by default */
   transition: opacity 0.3s ease;
 }
 
-.projectImg img {
-  border-radius: 4px;
+@keyframes borderPulse {
+  0% {
+    opacity: 0.4;
+  }
+
+  50% {
+    opacity: 0.8;
+  }
+
+  100% {
+    opacity: 0.4;
+  }
+}
+
+.projectCard:hover::after {
+  opacity: 1;
+  /* Show on hover */
+  animation: borderPulse 2s infinite;
+}
+
+.projectCard {
   position: relative;
-  mix-blend-mode: multiply;
-  filter: grayscale(100%) contrast(1);
+  border-radius: 12px;
+  overflow: hidden;
+  height: 500px;
+  /* Fixed height */
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  /* Bouncy pop */
+  cursor: default;
+  background-color: var(--color-bg-secondary);
+  z-index: 1;
+}
+
+.projectCard:hover {
+  transform: scale(1.05) translateY(-10px);
+  /* Pop up and zoom */
+  z-index: 100;
+  /* Bring to front */
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+}
+
+.cardBackground {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+.cardBackground img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: filter 0.3s ease;
+  transition: transform 0.5s ease;
+  filter: blur(4px) brightness(0.25);
 }
 
-/* --- 
-NEW SECTION: Alternating Project Layout 
---- 
+.projectCard:hover .cardBackground img {
+  transform: scale(1.1);
+  filter: blur(6px) brightness(0.2);
+  /* Darken more for readability */
+}
+
+.cardContent {
+  position: relative;
+  z-index: 2;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+  text-align: center;
+  color: var(--color-text-primary);
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0) 100%);
+  transition: all 0.4s ease;
+}
+
+.projectCard:hover .cardContent {
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.95), rgba(0, 0, 0, 0.8));
+  justify-content: center;
+  /* Keep centered to show info */
+}
+
+.cardLabel {
+  display: none;
+}
+
+.cardTitle {
+  font-size: 28px;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: #fff;
+  font-family: 'Calibre', 'Inter', sans-serif;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+  width: 100%;
+
+  /* Transition for hiding */
+  transition: all 0.3s ease;
+  opacity: 1;
+  max-height: 200px;
+}
+
+.projectCard:hover .cardTitle {
+  /* HIDE TITLE ON HOVER */
+  opacity: 0;
+  max-height: 0;
+  margin: 0;
+  overflow: hidden;
+  transform: translateY(-20px);
+}
+
+.cardDescription {
+  font-size: 15px;
+  line-height: 1.6;
+  color: #e6f1ff;
+
+  /* Hidden initially */
+  opacity: 0;
+  max-height: 0;
+  margin: 0;
+  overflow: hidden;
+  transition: all 0.5s ease 0.2s;
+}
+
+.projectCard:hover .cardDescription {
+  opacity: 1;
+  max-height: 400px;
+  /* Expand fully */
+  margin-bottom: 1.5rem;
+}
+
+.cardTech {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+
+  /* Hidden initially */
+  opacity: 0;
+  max-height: 0;
+  overflow: hidden;
+  transition: all 0.5s ease 0.3s;
+}
+
+.projectCard:hover .cardTech {
+  opacity: 1;
+  max-height: 200px;
+}
+
+.cardTech li {
+  font-family: monospace;
+  font-size: 13px;
+  color: var(--color-accent);
+}
+
+.cardLinks {
+  display: flex;
+  gap: 20px;
+  margin-top: 5px;
+  transition: all 0.3s ease;
+}
+
+/* Hide links if inside hidden title, but if we want them visible we'd need to move them in JS.
+   Assuming "remove name" implies removing the whole title block including icons for now to show info.
+   User said "shows all infor". If links are needed, they are missing.
+   See next step for refinement if needed.
 */
-
-/* Apply these styles only on screens *wider* than the 600px mobile breakpoint */
-@media screen and (min-width: 601px) {
-
-  /* Target the 2nd, 4th, 6th... project */
-  .project:nth-child(even) .projectContent {
-    /* Move the content block to the right */
-    grid-column: 6 / -1;
-    /* Align the text inside to the right */
-    text-align: right;
-  }
-
-  .project:nth-child(even) .projectTitle {
-    justify-content: flex-end;
-  }
-
-  /* Target the 2nd, 4th, 6th... project */
-  .project:nth-child(even) .projectImg {
-    /* Move the image block to the left, 6 cols wide */
-    grid-column: 1 / 7;
-  }
-
-  /* Target the tech list for even projects */
-  .project:nth-child(even) .projectDetails ul {
-    /* Justify the tags to the right */
-    justify-content: flex-end;
-  }
-
-  /* The '.project:nth-child(even) .projectDetails ul li' rule
-    is no longer needed here because 'gap' handles all spacing.
-  */
+.cardLink {
+  color: var(--color-accent);
+  /* Accent color by default */
+  transition: transform 0.2s, filter 0.2s;
 }
 
-/* --- MEDIA QUERY for Tablet --- */
-@media screen and (max-width: 768px) {
-  .project {
-    align-items: flex-start;
-  }
-
-  .projectImg {
-    height: 100%;
-  }
-
-  .projectImg img {
-    object-fit: cover;
-    width: auto;
-    height: 100%;
-  }
-}
-
-/* --- MEDIA QUERY for Mobile --- */
-/* Consolidated mobile queries for clarity */
-@media (max-width: 600px) {
-  .projectContent {
-    grid-column: 1 / -1;
-    padding: 40px;
-    /* Reset text-align for mobile */
-    text-align: left;
-  }
-
-  .projectDetails p {
-    background-color: transparent;
-    padding: 20px 0;
-  }
-
-  .projectDetails ul {
-    /* Reset justification for mobile */
-    justify-content: flex-start;
-  }
-
-  /* The '.projectDetails ul li' rule
-    is no longer needed here because 'gap' handles all spacing.
-  */
-
-  .projectImg {
-    grid-column: 1 / -1;
-    opacity: 0.25;
-  }
+.cardLink:hover {
+  filter: brightness(1.2);
+  transform: scale(1.1);
 }

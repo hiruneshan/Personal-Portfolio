@@ -48,13 +48,14 @@
 }
 
 .heroName {
-  font-size: clamp(40px, 8vw, 80px);
-  /* Responsive big font */
+  font-size: clamp(50px, 9vw, 90px);
+  /* Responsive big font, slightly larger for pixel font */
   font-weight: 600;
   color: var(--color-text-primary);
   /* Lightest Slate */
   margin: 0;
   line-height: 1.1;
+  font-family: 'VT323', monospace;
 }
 
 .heroTagline {

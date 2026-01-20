@@ -43,7 +43,7 @@
   font-weight: 600;
   margin: 0;
   line-height: 1.1;
-  font-family: 'Calibre', 'Inter', 'San Francisco', 'SF Pro Text', -apple-system, system-ui, sans-serif;
+  font-family: 'VT323', monospace;
 }
 
 .sectionLine {
@@ -73,24 +73,39 @@
   opacity: 0;
 }
 
+/* Profile Image Wrapper - Pixelated Border Frame */
 .profileBackLayer {
-  position: absolute;
-  top: 15px;
-  left: 15px;
-  width: 100%;
-  height: 100%;
-  border: 2px solid var(--color-accent);
-  border-radius: 4px;
-  transition: all 0.25s cubic-bezier(0.645, 0.045, 0.355, 1);
-  z-index: 0;
+  /* Hide the back layer, we'll do the border on the wrapper itself or pseudo-element */
+  display: none;
 }
 
 .profileImageWrapper {
   position: relative;
-  border-radius: 4px;
-  background-color: var(--color-accent);
-  overflow: hidden;
-  transition: all 0.25s cubic-bezier(0.645, 0.045, 0.355, 1);
+  /* Square corners for pixel look */
+  border-radius: 0;
+  background-color: transparent;
+  width: 100%;
+  max-width: 250px;
+  /* Ensure size control */
+
+  /* The Pixelated Border Magic */
+  box-shadow:
+    /* Inner black/dark gap? No, sticking to single color for now based on request */
+    /* 4px "pixel" border using box-shadow spread */
+    4px 0 0 0 var(--color-accent),
+    -4px 0 0 0 var(--color-accent),
+    0 4px 0 0 var(--color-accent),
+    0 -4px 0 0 var(--color-accent),
+    /* Corner pixels to make it look "rounded" in a pixel way (optional) or just solid square */
+    /* Let's do a stepped corner effect for maximum 'pixel' vibe */
+    8px 0 0 0 var(--color-accent),
+    -8px 0 0 0 var(--color-accent),
+    0 8px 0 0 var(--color-accent),
+    0 -8px 0 0 var(--color-accent);
+
+  margin: 10px;
+  /* Space for the shadow border */
+  transition: transform 0.2s;
   cursor: pointer;
   z-index: 1;
 }
@@ -99,21 +114,20 @@
   width: 100%;
   height: auto;
   display: block;
-  border-radius: 4px;
+  border-radius: 0;
+  /* No rounded corners */
   filter: grayscale(100%) contrast(1);
-  mix-blend-mode: multiply;
-  transition: filter 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+  mix-blend-mode: normal;
+  /* Removed multiply to let image stand out inside the frame */
+  transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
 }
 
 /* --- HOVER EFFECTS --- */
 .profileImageWrapper:hover {
-  transform: translate(-5px, -5px);
-  background-color: transparent;
+  transform: scale(1.02);
+  /* Slight pulse instead of move */
 }
 
-.profileImageWrapper:hover+.profileBackLayer {
-  transform: translate(5px, 5px);
-}
 
 .highlight {
   color: var(--color-accent);
@@ -139,11 +153,66 @@
 .textContent {
   font-size: 18px;
   line-height: 1.3;
-  color: var(--color-text-secondary);
+
+  /* Speech Bubble Styling */
+  background-color: var(--color-text-primary);
+  /* Light background */
+  color: var(--color-bg-primary);
+  /* Dark text */
+  padding: 1.5rem;
+  position: relative;
+  margin-right: 20px;
+  /* Space for tail */
+
+  /* Rounder corners as requested */
+  border-radius: 12px;
+
+  /* Pop-up Animation on load */
+  animation: popIn 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+  will-change: transform, opacity;
+
+  /* Pixelated Border (using box-shadow to simulate border thickness with rounded corners) */
+  box-shadow:
+    0 0 0 4px var(--color-text-primary),
+    /* Inner filler if needed */
+    0 0 0 8px var(--color-bg-primary);
+  /* The actual dark border */
+
+  /* Ensure text on top */
+  z-index: 2;
+  transform-origin: center right;
+  /* Pop from the tail side? Or center? Default center usually fine */
+}
+
+/* Pixelated Bubble Tail (Pointing Right to Profile Pic) */
+.textContent::after {
+  content: '';
+  position: absolute;
+  top: 30px;
+  right: -12px;
+  /* Position outside the box */
+  width: 12px;
+  height: 12px;
+  background-color: var(--color-text-primary);
+
+  /* Pixelated Tail Border logic via box-shadow */
+  box-shadow:
+    4px 4px 0 0 var(--color-bg-primary),
+    /* Step down/out */
+    4px 0 0 0 var(--color-bg-primary),
+    0 -4px 0 0 var(--color-bg-primary),
+    8px 8px 0 0 var(--color-bg-primary);
+  /* Tip */
+
+  /* Clip path or detailed box-shadow to make it look like a jagged speech pointer */
+  /* Simplified 'blocky' pointer */
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
 }
 
 .textContent a {
   color: var(--color-accent);
+  /* Keep accent for links */
+  font-weight: bold;
   text-decoration: none;
   transition: color 0.3s ease;
 }

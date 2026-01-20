@@ -42,7 +42,7 @@ export default function AboutSection() {
                 <Col md={7} lg={7}>
                   {/* Section Header: "01. About Me" */}
                   <div className={styles.sectionHeader}>
-                    <span className={styles.sectionNumber}>01.</span>
+                    {/* <span className={styles.sectionNumber}>01.</span> */}
                     <h2 className={styles.sectionTitle}>About Me</h2>
                     <div className={styles.sectionLine}></div>
                   </div>
