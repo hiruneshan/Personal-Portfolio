@@ -72,8 +72,12 @@ export default function ProjectCarousel() {
     });
   }, []);
 
-  const handleManualInteraction = () => {
+  const handlePause = () => {
     setIsAutoPlaying(false);
+  };
+
+  const handleResume = () => {
+    setIsAutoPlaying(true);
   };
 
   // Auto-Play Effect
@@ -92,11 +96,11 @@ export default function ProjectCarousel() {
     const handleKeyDown = (e) => {
       if (e.key === 'ArrowUp') {
         e.preventDefault();
-        handleManualInteraction();
+        handlePause();
         moveToEnd();
       } else if (e.key === 'ArrowDown') {
         e.preventDefault();
-        handleManualInteraction();
+        handlePause();
         moveToFront();
       }
     };
@@ -114,9 +118,11 @@ export default function ProjectCarousel() {
 
             <div
               className={styles.stackContainer}
-              // Stop only on interaction events
-              onMouseEnter={handleManualInteraction}
-              onTouchStart={handleManualInteraction}
+              // Pause on hover/touch, resume on leave
+              onMouseEnter={handlePause}
+              onMouseLeave={handleResume}
+              onTouchStart={handlePause}
+              onTouchEnd={handleResume}
             >
               <ul className={styles.cardStack}>
                 <AnimatePresence initial={true} mode="popLayout">
@@ -131,7 +137,7 @@ export default function ProjectCarousel() {
                         project={project}
                         index={index}
                         moveToEnd={() => {
-                          handleManualInteraction();
+                          handlePause();
                           moveToEnd();
                         }}
                         isTop={isTop}

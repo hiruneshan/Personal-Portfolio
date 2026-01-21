@@ -12,7 +12,7 @@
 }
 
 .cell {
-    background-image: url('/images/homeBoxImg.png');
+    background-image: url('/images/homeBoxImg.jpg');
     background-size: 500% 700%;
     border: 1px solid var(--color-bg-secondary);
     /* Updated border color (Light Navy) */

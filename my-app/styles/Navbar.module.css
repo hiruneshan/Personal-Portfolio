@@ -5,7 +5,8 @@
   height: var(--navbar-height);
   padding: 0;
 
-  background-color: var(--color-bg-primary);
+  background-color: transparent;
+  /* Transparent as requested */
   backdrop-filter: blur(10px);
 
   position: sticky;
@@ -83,8 +84,30 @@
 
 .navLink {
   color: var(--color-text-primary) !important;
-  font-size: 14px;
-  font-family: "SF Mono", "Fira Code", "Fira Mono", "Roboto Mono", "Lucida Console", Monaco, monospace;
+  font-size: 24px;
+  /* Increased size for pixel font */
+  font-family: 'VT323', monospace;
+  /* Pixel font */
+  letter-spacing: 1px;
+
+  /* PIXELATED TEXT SHADOW EFFECT */
+  text-shadow:
+    2px 2px 0px #000,
+    -2px -2px 0px #000,
+    2px -2px 0px #000,
+    -2px 2px 0px #000,
+    2px 0px 0px #000,
+    -2px 0px 0px #000,
+    0px 2px 0px #000,
+    0px -2px 0px #000,
+    4px 4px 0px #1a2c38;
+
+  transition: transform 0.2s ease;
+}
+
+.navLink:hover {
+  transform: translateY(-2px);
+  color: var(--color-accent) !important;
 }
 
 .navNumber {
