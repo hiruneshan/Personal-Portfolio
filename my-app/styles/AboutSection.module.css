@@ -1,280 +1,40 @@
 @import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
 
 /* --- Base Section Style --- */
+@import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap');
+
+/* --- Base Section Style --- */
 .aboutSection {
   background-color: transparent;
-  /* Match Hero background */
-  font-family: 'Calibre', 'Inter', 'San Francisco', 'SF Pro Text', -apple-system, system-ui, sans-serif;
-  /* Sans-serif font */
   min-height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 150px 1rem 4rem 1rem;
-  /* Reduced top padding */
-  scroll-margin-top: 70px;
+  padding: 100px 1rem 4rem 1rem;
   overflow: hidden;
   position: relative;
+  font-family: 'Calibre', 'Inter', sans-serif;
 }
 
-/* --- Section Header --- */
-.sectionHeader {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  margin-bottom: 1.5rem;
-  /* Increased gap */
-  opacity: 0;
-  animation: fadeIn 0.8s ease-out forwards;
-}
-
-.sectionNumber {
-  font-size: 1.5rem;
-  color: var(--color-accent);
-  /* Neon Teal */
-  font-weight: 400;
-  font-family: 'SF Mono', 'Fira Code', 'Fira Mono', 'Roboto Mono', monospace;
-}
-
-.sectionTitle {
-  font-size: clamp(26px, 5vw, 40px);
-  color: var(--color-text-secondary);
-  /* Matching Hero Tagline */
-  font-weight: 600;
-  margin: 0;
-  line-height: 1.1;
-  font-family: 'VT323', monospace;
-}
-
-.sectionLine {
-  flex: 1;
-  height: 1px;
-  background-color: var(--color-bg-secondary);
-  /* Light Navy line */
-  margin-left: 1rem;
-  max-width: 300px;
-}
-
-/* --- Content Container --- */
 .contentWrapper {
-  opacity: 0;
-  animation: fadeIn 1s ease-out 0.3s forwards;
-}
-
-.profileImageContainer {
-  position: relative;
-  margin-top: 85px;
-  /* Align with text (Header ~65px + gap) */
-  margin-bottom: 2rem;
-  max-width: 225px;
-  /* Reduced from 300px */
-  margin-left: 0;
-  margin-right: auto;
-  opacity: 0;
-}
-
-/* Profile Image Wrapper - Pixelated Border Frame */
-.profileBackLayer {
-  /* Hide the back layer, we'll do the border on the wrapper itself or pseudo-element */
-  display: none;
-}
-
-.profileImageWrapper {
-  position: relative;
-  /* Square corners for pixel look */
-  border-radius: 0;
-  background-color: transparent;
   width: 100%;
-  max-width: 250px;
-  /* Ensure size control */
-
-  /* The Pixelated Border Magic */
-  box-shadow:
-    /* Inner black/dark gap? No, sticking to single color for now based on request */
-    /* 4px "pixel" border using box-shadow spread */
-    4px 0 0 0 var(--color-accent),
-    -4px 0 0 0 var(--color-accent),
-    0 4px 0 0 var(--color-accent),
-    0 -4px 0 0 var(--color-accent),
-    /* Corner pixels to make it look "rounded" in a pixel way (optional) or just solid square */
-    /* Let's do a stepped corner effect for maximum 'pixel' vibe */
-    8px 0 0 0 var(--color-accent),
-    -8px 0 0 0 var(--color-accent),
-    0 8px 0 0 var(--color-accent),
-    0 -8px 0 0 var(--color-accent);
-
-  margin: 10px;
-  /* Space for the shadow border */
-  transition: transform 0.2s;
-  cursor: pointer;
-  z-index: 1;
+  max-width: 1100px;
 }
 
-.profileImage {
-  width: 100%;
-  height: auto;
-  display: block;
-  border-radius: 0;
-  /* No rounded corners */
-  filter: grayscale(100%) contrast(1);
-  mix-blend-mode: normal;
-  /* Removed multiply to let image stand out inside the frame */
-  transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
-}
-
-/* --- HOVER EFFECTS --- */
-.profileImageWrapper:hover {
-  transform: scale(1.02);
-  /* Slight pulse instead of move */
-}
-
-
-.highlight {
-  color: var(--color-accent);
-  font-weight: normal;
-  text-decoration: none;
-  position: relative;
-  display: inline-block;
-}
-
-.highlight::after {
-  content: '';
-  display: block;
-  width: 0;
-  height: 1px;
-  background: var(--color-accent);
-  transition: width .3s;
-}
-
-.highlight:hover::after {
-  width: 100%;
-}
-
-.textContent {
-  font-size: 18px;
-  line-height: 1.3;
-
-  /* Speech Bubble Styling */
-  background-color: var(--color-text-primary);
-  /* Light background */
-  color: var(--color-bg-primary);
-  /* Dark text */
-  padding: 1.5rem;
-  position: relative;
-  margin-right: 20px;
-  /* Space for tail */
-
-  /* Rounder corners as requested */
-  border-radius: 12px;
-
-  /* Pop-up Animation on load */
-  animation: popIn 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
-  will-change: transform, opacity;
-
-  /* Pixelated Border (using box-shadow to simulate border thickness with rounded corners) */
-  box-shadow:
-    0 0 0 4px var(--color-text-primary),
-    /* Inner filler if needed */
-    0 0 0 8px var(--color-bg-primary);
-  /* The actual dark border */
-
-  /* Ensure text on top */
-  z-index: 2;
-  transform-origin: center right;
-  /* Pop from the tail side? Or center? Default center usually fine */
-}
-
-/* Pixelated Bubble Tail (Pointing Right to Profile Pic) */
-.textContent::after {
-  content: '';
-  position: absolute;
-  top: 30px;
-  right: -12px;
-  /* Position outside the box */
-  width: 12px;
-  height: 12px;
-  background-color: var(--color-text-primary);
-
-  /* Pixelated Tail Border logic via box-shadow */
-  box-shadow:
-    4px 4px 0 0 var(--color-bg-primary),
-    /* Step down/out */
-    4px 0 0 0 var(--color-bg-primary),
-    0 -4px 0 0 var(--color-bg-primary),
-    8px 8px 0 0 var(--color-bg-primary);
-  /* Tip */
-
-  /* Clip path or detailed box-shadow to make it look like a jagged speech pointer */
-  /* Simplified 'blocky' pointer */
-  clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
-}
-
-.textContent a {
-  color: var(--color-accent);
-  /* Keep accent for links */
-  font-weight: bold;
-  text-decoration: none;
-  transition: color 0.3s ease;
-}
-
-/* --- Technologies Section --- */
-.techSection {
-  margin-top: 2rem;
-}
-
-.techTitle {
-  font-size: 18px;
-  color: var(--color-text-primary);
-  margin-bottom: 1rem;
-}
-
-.techGrid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 0.5rem 2rem;
-}
-
-.techItem {
-  font-size: 18px;
-  color: var(--color-text-secondary);
+/* --- Left Col: Profile --- */
+.profileGroup {
   display: flex;
-  align-items: center;
-  gap: 0.5rem;
+  flex-direction: column;
+  align-items: flex-start;
+  opacity: 0;
+  width: fit-content;
+  margin: 0 auto;
 }
 
-.techItem:before {
-  content: "▹";
-  color: var(--color-accent);
-  font-size: 1rem;
-}
-
-/* --- Animations --- */
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes popIn {
-  0% {
-    opacity: 0;
-    transform: scale(0.5);
-  }
-
-  70% {
-    opacity: 1;
-    transform: scale(1.05);
-  }
-
-  100% {
-    opacity: 1;
-    transform: scale(1);
+@media (min-width: 768px) {
+  .profileGroup {
+    margin: 0;
   }
 }
 
@@ -282,36 +42,177 @@
   animation: popIn 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
 }
 
-/* --- Responsive Adjustments --- */
-@media (max-width: 767.98px) {
+.profileFrame {
+  position: relative;
+  padding: 8px;
+  /* Gap between image and border */
+  border: 4px solid var(--color-text-primary);
+  background: transparent;
+  display: inline-block;
+  margin-bottom: 1.5rem;
+}
+
+.decorationSquare {
+  position: absolute;
+  top: -15px;
+  right: -15px;
+  width: 40px;
+  height: 40px;
+  background-color: var(--color-accent);
+  z-index: 2;
+  box-shadow: 4px 4px 0 #000;
+}
+
+.profileImage {
+  display: block;
+  filter: grayscale(100%);
+  width: 100%;
+  max-width: 300px;
+  height: auto;
+}
+
+.pixelName {
+  font-family: 'VT323', monospace;
+  font-size: 4rem;
+  line-height: 0.9;
+  color: var(--color-text-primary);
+  margin: 0;
+  text-transform: uppercase;
+  text-shadow: 4px 4px 0 #000;
+  letter-spacing: 2px;
+}
+
+/* --- Right Col: Terminal Box --- */
+.terminalBox {
+  background-color: #f0f0f0;
+  /* White/Light Box */
+  border: 4px solid #111;
+  /* Black Border */
+  /* To make it pop on dark BG: */
+  box-shadow: 12px 12px 0 var(--color-accent);
+  /* Offset shadow */
+
+  padding: 3rem;
+  position: relative;
+  color: #111;
+  margin-top: 2rem;
+}
+
+@media (min-width: 768px) {
+  .terminalBox {
+    margin-top: 0;
+    margin-left: 2rem;
+  }
+}
+
+/* Speech Tail simulation: A white block covering the border? */
+.speechTail {
+  position: absolute;
+  bottom: -20px;
+  left: -20px;
+  width: 40px;
+  height: 40px;
+  background: var(--color-accent);
+  /* Match shadow */
+  clip-path: polygon(100% 0, 0 0, 100% 100%);
+  display: none;
+  /* Keeping clean for now */
+}
+
+.terminalHeader {
+  font-family: 'VT323', monospace;
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin-bottom: 2rem;
+  color: #111;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.terminalBody {
+  font-family: 'Share Tech Mono', 'VT323', monospace;
+  font-size: 1.1rem;
+  line-height: 1.6;
+}
+
+.terminalBody p {
+  margin-bottom: 1.5rem;
+}
+
+.highlight {
+  font-weight: bold;
+  color: #0d5f63;
+  /* Dark Teal for contrast on white */
+}
+
+.techSection {
+  margin-top: 2.5rem;
+  border-top: 2px dashed #ccc;
+  padding-top: 1.5rem;
+}
+
+.techTitle {
+  font-family: 'VT323', monospace;
+  font-size: 1.4rem;
+  color: #555;
+  margin-bottom: 1rem;
+}
+
+.techGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.5rem;
+}
+
+.techItem {
+  font-family: 'VT323', monospace;
+  font-size: 1.3rem;
+  color: #333;
+}
+
+.techItem::before {
+  content: ">";
+  font-family: monospace;
+  color: var(--color-accent);
+  /* Neon accent */
+  font-weight: bold;
+  margin-right: 8px;
+}
+
+/* --- Mobile Adjustments --- */
+@media (max-width: 768px) {
   .aboutSection {
-    padding: 6rem 1rem 3rem 1rem;
+    padding: 4rem 1rem;
   }
 
-  .sectionTitle {
-    font-size: 1.75rem;
+  .pixelName {
+    font-size: 3rem;
+    text-align: center;
+    width: 100%;
   }
 
-  .sectionNumber {
-    font-size: 1.25rem;
+  .profileGroup {
+    align-items: center;
   }
 
-  .sectionLine {
-    display: none;
+  .terminalBox {
+    padding: 1.5rem;
+    margin-left: 0;
   }
 
-  .textContent {
-    font-size: 18px;
-    line-height: 1.3;
-    color: var(--color-text-secondary);
+  .terminalHeader {
+    font-size: 2rem;
+  }
+}
+
+@keyframes popIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.95);
   }
 
-  .profileImageContainer {
-    margin: 3rem auto 0 auto;
-    max-width: 220px;
-  }
-
-  .techGrid {
-    grid-template-columns: 1fr 1fr;
+  100% {
+    opacity: 1;
+    transform: scale(1);
   }
 }
