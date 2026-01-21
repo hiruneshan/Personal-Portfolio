@@ -91,9 +91,11 @@ export default function ProjectCarousel() {
   useEffect(() => {
     const handleKeyDown = (e) => {
       if (e.key === 'ArrowUp') {
+        e.preventDefault();
         handleManualInteraction();
         moveToEnd();
       } else if (e.key === 'ArrowDown') {
+        e.preventDefault();
         handleManualInteraction();
         moveToFront();
       }

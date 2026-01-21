@@ -108,9 +108,19 @@
     10px 10px 0 0 #1a2c38;
 }
 
-.projectCard:hover {
-  transform: scale(1.02) translateY(-5px);
+/* Focus Effect: Blur others when one is hovered */
+.projectsGrid:hover .projectCard {
+  filter: blur(5px) brightness(0.7);
+  transform: scale(0.95);
+  opacity: 0.8;
+}
+
+.projectsGrid .projectCard:hover {
+  transform: scale(1.05) translateY(-10px);
   z-index: 100;
+  filter: none;
+  /* Clear blur */
+  opacity: 1;
 
   /* Enhanced Shadow on Hover */
   box-shadow:
@@ -225,6 +235,7 @@
   font-size: 15px;
   line-height: 1.6;
   color: #e6f1ff;
+  font-family: 'Calibre', 'Inter', sans-serif;
 
   /* Hidden initially */
   opacity: 0;

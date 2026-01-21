@@ -102,6 +102,12 @@
     /* Sharper */
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    /* Vertically center content */
+    align-items: center;
+    /* Horizontally center content */
+    text-align: center;
+    /* Center text */
     transition: all 0.25s cubic-bezier(0.645, 0.045, 0.355, 1);
     overflow: hidden;
     /* Hide content that exceeds the height */
@@ -134,6 +140,7 @@
     justify-content: space-between;
     align-items: center;
     margin-bottom: 30px;
+    width: 100%;
 }
 
 .folderIcon {
