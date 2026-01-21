@@ -106,17 +106,22 @@
 }
 
 /* Speech Tail simulation: A white block covering the border? */
+/* Speech Tail: Rotated square to create a pointer */
 .speechTail {
   position: absolute;
-  bottom: -20px;
-  left: -20px;
-  width: 40px;
-  height: 40px;
-  background: var(--color-accent);
-  /* Match shadow */
-  clip-path: polygon(100% 0, 0 0, 100% 100%);
-  display: none;
-  /* Keeping clean for now */
+  top: 60px;
+  /* Align near top */
+  left: -18px;
+  /* Push out */
+  width: 30px;
+  height: 30px;
+  background-color: #f0f0f0;
+  border-left: 4px solid #111;
+  border-bottom: 4px solid #111;
+  transform: rotate(45deg);
+  display: block;
+  z-index: 10;
+  /* Ensure on top of box border */
 }
 
 .terminalHeader {

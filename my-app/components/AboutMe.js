@@ -39,7 +39,7 @@ export default function AboutSection() {
             {/* Content Wrapper */}
             {/* Content Wrapper */}
             <div className={styles.contentWrapper}>
-              <Row className="align-items-center justify-content-center">
+              <Row className="align-items-start justify-content-center">
 
                 {/* Left Column: Profile - Swapped to Left */}
                 <Col md={5} lg={4} className="mb-5 mb-md-0">
@@ -74,13 +74,7 @@ export default function AboutSection() {
 
                     <div className={styles.terminalBody}>
                       <p>
-                        I read through numerous stacks, debugged hundreds of lines, and built experiences that bridge the gap between retro vibes and modern performance.
-                      </p>
-                      <p>
-                        Hi, I’m Hiru. I’m a software development student in Toronto, Canada, who loves building things with code. I enjoy backend development, solving tricky problems, and learning new technologies.
-                      </p>
-                      <p>
-                        Maybe you&apos;re looking for someone who doesn&apos;t just write code, but crafts digital adventures. <span className={styles.highlight}>Again, you&apos;ve found the perfect match.</span>
+                        Hi, I’m Hiru I’m a software development student in Toronto, Canada, who loves building things with code. I enjoy backend development, solving tricky problems, and learning new technologies. When I’m not coding, you’ll probably find me skating, traveling, or trying new food.
                       </p>
 
                       {/* Technologies Section */}

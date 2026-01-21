@@ -16,36 +16,41 @@ export default function AboutGrid() {
     const [visible, setVisible] = useState([]);
 
     useEffect(() => {
+        const row2 = [0, 0, 0, 1, 1];
+        const row1 = [0, 0, 0, 0, 1];
+
         const pattern = [
-            // Row 1: 4
-            0, 1, 1, 1, 1,
-            // Row 2: 2
-            0, 0, 0, 1, 1,
-            // Row 3: 1
-            0, 0, 0, 0, 1,
-            // Row 4: 2
-            0, 0, 0, 1, 1,
-            // Row 5: 1
-            0, 0, 0, 0, 1,
-            // Row 6: 2
-            0, 0, 0, 1, 1,
-            // Repeat 1, 2 pattern...
-            0, 0, 0, 0, 1,
-            0, 0, 0, 1, 1,
-            0, 0, 0, 0, 1,
-            0, 0, 0, 1, 1,
-            0, 0, 0, 0, 1,
-            0, 0, 0, 1, 1,
-            0, 0, 0, 0, 1,
-            0, 0, 0, 1, 1
+            ...row2, // Row 1: 2
+            ...row1, // Row 2: 1
+            ...row1, // Row 3: 1
+            ...row2, // Row 4: 2
+            ...row2, // Repeat 2
+            ...row1, // 1
+            ...row1, // 1
+            ...row2, // 2
+            ...row2,
+            ...row1,
+            ...row1,
+            ...row2,
+            ...row2,
+            ...row1
         ].map(Boolean);
 
         setVisible(pattern);
     }, []);
 
     return (
-        <div className={styles.wrapper} style={{ position: 'absolute', right: 0, top: '100px', height: '100%', width: '400px', zIndex: 0, pointerEvents: 'none', opacity: 0.5 }}>
-            <div className={styles.grid}>
+        <div className={styles.wrapper} style={{
+            position: 'absolute',
+            right: 0,
+            top: 0,
+            height: 'calc((100vh - 80px) * 2)',
+            width: '45vw',
+            maxWidth: '720px',
+            zIndex: 0,
+            pointerEvents: 'none'
+        }}>
+            <div className={styles.grid} style={{ gridTemplateRows: 'repeat(14, 1fr)' }}>
                 {Array.from({ length: rows * cols }).map((_, i) => {
                     const row = Math.floor(i / cols);
                     const col = i % cols;
