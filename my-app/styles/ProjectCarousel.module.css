@@ -5,17 +5,33 @@
     /* Use global background by making specific transparent */
     background-color: transparent;
     overflow: hidden;
+    position: relative;
+    /* Fixes grid positioning */
     /* Prevent dragging from creating scrollbars */
 }
 
 .carouselTitle {
-    font-size: 26px;
-    color: var(--color-text-secondary);
-    font-weight: 600;
+    font-size: clamp(40px, 8vw, 60px);
+    color: var(--color-text-primary);
+    font-weight: 500;
+    margin: 0 0 5rem 0;
+    /* Keep bottom margin */
     line-height: 1.1;
-    font-family: 'Calibre', 'Inter', sans-serif;
+    font-family: 'VT323', monospace;
     text-align: center;
-    margin-bottom: 5rem;
+
+    /* PIXELATED TEXT SHADOW EFFECT */
+    text-shadow:
+        2px 2px 0px #000,
+        -2px -2px 0px #000,
+        2px -2px 0px #000,
+        -2px 2px 0px #000,
+        2px 0px 0px #000,
+        -2px 0px 0px #000,
+        0px 2px 0px #000,
+        0px -2px 0px #000,
+        4px 4px 0px #1a2c38,
+        6px 6px 0px #1a2c38;
 }
 
 .stackContainer {

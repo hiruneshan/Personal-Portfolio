@@ -83,9 +83,10 @@
 }
 
 /* --- Right Col: Terminal Box --- */
+/* --- Right Col: Terminal Box --- */
 .terminalBox {
-  background-color: #f0f0f0;
-  /* White/Light Box */
+  background-color: #F5FBE6;
+  /* Beige/Green Tint */
   border: 4px solid #111;
   /* Black Border */
   /* To make it pop on dark BG: */
@@ -105,7 +106,18 @@
   }
 }
 
-/* Speech Tail simulation: A white block covering the border? */
+/* Tools Box (Bottom Row) */
+.toolsBox {
+  background-color: #F5FBE6;
+  border: 4px solid #111;
+  box-shadow: 12px 12px 0 var(--color-accent);
+  padding: 2rem;
+  position: relative;
+  color: #111;
+  width: 100%;
+}
+
+/* Speech Tail simulation */
 /* Speech Tail: Rotated square to create a pointer */
 .speechTail {
   position: absolute;
@@ -115,7 +127,8 @@
   /* Push out */
   width: 30px;
   height: 30px;
-  background-color: #f0f0f0;
+  background-color: #F5FBE6;
+  /* Match Box */
   border-left: 4px solid #111;
   border-bottom: 4px solid #111;
   transform: rotate(45deg);
@@ -126,12 +139,26 @@
 
 .terminalHeader {
   font-family: 'VT323', monospace;
-  font-size: 2.5rem;
-  font-weight: bold;
+  font-size: clamp(40px, 6vw, 50px);
+  font-weight: 500;
   margin-bottom: 2rem;
-  color: #111;
-  text-transform: uppercase;
+  color: var(--color-accent);
+  /* Use theme accent color (Orange: #FE7F2D) */
   letter-spacing: 1px;
+  line-height: 1.1;
+
+  /* PIXELATED TEXT SHADOW EFFECT */
+  text-shadow:
+    2px 2px 0px #000,
+    -2px -2px 0px #000,
+    2px -2px 0px #000,
+    -2px 2px 0px #000,
+    2px 0px 0px #000,
+    -2px 0px 0px #000,
+    0px 2px 0px #000,
+    0px -2px 0px #000,
+    4px 4px 0px #1a2c38,
+    6px 6px 0px #1a2c38;
 }
 
 .terminalBody {
@@ -141,7 +168,8 @@
 }
 
 .terminalBody p {
-  margin-bottom: 1.5rem;
+  margin-bottom: 0;
+  /* Remove bottom margin for clean fit */
 }
 
 .highlight {
@@ -150,36 +178,40 @@
   /* Dark Teal for contrast on white */
 }
 
-.techSection {
-  margin-top: 2.5rem;
-  border-top: 2px dashed #ccc;
-  padding-top: 1.5rem;
-}
+/* Removed techSection as it's separate now */
 
 .techTitle {
   font-family: 'VT323', monospace;
   font-size: 1.4rem;
-  color: #555;
+  color: #111;
   margin-bottom: 1rem;
+  font-weight: bold;
 }
 
 .techGrid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 0.5rem;
+  gap: 1rem;
+}
+
+@media (min-width: 768px) {
+  .techGrid {
+    grid-template-columns: repeat(4, 1fr);
+    /* 4 columns on desktop */
+  }
 }
 
 .techItem {
   font-family: 'VT323', monospace;
   font-size: 1.3rem;
-  color: #333;
+  color: #111;
 }
 
 .techItem::before {
   content: ">";
   font-family: monospace;
-  color: var(--color-accent);
-  /* Neon accent */
+  color: #111;
+  /* Dark for contrast */
   font-weight: bold;
   margin-right: 8px;
 }

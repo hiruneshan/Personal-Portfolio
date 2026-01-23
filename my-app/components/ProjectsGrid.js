@@ -1,39 +1,34 @@
 import { useEffect, useState } from 'react';
-import styles from '../styles/HeroGrid.module.css'; // Reusing HeroGrid styles for consistency
+import styles from '../styles/HeroGrid.module.css';
 import { motion } from 'framer-motion';
 
-export default function AboutGrid() {
+export default function ProjectsGrid() {
     const cols = 5;
     const rows = 14;
-    // Enough to cover the section height approx.
-    // Pattern: 4, 2, 1, 2, 1, 2...
 
-    // 4: [0, 1, 1, 1, 1]
-    // 2: [0, 0, 0, 1, 1] (Right aligned?) User said "add same boxes to the right side".
-    // 1: [0, 0, 0, 0, 1]
-    // 2: [0, 0, 0, 1, 1]
-
+    // Pattern: 1, 2, 3, 1, 1, 3
     const [visible, setVisible] = useState([]);
 
     useEffect(() => {
-        const row2 = [0, 0, 0, 1, 1];
-        const row1 = [0, 0, 0, 0, 1];
+        const row1 = [0, 0, 0, 0, 1]; // 1 block right aligned
+        const row2 = [0, 0, 0, 1, 1]; // 2 blocks right aligned
+        const row3 = [0, 0, 1, 1, 1]; // 3 blocks right aligned
 
         const pattern = [
-            ...row2, // Row 1: 2
-            ...row1, // Row 2: 1
-            ...row1, // Row 3: 1
-            ...row2, // Row 4: 2
-            ...row2, // Repeat 2
-            ...row1, // 1
             ...row1, // 1
             ...row2, // 2
-            ...row2,
-            ...row1,
-            ...row1,
-            ...row2,
-            ...row2,
-            ...row1
+            ...row3, // 3
+            ...row1, // 1
+            ...row1, // 1
+            ...row3, // 3
+            ...row1, // 1
+            ...row2, // 2
+            ...row3, // 3
+            ...row1, // 1
+            ...row1, // 1
+            ...row3, // 3
+            ...row1, // 1
+            ...row2  // 2
         ].map(Boolean);
 
         setVisible(pattern);
@@ -45,7 +40,7 @@ export default function AboutGrid() {
             right: 0,
             top: 0,
             height: 'calc((100vh - 80px) * 2)',
-            width: '35vw',
+            width: '35vw', // Consistent with other grids
             maxWidth: '720px',
             zIndex: 0,
             pointerEvents: 'none'
@@ -63,7 +58,7 @@ export default function AboutGrid() {
                             style={{
                                 backgroundPosition: `${(col / 4) * 100}% ${(row / 6) * 100}%`
                             }}
-                            initial={{ opacity: 0, x: 20 }}
+                            initial={{ opacity: 0, x: 20 }} // Slide from right
                             whileInView={{
                                 opacity: isVisible ? 1 : 0,
                                 x: isVisible ? 0 : 20
