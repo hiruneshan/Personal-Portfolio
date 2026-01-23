@@ -43,7 +43,7 @@ export default function RetroNavbar() {
                   className={styles.navLink}
                   onClick={() => setExpanded(false)}
                 >
-                  <span className={styles.navNumber}>0{index + 1}.</span> {item}
+                  {/* <span className={styles.navNumber}>0{index + 1}.</span> */} {item}
                 </Nav.Link>
               </motion.div>
             ))}

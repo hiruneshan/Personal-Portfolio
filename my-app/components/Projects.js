@@ -1,81 +1,9 @@
-import React, { useEffect, useState } from 'react'; // Consolidated imports
-import Image from 'next/image'; // Added Image import
-import { Container, Row, Col } from 'react-bootstrap';
+import React, { useEffect, useState, useRef } from 'react';
+import Image from 'next/image';
+import { Container } from 'react-bootstrap'; // Removed unused imports
 import { Github, ExternalLink } from 'lucide-react';
+import { motion } from 'framer-motion'; // Imported Framer Motion
 import styles from '../styles/Projects.module.css';
-import ProjectCard from './ProjectCard';
-
-const ProjectItem = ({ project, index }) => {
-  const [isVisible, setIsVisible] = useState(false);
-  const ref = React.useRef(null);
-
-  useEffect(() => {
-    const currentRef = ref.current; // Capture ref
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-          observer.disconnect();
-        }
-      },
-      { threshold: 0.2 }
-    );
-
-    if (currentRef) observer.observe(currentRef);
-
-    return () => {
-      if (currentRef) observer.unobserve(currentRef); // Use captured ref
-    };
-  }, []);
-
-  return (
-    <div
-      ref={ref}
-      className={`${styles.project} ${isVisible ? styles.projectVisible : ''}`}
-    >
-      <div className={styles.projectContent}>
-        <div className={styles.projectLabel}>Featured Project</div>
-        <h4 className={styles.projectTitle}>
-          {project.title}
-          {project.GitHub && (
-            <a
-              href={project.GitHub}
-              target="_blank"
-              rel="noopener noreferrer"
-              className={styles.iconLink}
-              aria-label="GitHub Repo"
-            >
-              <Github size={22} />
-            </a>
-          )}
-          {project.Link && (
-            <a
-              href={project.Link}
-              target="_blank"
-              rel="noopener noreferrer"
-              className={styles.iconLink}
-              aria-label="External Link"
-            >
-              <ExternalLink size={22} />
-            </a>
-          )}
-        </h4>
-        <div className={styles.projectDetails}>
-          <p dangerouslySetInnerHTML={{ __html: project.description }} />
-          <ul>
-            {project.technologies.map((tech, i) => (
-              <li key={i}>{tech}</li>
-            ))}
-          </ul>
-        </div>
-      </div>
-
-      <div className={styles.projectImg}>
-        <Image src={project.imageUrl} alt={project.title} fill style={{ objectFit: 'cover' }} />
-      </div>
-    </div>
-  );
-};
 
 const Projects = () => {
   const [projects, setProjects] = useState([]);
@@ -97,34 +25,93 @@ const Projects = () => {
     fetchProjects();
   }, []);
 
+  const handleGithubClick = (e, link) => {
+    if (!link) {
+      e.preventDefault();
+      alert("This is a private repository, please contact the owner for a code review");
+    }
+  };
+
   if (loading) {
     return <div className={styles.projectContainer}>Loading...</div>;
   }
 
-
   return (
     <section id="projects" className={styles.projectsSection}>
       <Container>
-        <Row className="justify-content-center">
-          <Col lg={10}>
-            <div className={styles.sectionHeader}>
-              <span className={styles.sectionNumber}>03.</span>
-              <h2 className={styles.sectionTitle}>Some Things I&apos;ve Built</h2>
-              <div className={styles.sectionLine}></div>
-            </div>
+        <div className={styles.sectionHeader}>
+          <h2 className={styles.sectionTitle}>Some Things I&apos;ve Built</h2>
+        </div>
 
-            {projects.map((project, index) => (
-              <React.Fragment key={index}>
-                <div className="d-none d-md-block">
-                  <ProjectItem project={project} index={index} />
-                </div>
-                <div className="d-block d-md-none mb-4">
-                  <ProjectCard project={project} />
-                </div>
-              </React.Fragment>
-            ))}
-          </Col>
-        </Row>
+        <div className={styles.projectsGrid}>
+          {projects.map((project, index) => (
+            <motion.div
+              key={index}
+              className={styles.projectCard}
+              // Animation Logic: Odd from Right (100), Even from Left (-100)
+              initial={{
+                opacity: 0,
+                x: index % 2 === 0 ? -100 : 100
+              }}
+              whileInView={{
+                opacity: 1,
+                x: 0
+              }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{
+                duration: 0.8,
+                ease: "easeOut",
+                delay: index * 0.1 // Slight stagger for sequential feel
+              }}
+            >
+              {/* Background Image Layer */}
+              <div className={styles.cardBackground}>
+                <Image
+                  src={project.imageUrl}
+                  alt={project.title}
+                  fill
+                  style={{ objectFit: 'cover' }}
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
+                />
+              </div>
+
+              {/* Foreground Content Layer */}
+              <div className={styles.cardContent}>
+                <h3 className={styles.cardTitle}>
+                  {project.title}
+                  <div className={styles.cardLinks}>
+                    <a
+                      href={project.GitHub || '#'}
+                      target={project.GitHub ? "_blank" : "_self"}
+                      rel="noopener noreferrer"
+                      className={styles.cardLink}
+                      onClick={(e) => handleGithubClick(e, project.GitHub)}
+                    >
+                      <Github size={20} />
+                    </a>
+
+                    {project.Link && (
+                      <a href={project.Link} target="_blank" rel="noopener noreferrer" className={styles.cardLink}>
+                        <ExternalLink size={20} />
+                      </a>
+                    )}
+                  </div>
+                </h3>
+
+                <div
+                  className={styles.cardDescription}
+                  dangerouslySetInnerHTML={{ __html: project.description }}
+                />
+
+                <ul className={styles.cardTech}>
+                  {project.technologies.slice(0, 4).map((tech, i) => (
+                    <li key={i}>{tech}</li>
+                  ))}
+                </ul>
+              </div>
+            </motion.div>
+          ))}
+        </div>
       </Container>
     </section>
   );

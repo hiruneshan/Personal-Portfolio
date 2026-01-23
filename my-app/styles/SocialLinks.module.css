@@ -26,13 +26,13 @@
   gap: 2rem;
   padding: 3rem 0;
   width: 100%;
-  background-color: #040b25;
+  background-color: var(--color-bg-primary);
 }
 
 .socialIcon {
   width: 1.5rem;
   height: 1.5rem;
-  color: #a8b2d1;
+  color: var(--color-text-secondary);
   /* Muted color initially */
   transition: all 0.2s ease-in-out;
   display: flex;
@@ -44,7 +44,7 @@
 
 .socialIcon:hover {
   transform: translateY(-3px);
-  color: #64ffda;
+  color: var(--color-accent);
   /* Cyan accent on hover */
 }
 
@@ -55,21 +55,21 @@
   /* Position to the left of the icon */
   top: 50%;
   transform: translateY(-50%);
-  background-color: #1e293b;
+  background-color: var(--color-bg-secondary);
   /* Theme dark blue */
-  color: #64ffda;
+  color: var(--color-accent);
   /* Theme cyan */
   font-family: 'Courier New', Courier, monospace;
   font-size: 0.8rem;
   padding: 8px 12px;
-  border: 1px solid #64ffda;
+  border: 1px solid var(--color-accent);
   border-radius: 4px;
   white-space: nowrap;
   opacity: 0;
   visibility: hidden;
   transition: opacity 0.3s, visibility 0.3s;
   pointer-events: none;
-  box-shadow: 0 0 10px rgba(100, 255, 218, 0.2);
+  box-shadow: 0 0 10px rgba(254, 127, 45, 0.2);
   z-index: 1001;
 }
 
@@ -83,7 +83,7 @@
   margin-top: -6px;
   border-width: 6px;
   border-style: solid;
-  border-color: transparent transparent transparent #64ffda;
+  border-color: transparent transparent transparent var(--color-accent);
 } */
 
 .socialIcon:hover .tooltip {

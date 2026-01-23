@@ -1,103 +1,85 @@
 /* ProjectCarousel.module.css */
 
-.carouselContainer {
-    display: flex;
-    overflow-x: auto;
-    gap: 20px;
-    padding: 20px 0;
-    /* Top/bottom padding for shadow/hover space */
-    scroll-snap-type: x mandatory;
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: none;
-    /* Firefox */
-}
-
-/* Nav Button Styles */
-.navBtn {
-    position: absolute;
-    top: 60%;
-    /* Center vertically relative to the cards (approx) */
-    transform: translateY(-50%);
-    z-index: 10;
-    background-color: rgba(23, 42, 69, 0.9);
-    /* Dark background */
-    border: 1px solid #64ffda;
-    color: #64ffda;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    padding: 0;
-}
-
-.navBtn:hover {
-    background-color: #64ffda;
-    color: #0a192f;
-}
-
-.navBtnLeft {
-    left: -20px;
-    /* Pull it slightly outside the content area if possible, or 0 if contained */
-}
-
-.navBtnRight {
-    right: -20px;
-}
-
-/* Adjust for mobile to keep buttons inside */
-@media (max-width: 768px) {
-    .navBtnLeft {
-        left: 10px;
-    }
-
-    .navBtnRight {
-        right: 10px;
-    }
+.sectionWrapper {
+    padding: 80px 0;
+    /* Use global background by making specific transparent */
+    background-color: transparent;
+    overflow: hidden;
+    /* Prevent dragging from creating scrollbars */
 }
 
 .carouselTitle {
     font-size: 26px;
-    color: #8892b0;
+    color: var(--color-text-secondary);
     font-weight: 600;
     line-height: 1.1;
-    font-family: 'Calibre', 'Inter', 'San Francisco', 'SF Pro Text', -apple-system, system-ui, sans-serif;
+    font-family: 'Calibre', 'Inter', sans-serif;
     text-align: center;
-    margin-bottom: 3rem;
+    margin-bottom: 5rem;
 }
 
-.carouselContainer::-webkit-scrollbar {
-    display: none;
-    /* Chrome/Safari */
-}
-
-.cardWrapper {
-    flex: 0 0 auto;
-    width: 300px;
-    /* Fixed width for standard card size */
-    scroll-snap-align: start;
-    /* Height is now controlled by the card itself + hover state */
-    /* Removed fixed height to allow expansion */
-    padding-bottom: 20px;
-    /* Add some buffer for shadow/hover movement */
-}
-
-.cardContainer {
-    height: 100%;
-    /* Ensure container respects child height changes */
+.stackContainer {
+    position: relative;
+    width: 100%;
+    /* Increase height to fit upward stack + card (480px + ~80px buffer) */
+    height: 600px;
     display: flex;
-    align-items: flex-start;
-    /* top align so it grows down */
-    transition: all 0.25s cubic-bezier(0.645, 0.045, 0.355, 1);
+    justify-content: center;
+    perspective: 1000px;
+    /* Add top padding to push the 'main' card down, allowing back cards to peek UP into this space */
+    padding-top: 80px;
 }
 
-.cardContainer:hover {
-    transform: translateY(-7px) scale(1.02);
-    z-index: 10;
-    /* Ensure it stays on top if it slightly overlaps */
+.cardStack {
+    position: relative;
+    width: 100%;
+    max-width: 400px;
+    /* Restrict width of the stack */
+    height: 100%;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    display: flex;
+    justify-content: center;
+}
+
+.cardItem {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    max-width: 350px;
+    height: auto;
+    cursor: grab;
+    list-style: none;
+    transform-style: preserve-3d;
+}
+
+.cardItem:active {
+    cursor: grabbing;
+}
+
+.projectCardWrapper {
+    pointer-events: none;
+    /* Let clicks pass through if needed, or handle inside */
+}
+
+/* Allow interactions inside the top card */
+.cardItem[style*="z-index: 100"] .projectCardWrapper {
+    pointer-events: auto;
+}
+
+.instructionText {
+    margin-top: 30px;
+    color: var(--color-text-secondary);
+    font-family: monospace;
+    font-size: 14px;
+    opacity: 0.6;
+}
+
+/* Hide Scrollbar/Nav leftovers */
+.carouselContainer,
+.navBtn {
+    display: none;
 }
 
 .cardContainer:hover .projectCard {
@@ -105,20 +87,52 @@
     /* Expanded height (reduced from 420px) */
 }
 
+/* Corner Border Removed */
+.projectCard::after {
+    content: none;
+}
+
 .projectCard {
-    background-color: #112240;
-    /* Light Navy */
-    height: 400px;
+    background-color: #163E40;
+    /* Requested Darker Teal color */
+    height: 480px;
     /* Default collapsed height */
     padding: 1.75rem 1.5rem;
     border-radius: 4px;
+    /* Sharper */
     display: flex;
     flex-direction: column;
-    box-shadow: 0 10px 30px -15px rgba(2, 12, 27, 0.7);
+    justify-content: center;
+    /* Vertically center content */
+    align-items: center;
+    /* Horizontally center content */
+    text-align: center;
+    /* Center text */
     transition: all 0.25s cubic-bezier(0.645, 0.045, 0.355, 1);
     overflow: hidden;
     /* Hide content that exceeds the height */
     position: relative;
+
+    /* PIXELATED 3D BORDER EFFECT */
+    box-shadow:
+        2px 2px 0 0 #000,
+        -2px -2px 0 0 #000,
+        2px -2px 0 0 #000,
+        -2px 2px 0 0 #000,
+        4px 4px 0 0 #1a2c38,
+        6px 6px 0 0 #1a2c38;
+}
+
+.cardContainer:hover .projectCard {
+    height: 460px;
+    box-shadow:
+        2px 2px 0 0 #000,
+        -2px -2px 0 0 #000,
+        2px -2px 0 0 #000,
+        -2px 2px 0 0 #000,
+        6px 6px 0 0 #1a2c38,
+        9px 9px 0 0 #1a2c38,
+        12px 12px 0 0 #1a2c38;
 }
 
 .cardHeader {
@@ -126,10 +140,11 @@
     justify-content: space-between;
     align-items: center;
     margin-bottom: 30px;
+    width: 100%;
 }
 
 .folderIcon {
-    color: #64ffda;
+    color: var(--color-accent);
     width: 40px;
     height: 40px;
 }
@@ -141,26 +156,45 @@
 }
 
 .iconLink {
-    color: #a8b2d1;
+    color: var(--color-text-secondary);
     width: 20px;
     height: 20px;
     transition: color 0.3s ease;
 }
 
 .iconLink:hover {
-    color: #64ffda;
+    color: var(--color-accent);
 }
 
 .cardTitle {
-    color: #e6f1ff;
-    font-size: 20px;
-    font-weight: 600;
-    margin-bottom: 10px;
-    font-family: 'Calibre', 'Inter', 'San Francisco', 'SF Pro Text', -apple-system, system-ui, sans-serif;
+    color: var(--color-text-primary);
+    font-size: 24px;
+    font-weight: 500;
+    font-family: 'VT323', monospace;
+
+    /* PIXELATED TEXT SHADOW EFFECT */
+    text-shadow:
+        2px 2px 0px #000,
+        -2px -2px 0px #000,
+        2px -2px 0px #000,
+        -2px 2px 0px #000,
+        2px 0px 0px #000,
+        -2px 0px 0px #000,
+        0px 2px 0px #000,
+        0px -2px 0px #000,
+        4px 4px 0px #1a2c38;
+
+    /* REMOVED Box Border */
+    border: none;
+    background: transparent;
+    padding: 0;
+
+    display: inline-block;
+    margin-bottom: 15px;
 }
 
 .cardDescription {
-    color: #a8b2d1;
+    color: var(--color-text-secondary);
     font-size: 15px;
     /* Updated to match Experience/Featured Projects */
     line-height: 1.5;
@@ -179,6 +213,9 @@
     margin: 0;
     list-style: none;
 
+    /* Centered Tech List */
+    justify-content: center;
+
     /* Default hidden state */
     opacity: 0;
     transform: translateY(20px);
@@ -191,7 +228,8 @@
 }
 
 .techItem {
-    color: #8892b0;
+    color: var(--color-accent);
+    /* Updated to Accent Color */
     font-family: 'SF Mono', 'Fira Code', 'Fira Mono', 'Roboto Mono', monospace;
     font-size: 12px;
 }
@@ -218,20 +256,20 @@
 }
 
 .repoTooltip :global(.tooltip-inner) {
-    background-color: #1e293b !important;
-    color: #64ffda !important;
+    background-color: var(--color-bg-secondary) !important;
+    color: var(--color-accent) !important;
     font-family: 'Courier New', Courier, monospace;
     font-size: 0.8rem;
     padding: 8px 12px;
-    border: 1px solid #64ffda;
+    border: 1px solid var(--color-accent);
     border-radius: 4px;
-    box-shadow: 0 0 10px rgba(100, 255, 218, 0.2);
+    box-shadow: 0 0 10px rgba(254, 127, 45, 0.2);
     white-space: pre-wrap;
     /* Allow wrapping if needed */
     max-width: 250px;
 }
 
 .repoTooltip :global(.tooltip-arrow)::before {
-    border-top-color: #64ffda !important;
+    border-top-color: var(--color-accent) !important;
     /* Arrow color */
 }

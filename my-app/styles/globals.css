@@ -4,8 +4,20 @@
 @import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
 
 :root {
-  --retro-green: #2abd2a;
-  --retro-black: #040b25;
+  /* New Color Theme */
+  --color-text-primary: #F5FBE6;
+  --color-text-secondary: rgba(245, 251, 230, 0.7);
+  --color-accent: #FE7F2D;
+  /* Darker background color as requested (Darker than #12222E) */
+  --color-bg-primary: #0b161e;
+  --color-bg-secondary: #112240;
+  /* Slightly lighter for cards */
+  /* Darker shade of 233D4D for gradient depth if needed, or keep same */
+  --color-bg-gradient: linear-gradient(to bottom, var(--color-bg-primary), var(--color-bg-secondary));
+
+  /* Keeping these for backward compatibility if needed, but mapped to new values or deprecated */
+  --retro-green: var(--color-accent);
+  --retro-black: var(--color-bg-primary);
 }
 
 
@@ -14,11 +26,19 @@
 body {
   padding: 0;
   margin: 0;
-  background-color: #040b25;
- 
-  /* background-color: var(--retro-black); */
-  
+  background-color: var(--color-bg-primary);
+  /* Pixelated Background Pattern using #FE7F2D */
+  background-image:
+    linear-gradient(to bottom, var(--color-bg-primary), var(--color-bg-secondary)),
+    radial-gradient(var(--color-accent) 1px, transparent 1px);
+  background-size: 100% 100%, 20px 20px;
+  /* Gradient covers all, dots every 20px */
+  background-blend-mode: normal, overlay;
+  /* Blend texture */
+  background-attachment: fixed;
+  /* Ensures gradient covers full scroll */
+
   /* The rest of your body styles */
   font-family: 'VT323', monospace;
-  color: var(--retro-green);
+  color: var(--color-text-primary);
 }

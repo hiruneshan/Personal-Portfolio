@@ -5,7 +5,8 @@
   height: var(--navbar-height);
   padding: 0;
 
-  background-color: rgba(4, 11, 37, 0.85);
+  background-color: transparent;
+  /* Transparent as requested */
   backdrop-filter: blur(10px);
 
   position: sticky;
@@ -55,7 +56,7 @@
 
 /* Custom hamburger icon color */
 .navToggle span {
-  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(100, 255, 218, 1)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e") !important;
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(254, 127, 45, 1)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e") !important;
 }
 
 /* Mobile Menu Styles */
@@ -69,24 +70,47 @@
     align-items: flex-start;
     padding: 2rem 0;
     gap: 20px;
-    background-color: rgba(4, 11, 37, 0.98);
+    /* Darker mobile menu background to match theme */
+    background-color: rgba(11, 22, 30, 0.98);
     backdrop-filter: blur(10px);
     position: absolute;
     top: 60px;
     left: 0;
     width: 100%;
     padding-left: 50px;
-    border-bottom: 1px solid rgba(100, 255, 218, 0.1);
+    border-bottom: 1px solid rgba(254, 127, 45, 0.1);
   }
 }
 
 .navLink {
-  color: #ccd6f6 !important;
-  font-size: 14px;
-  font-family: "SF Mono", "Fira Code", "Fira Mono", "Roboto Mono", "Lucida Console", Monaco, monospace;
+  color: var(--color-text-primary) !important;
+  font-size: 24px;
+  /* Increased size for pixel font */
+  font-family: 'VT323', monospace;
+  /* Pixel font */
+  letter-spacing: 1px;
+
+  /* PIXELATED TEXT SHADOW EFFECT */
+  text-shadow:
+    2px 2px 0px #000,
+    -2px -2px 0px #000,
+    2px -2px 0px #000,
+    -2px 2px 0px #000,
+    2px 0px 0px #000,
+    -2px 0px 0px #000,
+    0px 2px 0px #000,
+    0px -2px 0px #000,
+    4px 4px 0px #1a2c38;
+
+  transition: transform 0.2s ease;
+}
+
+.navLink:hover {
+  transform: translateY(-2px);
+  color: var(--color-accent) !important;
 }
 
 .navNumber {
-  color: #64ffda;
+  color: var(--color-accent);
   font-family: "SF Mono", "Fira Code", "Fira Mono", "Roboto Mono", "Lucida Console", Monaco, monospace;
 }
