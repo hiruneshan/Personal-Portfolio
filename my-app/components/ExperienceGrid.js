@@ -2,38 +2,35 @@ import { useEffect, useState } from 'react';
 import styles from '../styles/HeroGrid.module.css'; // Reusing HeroGrid styles for consistency
 import { motion } from 'framer-motion';
 
-export default function AboutGrid() {
+export default function ExperienceGrid() {
     const cols = 5;
-    const rows = 14;
+    const rows = 16;
     // Enough to cover the section height approx.
-    // Pattern: 4, 2, 1, 2, 1, 2...
 
-    // 4: [0, 1, 1, 1, 1]
-    // 2: [0, 0, 0, 1, 1] (Right aligned?) User said "add same boxes to the right side".
-    // 1: [0, 0, 0, 0, 1]
-    // 2: [0, 0, 0, 1, 1]
-
+    // Pattern: 1, 2, 1, 2... from the LEFT
     const [visible, setVisible] = useState([]);
 
     useEffect(() => {
-        const row2 = [0, 0, 0, 1, 1];
-        const row1 = [0, 0, 0, 0, 1];
+        const row1 = [1, 0, 0, 0, 0]; // 1 block
+        const row2 = [1, 1, 0, 0, 0]; // 2 blocks
 
         const pattern = [
-            ...row2, // Row 1: 2
-            ...row1, // Row 2: 1
-            ...row1, // Row 3: 1
-            ...row2, // Row 4: 2
-            ...row2, // Repeat 2
             ...row1, // 1
             ...row1, // 1
             ...row2, // 2
-            ...row2,
-            ...row1,
-            ...row1,
-            ...row2,
-            ...row2,
-            ...row1
+            ...row1, // 1
+            ...row2, // 2
+            ...row1, // 1
+            ...row2, // 2
+            ...row2, // 2
+            ...row1, // 1
+            ...row2, // 2 (10th)
+            ...row1, // 1
+            ...row1, // 1
+            ...row1, // 1
+            ...row1, // 1
+            ...row1, // 1
+            ...row1  // 1 (Extra)
         ].map(Boolean);
 
         setVisible(pattern);
@@ -42,7 +39,7 @@ export default function AboutGrid() {
     return (
         <div className={styles.wrapper} style={{
             position: 'absolute',
-            right: 0,
+            left: 0,
             top: 0,
             height: 'calc((100vh - 80px) * 2)',
             width: '35vw',
@@ -50,7 +47,7 @@ export default function AboutGrid() {
             zIndex: 0,
             pointerEvents: 'none'
         }}>
-            <div className={styles.grid} style={{ gridTemplateRows: 'repeat(14, 1fr)' }}>
+            <div className={styles.grid} style={{ gridTemplateRows: 'repeat(16, 1fr)' }}>
                 {Array.from({ length: rows * cols }).map((_, i) => {
                     const row = Math.floor(i / cols);
                     const col = i % cols;
@@ -63,10 +60,10 @@ export default function AboutGrid() {
                             style={{
                                 backgroundPosition: `${(col / 4) * 100}% ${(row / 6) * 100}%`
                             }}
-                            initial={{ opacity: 0, x: 20 }}
+                            initial={{ opacity: 0, x: -20 }} // Slide from left
                             whileInView={{
                                 opacity: isVisible ? 1 : 0,
-                                x: isVisible ? 0 : 20
+                                x: isVisible ? 0 : -20
                             }}
                             viewport={{ once: true }}
                             transition={{

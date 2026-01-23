@@ -49,9 +49,14 @@ const allProjects = [
   },
 ];
 
+import ProjectsGrid from './ProjectsGrid';
+
+// ... existing imports ...
+
 export default function ProjectCarousel() {
   const [cards, setCards] = useState(allProjects);
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
+  const [userPaused, setUserPaused] = useState(false); // Track if user manually stopped it
 
   // Stable callback for moving cards
   const moveToEnd = useCallback(() => {
@@ -61,7 +66,7 @@ export default function ProjectCarousel() {
       newCards.push(movedCard);
       return newCards;
     });
-  }, []); // Logic doesn't depend on props, only state updater
+  }, []);
 
   const moveToFront = useCallback(() => {
     setCards((currentCards) => {
@@ -72,12 +77,24 @@ export default function ProjectCarousel() {
     });
   }, []);
 
+  // Temporary pause (hvoer)
   const handlePause = () => {
-    setIsAutoPlaying(false);
+    if (!userPaused) {
+      setIsAutoPlaying(false);
+    }
   };
 
+  // Resume only if not manually paused by user/keyboard
   const handleResume = () => {
-    setIsAutoPlaying(true);
+    if (!userPaused) {
+      setIsAutoPlaying(true);
+    }
+  };
+
+  // Permanent pause (keyboard/interaction)
+  const handleManualStop = () => {
+    setIsAutoPlaying(false);
+    setUserPaused(true);
   };
 
   // Auto-Play Effect
@@ -89,18 +106,18 @@ export default function ProjectCarousel() {
       }, 3000);
     }
     return () => clearInterval(interval);
-  }, [isAutoPlaying, moveToEnd]); // Dependency included
+  }, [isAutoPlaying, moveToEnd]);
 
   // Keyboard Navigation
   useEffect(() => {
     const handleKeyDown = (e) => {
       if (e.key === 'ArrowUp') {
         e.preventDefault();
-        handlePause();
+        handleManualStop(); // User intervened
         moveToEnd();
       } else if (e.key === 'ArrowDown') {
         e.preventDefault();
-        handlePause();
+        handleManualStop(); // User intervened
         moveToFront();
       }
     };
@@ -111,6 +128,7 @@ export default function ProjectCarousel() {
 
   return (
     <div className={styles.sectionWrapper}>
+      <ProjectsGrid />
       <Container>
         <Row className="justify-content-center">
           <Col lg={10} className="text-center">
@@ -137,7 +155,7 @@ export default function ProjectCarousel() {
                         project={project}
                         index={index}
                         moveToEnd={() => {
-                          handlePause();
+                          handleManualStop(); // Drag triggers manual stop
                           moveToEnd();
                         }}
                         isTop={isTop}
