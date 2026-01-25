@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap');
+
 /* ProjectCarousel.module.css */
 
 .sectionWrapper {
@@ -218,7 +220,7 @@
     margin-bottom: 1rem;
     /* Reduced margin */
     /* Removed flex-grow to reduce gap between desc and tech list */
-    font-family: 'Calibre', 'Inter', sans-serif;
+    font-family: 'Share Tech Mono', 'VT323', monospace;
 }
 
 .techList {

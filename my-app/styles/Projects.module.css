@@ -1,9 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap');
+
 .projectsSection {
   padding: 150px 1rem 4rem 1rem;
   /* Reduced top padding */
   scroll-margin-top: 70px;
   overflow: hidden;
 }
+
 
 .sectionHeader {
   display: flex;
@@ -235,7 +238,7 @@
   font-size: 15px;
   line-height: 1.6;
   color: #e6f1ff;
-  font-family: 'Calibre', 'Inter', sans-serif;
+  font-family: 'Share Tech Mono', 'VT323', monospace;
 
   /* Hidden initially */
   opacity: 0;

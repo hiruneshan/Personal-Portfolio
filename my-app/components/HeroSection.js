@@ -20,48 +20,22 @@ export default function HeroSection() {
         <div className={styles.heroNameWrapper}>
           <div className={styles.heroNameLine}>
             {"Hiru".split("").map((char, index) => (
-              <motion.span
+              <span
                 key={`line1-${index}`}
                 className={styles.heroNameChar}
-                initial={{ opacity: 0, scale: 0.5, y: -20 }}
-                animate={{ opacity: 1, scale: 1, y: 0 }}
-                transition={{
-                  duration: 0.4,
-                  delay: 0.7 + (index * 0.05),
-                  type: "spring",
-                  stiffness: 120
-                }}
-                whileHover={{
-                  y: -10,
-                  scale: 1.1,
-                  transition: { type: "spring", stiffness: 300 }
-                }}
               >
                 {char}
-              </motion.span>
+              </span>
             ))}
           </div>
           <div className={styles.heroNameLine}>
-            {"Wijemanne.".split("").map((char, index) => (
-              <motion.span
+            {"Wijemanne".split("").map((char, index) => (
+              <span
                 key={`line2-${index}`}
                 className={styles.heroNameChar}
-                initial={{ opacity: 0, scale: 0.5, y: -20 }}
-                animate={{ opacity: 1, scale: 1, y: 0 }}
-                transition={{
-                  duration: 0.4,
-                  delay: 0.9 + (index * 0.05),
-                  type: "spring",
-                  stiffness: 120
-                }}
-                whileHover={{
-                  y: -10,
-                  scale: 1.1,
-                  transition: { type: "spring", stiffness: 300 }
-                }}
               >
                 {char}
-              </motion.span>
+              </span>
             ))}
           </div>
         </div>

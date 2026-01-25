@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap');
+
 /* Experience.module.css */
 
 .experienceSection {
@@ -11,6 +13,8 @@
     position: relative;
     /* For absolute positioning of ExperienceGrid */
 }
+
+/* ... existing code ... */
 
 .sectionHeader {
     display: flex;
@@ -226,11 +230,11 @@
     padding: 1.5rem;
     /* Reduced padding */
     position: relative;
-    box-shadow: 12px 12px 0px var(--color-accent);
+    /* Reduced min-height */
+    box-shadow: 6px 6px 0px var(--color-accent);
     /* Orange Shadow */
     color: #111;
     min-height: 300px;
-    /* Reduced min-height */
 }
 
 .cardHeader {
@@ -304,6 +308,7 @@
     font-size: 1.1rem;
     line-height: 1.4;
     color: #111;
+    font-family: 'Share Tech Mono', 'VT323', monospace;
 }
 
 .objectiveList li::before {
