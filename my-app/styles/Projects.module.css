@@ -29,8 +29,8 @@
 }
 
 .sectionTitle {
-  font-size: clamp(40px, 8vw, 60px);
-  /* Increased size */
+  font-size: 60px;
+  /* Matching Experience Section */
   color: var(--color-text-primary);
   font-weight: 500;
   margin: 0;

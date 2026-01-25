@@ -13,7 +13,7 @@
 }
 
 .carouselTitle {
-    font-size: clamp(40px, 8vw, 60px);
+    font-size: 60px;
     color: var(--color-text-primary);
     font-weight: 500;
     margin: 0 0 5rem 0;

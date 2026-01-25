@@ -43,7 +43,8 @@
 .navLinks {
   display: flex;
   align-items: center;
-  gap: 30px;
+  gap: 50px;
+  /* Increased from 30px, reduced from 80px */
 }
 
 .navToggle {

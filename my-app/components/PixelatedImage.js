@@ -1,15 +1,17 @@
 import React, { useRef, useEffect } from 'react';
 
-const PixelatedImage = ({ src, alt, className, priority }) => {
+const PixelatedImage = ({ src, alt, className, priority, triggerAnimation = true }) => {
     const canvasRef = useRef(null);
 
     useEffect(() => {
+        if (!triggerAnimation) return; // trigger
+
         const canvas = canvasRef.current;
         const ctx = canvas.getContext("2d");
         const img = new Image();
         img.src = src;
 
-        let pixelSize = 60; // Start more pixelated (was 20)
+        let pixelSize = 60;
         const minPixelSize = 1;
         const speed = 0.5; // Animation speed
 
@@ -69,7 +71,7 @@ const PixelatedImage = ({ src, alt, className, priority }) => {
         return () => {
             if (animationFrameId) cancelAnimationFrame(animationFrameId);
         };
-    }, [src]);
+    }, [src, triggerAnimation]);
 
     return (
         <canvas

@@ -6,7 +6,7 @@ import SocialLinks from '../components/SocialLinks';
 export default function App({ Component, pageProps }) {
   return (
     <>
-      <MouseLight /> {/* <-- 2. Add it here */}
+      <MouseLight />
       <Component {...pageProps} />
     </>
   );

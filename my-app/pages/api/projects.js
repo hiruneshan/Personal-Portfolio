@@ -1,6 +1,3 @@
-// pages/api/projects.js
-
-// This is your data from the screenshot
 const projectData = {
   "projects": [
     {

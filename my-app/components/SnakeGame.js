@@ -11,7 +11,7 @@ export default function SnakeGame() {
     const [snake, setSnake] = useState([{ x: 10, y: 10 }]);
     const [food, setFood] = useState({ x: 15, y: 15 });
     const [direction, setDirection] = useState({ x: 0, y: 0 });
-    const directionQueue = useRef([]); // Input buffering queue
+    const directionQueue = useRef([]);
     const [gameOver, setGameOver] = useState(false);
     const [score, setScore] = useState(0);
     const [isAutoPlaying, setIsAutoPlaying] = useState(true);

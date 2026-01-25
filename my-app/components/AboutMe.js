@@ -37,7 +37,7 @@ export default function AboutSection() {
         <div className={styles.contentWrapper}>
           {/* Top Row: Profile + Description */}
           <Row className="align-items-start">
-            <Col md={5} lg={3} className="mb-5 mb-md-0">
+            <Col md={5} lg={5} className="mb-5 mb-md-0">
               <div
                 ref={imgRef}
                 className={`${styles.profileGroup} ${isVisible ? styles.popIn : ''}`}
@@ -49,12 +49,13 @@ export default function AboutSection() {
                     alt="Hiru Wijemanne"
                     className={styles.profileImage}
                     priority
+                    triggerAnimation={isVisible}
                   />
                 </div>
               </div>
             </Col>
 
-            <Col md={7} lg={9}>
+            <Col md={7} lg={7}>
               <div className={styles.terminalBox}>
                 <div className={styles.speechTail}></div>
                 <h3 className={styles.terminalHeader}># about_me</h3>
