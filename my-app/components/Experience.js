@@ -15,7 +15,7 @@ const experienceData = [
         status: "ACTIVE_RAID",
         location: "Toronto, Canada",
         description: [
-            "Leading the development of company user profiles, starting from the base user level.",
+            "Actively contributed to building company user profiles, starting from the base user level.",
             "Reading Figma designs and developing the UI for the admin portal.",
             "Reviewing code and tasks while overseeing the work of 3-4 junior developers."
         ],
