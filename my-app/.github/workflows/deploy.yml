@@ -16,13 +16,12 @@ jobs:
       - name: Extract version
         run: echo "VERSION=${GITHUB_REF#refs/tags/}" >> $GITHUB_ENV
 
+      - name: Install deps
+        run: npm ci
+
       - name: Build
-        run: |
-          echo "Building version $VERSION"
-          # your real build steps here
-          # e.g. npm ci && npm run build
+        run: npm run build
 
       - name: Deploy
         run: |
-          echo "Deploying version $VERSION"
-          # your real deploy steps here
+          npx vercel --prod --yes --name "hiru-portfolio-$VERSION"
