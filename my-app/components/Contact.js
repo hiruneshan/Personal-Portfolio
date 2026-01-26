@@ -8,8 +8,7 @@ export default function Contact() {
             <Container>
                 <Row className="justify-content-center text-center">
                     <Col md={10} lg={8}>
-                        <span className={styles.sectionNumber}>04. Contact</span>
-                        <h2 className={styles.title}>Get In Touch</h2>
+                        <h2 className={styles.title}>Get in Contact</h2>
                         <p className={styles.description}>
                             I’m currently looking for a summer internship and new opportunities. My inbox is always open. Thank you for checking out my work!
                         </p>

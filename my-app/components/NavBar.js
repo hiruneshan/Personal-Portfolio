@@ -12,16 +12,8 @@ export default function RetroNavbar() {
     <Navbar className={styles.retroNavbar} expand="md" variant="dark" expanded={expanded}>
       <Container className={styles.navbarContainer}>
         <Navbar.Brand>
-          <Link href="/" passHref>
-            <div className={styles.logoContainer}>
-              <Image
-                src="/images/favicon.ico"
-                alt="Logo"
-                width={40}
-                height={40}
-                className={styles.navLogo}
-              />
-            </div>
+          <Link href="/" className={styles.logoContainer}>
+            <div className={styles.logoText}>HW</div>
           </Link>
         </Navbar.Brand>
         <Navbar.Toggle

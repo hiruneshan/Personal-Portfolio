@@ -68,20 +68,24 @@ export default function AboutSection() {
             </Col>
           </Row>
 
-          {/* Bottom Row: Tools Box (Full Width of top content) */}
           <Row className="mt-4">
             <Col xs={12}>
               <div className={styles.toolsBox}>
-                <p className={styles.techTitle}>Here are a few technologies I&apos;ve been working with recently:</p>
+                <p className={styles.terminalBody}>Here are a few technologies I&apos;ve been working with recently:</p>
                 <div className={styles.techGrid}>
-                  <div className={styles.techItem}>C</div>
-                  <div className={styles.techItem}>C++</div>
-                  <div className={styles.techItem}>Python</div>
-                  <div className={styles.techItem}>Java</div>
-                  <div className={styles.techItem}>JavaScript</div>
-                  <div className={styles.techItem}>React</div>
-                  <div className={styles.techItem}>Node.js</div>
-                  <div className={styles.techItem}>Express.js</div>
+                  <div className={styles.terminalBody}>C</div>
+                  <div className={styles.terminalBody}>C++</div>
+                  <div className={styles.terminalBody}>Python</div>
+                  <div className={styles.terminalBody}>Java</div>
+                  <div className={styles.terminalBody}>JavaScript</div>
+                  <div className={styles.terminalBody}>React</div>
+                  <div className={styles.terminalBody}>Node.js</div>
+                  <div className={styles.terminalBody}>Express.js</div>
+                  <div className={styles.terminalBody}>SQL</div>
+                  <div className={styles.terminalBody}>NoSQL</div>
+                  <div className={styles.terminalBody}>AWS</div>
+                  <div className={styles.terminalBody}>Microsoft Azure</div>
+                  <div className={styles.terminalBody}>Docker</div>
                 </div>
               </div>
             </Col>
@@ -90,6 +94,6 @@ export default function AboutSection() {
 
       </div>
       <AboutGrid />
-    </section>
+    </section >
   );
 }

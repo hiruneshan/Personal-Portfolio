@@ -1,5 +1,5 @@
 .retroNavbar {
-  /* ✅ LOCAL variable (allowed in CSS Modules) */
+
   --navbar-height: 60px;
 
   height: var(--navbar-height);
@@ -30,14 +30,47 @@
   justify-content: center;
   cursor: pointer;
   transition: transform 0.2s ease-in-out;
+  text-decoration: none !important;
+  border: none !important;
+  outline: none !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+.logoContainer a {
+  text-decoration: none !important;
+  color: inherit !important;
+  border: none !important;
 }
 
 .logoContainer:hover {
   transform: scale(1.1);
+  text-decoration: none !important;
+  color: inherit !important;
+  border: none !important;
+  background: transparent !important;
 }
 
-.navLogo {
-  display: block;
+.logoText {
+  font-family: 'VT323', monospace;
+  font-size: 40px;
+  font-weight: 600;
+  color: var(--color-accent);
+  line-height: 1;
+  letter-spacing: 2px;
+  text-shadow:
+    /* 1. Thin Black Outline */
+    2px 2px 0px #000,
+    -2px -2px 0px #000,
+    2px -2px 0px #000,
+    -2px 2px 0px #000,
+    2px 0px 0px #000,
+    -2px 0px 0px #000,
+    0px 2px 0px #000,
+    0px -2px 0px #000,
+
+    /* 2. 3D Block Shadow (Dark Primary/Navy) */
+    4px 4px 0px #1a2c38;
 }
 
 .navLinks {
