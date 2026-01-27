@@ -24,9 +24,11 @@
   display: flex;
   justify-content: center;
   gap: 2rem;
-  padding: 3rem 0;
+  padding: 4rem 0 2rem 0;
+  /* Increased top padding for spacing */
   width: 100%;
-  background-color: var(--color-bg-primary);
+  background-color: transparent;
+  /* Match main bg */
 }
 
 .socialIcon {
