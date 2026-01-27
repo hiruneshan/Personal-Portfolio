@@ -58,9 +58,7 @@ export default function HeroSection() {
           I&apos;m a computer science student based in Toronto specializing in backend and front end development.
         </motion.p>
 
-        <div className="d-block d-md-none mt-4">
-          <SocialLinks isMobile={true} />
-        </div>
+
       </div>
 
       <motion.div

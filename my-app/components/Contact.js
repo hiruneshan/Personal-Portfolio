@@ -1,6 +1,7 @@
 
 import { Container, Row, Col } from "react-bootstrap";
 import styles from "../styles/Contact.module.css";
+import SocialLinks from "./SocialLinks";
 
 export default function Contact() {
     return (
@@ -15,6 +16,9 @@ export default function Contact() {
                         <a href="mailto:hiruneshan@gmail.com" className={styles.emailButton}>
                             Say Hello
                         </a>
+                        <div className="d-block d-md-none mt-4">
+                            <SocialLinks isMobile={true} />
+                        </div>
                     </Col>
                 </Row>
             </Container>

@@ -57,6 +57,7 @@ export default function ProjectCarousel() {
   const [cards, setCards] = useState(allProjects);
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
   const [userPaused, setUserPaused] = useState(false); // Track if user manually stopped it
+  const [showAll, setShowAll] = useState(false);
 
   // Stable callback for moving cards
   const moveToEnd = useCallback(() => {
@@ -130,47 +131,74 @@ export default function ProjectCarousel() {
     <div className={styles.sectionWrapper}>
       <ProjectsGrid />
       <Container>
-        <Row className="justify-content-center">
-          <Col lg={10} className="text-center">
-            <h2 className={styles.carouselTitle}>Some Other Projects I Have Worked On</h2>
+        <div className={styles.carouselHeader}>
+          <h2 className={styles.carouselTitle}>Some Other Projects I Have Worked On</h2>
+        </div>
 
-            <div
-              className={styles.stackContainer}
-              // Pause on hover/touch, resume on leave
-              onMouseEnter={handlePause}
-              onMouseLeave={handleResume}
-              onTouchStart={handlePause}
-              onTouchEnd={handleResume}
+        {/* --- DESKTOP/TABLET VIEW (Carousel Stack) --- */}
+        <div className="d-none d-lg-block">
+          <Row className="justify-content-center">
+            <Col lg={10} className="text-center">
+              <div
+                className={styles.stackContainer}
+                // Pause on hover/touch, resume on leave
+                onMouseEnter={handlePause}
+                onMouseLeave={handleResume}
+                onTouchStart={handlePause}
+                onTouchEnd={handleResume}
+              >
+                <ul className={styles.cardStack}>
+                  <AnimatePresence initial={true} mode="popLayout">
+                    {cards.map((project, index) => {
+                      if (index > 3) return null;
+
+                      const isTop = index === 0;
+
+                      return (
+                        <Card
+                          key={project.id}
+                          project={project}
+                          index={index}
+                          moveToEnd={() => {
+                            handleManualStop(); // Drag triggers manual stop
+                            moveToEnd();
+                          }}
+                          isTop={isTop}
+                        />
+                      );
+                    })}
+                  </AnimatePresence>
+                </ul>
+              </div>
+
+              <div className={styles.instructionText}>
+                Swipe up or use Arrow Keys to navigate
+              </div>
+            </Col>
+          </Row>
+        </div>
+
+        {/* --- MOBILE VIEW (Vertical List) --- */}
+        <div className="d-block d-lg-none">
+          <div className={styles.mobileProjectList}>
+            {allProjects.slice(0, showAll ? allProjects.length : 2).map((project) => (
+              <div key={project.id} className={styles.mobileProjectItem}>
+                <div className={styles.projectCard}>
+                  <ProjectCard project={project} />
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <div className="text-center mt-4">
+            <button
+              className={styles.viewMoreBtn}
+              onClick={() => setShowAll(!showAll)}
             >
-              <ul className={styles.cardStack}>
-                <AnimatePresence initial={true} mode="popLayout">
-                  {cards.map((project, index) => {
-                    if (index > 3) return null;
-
-                    const isTop = index === 0;
-
-                    return (
-                      <Card
-                        key={project.id}
-                        project={project}
-                        index={index}
-                        moveToEnd={() => {
-                          handleManualStop(); // Drag triggers manual stop
-                          moveToEnd();
-                        }}
-                        isTop={isTop}
-                      />
-                    );
-                  })}
-                </AnimatePresence>
-              </ul>
-            </div>
-
-            <div className={styles.instructionText}>
-              Swipe up or use Arrow Keys to navigate
-            </div>
-          </Col>
-        </Row>
+              {showAll ? "View Less Projects" : "View More Projects"}
+            </button>
+          </div>
+        </div>
       </Container>
     </div>
   );

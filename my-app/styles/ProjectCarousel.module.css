@@ -291,3 +291,79 @@
     border-top-color: var(--color-accent) !important;
     /* Arrow color */
 }
+
+/* --- MOBILE LIST STYLES --- */
+.mobileProjectList {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding-bottom: 20px;
+}
+
+.mobileProjectItem {
+    width: 100%;
+}
+
+.viewMoreBtn {
+    background-color: transparent;
+    border: 1px solid var(--color-accent);
+    color: var(--color-accent);
+    padding: 1.25rem 1.75rem;
+    /* Matched to Say Hello */
+    font-family: 'SF Mono', 'Fira Code', monospace;
+    /* Matched to Say Hello */
+    font-size: 14px;
+    /* Matched to Say Hello */
+    cursor: pointer;
+    transition: all 0.25s cubic-bezier(0.645, 0.045, 0.355, 1);
+    text-transform: none;
+    /* Reset uppercase if needed, Say Hello doesn't force it */
+    border-radius: 4px;
+    display: inline-block;
+    line-height: 1;
+}
+
+.viewMoreBtn:hover {
+    background-color: rgba(254, 127, 45, 0.1);
+    color: var(--color-accent);
+    transform: translate(-5px, -5px);
+    box-shadow: 5px 5px 0 0 var(--color-accent);
+}
+
+@media (max-width: 768px) {
+    .projectCard {
+        box-shadow: none !important;
+        height: auto !important;
+        padding: 1.5rem !important;
+        align-items: flex-start !important;
+        text-align: left !important;
+        background-color: #163E40;
+        /* Ensure background matches */
+        border: none !important;
+        /* Remove inner box line */
+    }
+
+    .projectCard:hover {
+        transform: none !important;
+        box-shadow: none !important;
+    }
+
+    .cardTitle {
+        text-align: left;
+        align-items: flex-start;
+    }
+
+    .cardDescription {
+        text-align: left;
+    }
+
+    .techList {
+        justify-content: flex-start !important;
+        opacity: 1 !important;
+        transform: none !important;
+    }
+
+    .cardHeader {
+        margin-bottom: 1rem;
+    }
+}

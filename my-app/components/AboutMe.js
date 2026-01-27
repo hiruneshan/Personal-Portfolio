@@ -80,7 +80,6 @@ export default function AboutSection() {
                   <div className={styles.terminalBody}>JavaScript</div>
                   <div className={styles.terminalBody}>React</div>
                   <div className={styles.terminalBody}>Node.js</div>
-                  <div className={styles.terminalBody}>Express.js</div>
                   <div className={styles.terminalBody}>SQL</div>
                   <div className={styles.terminalBody}>NoSQL</div>
                   <div className={styles.terminalBody}>AWS</div>

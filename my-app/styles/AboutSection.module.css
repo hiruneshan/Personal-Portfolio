@@ -257,6 +257,14 @@
   .terminalHeader {
     font-size: 2rem;
   }
+
+  .speechTail {
+    top: -17px;
+    left: 50%;
+    transform: translateX(-50%) rotate(45deg);
+    border-bottom: none;
+    border-top: 4px solid #111;
+  }
 }
 
 @keyframes popIn {

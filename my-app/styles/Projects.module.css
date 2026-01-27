@@ -299,3 +299,49 @@
   filter: brightness(1.2);
   transform: scale(1.1);
 }
+
+@media (max-width: 768px) {
+  .projectCard {
+    height: auto !important;
+    box-shadow: none !important;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .projectCard:hover {
+    transform: none !important;
+  }
+
+  .cardContent {
+    background: rgba(0, 0, 0, 0.85) !important;
+    /* Permanent dark overlay */
+    align-items: flex-start !important;
+    text-align: left !important;
+    padding: 1.5rem !important;
+    justify-content: flex-start !important;
+  }
+
+  .cardTitle {
+    opacity: 1 !important;
+    max-height: none !important;
+    margin-bottom: 10px !important;
+    transform: none !important;
+    align-items: flex-start !important;
+  }
+
+  .cardDescription {
+    opacity: 1 !important;
+    max-height: none !important;
+    margin: 0 0 1rem 0 !important;
+    text-align: left !important;
+  }
+
+  .cardTech {
+    opacity: 1 !important;
+    max-height: none !important;
+    justify-content: flex-start !important;
+  }
+
+  .cardBackground img {
+    filter: blur(4px) brightness(0.25) !important;
+  }
+}

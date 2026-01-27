@@ -69,6 +69,7 @@
 
 .heroNameChar {
   /* Increased size greatly as requested */
+  /* Increased size greatly as requested */
   font-size: clamp(70px, 12vw, 130px);
   font-weight: 600;
   color: var(--color-accent);
@@ -142,5 +143,9 @@
 @media (max-width: 768px) {
   .heroGrid {
     display: none !important;
+  }
+
+  .heroNameChar {
+    font-size: clamp(50px, 10vw, 80px);
   }
 }

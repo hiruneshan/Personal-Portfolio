@@ -325,11 +325,19 @@
 
 
 /* --- RESPONSIVE --- */
+
+/* --- RESPONSIVE --- */
 @media (max-width: 768px) {
+    .sectionHeader {
+        margin-left: 0;
+        padding-left: 0;
+    }
+
     .questLogContainer {
         grid-template-columns: 1fr;
         /* Stack vertically */
         gap: 20px;
+        margin-left: 0;
     }
 
     .questList {
@@ -358,7 +366,7 @@
     }
 
     .questCard {
-        padding: 1rem;
+        padding: 1.5rem;
     }
 
     .roleTitle {
