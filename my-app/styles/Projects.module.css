@@ -344,4 +344,8 @@
   .cardBackground img {
     filter: blur(4px) brightness(0.25) !important;
   }
+
+  .sectionTitle {
+    font-size: 36px;
+  }
 }

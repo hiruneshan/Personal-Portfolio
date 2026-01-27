@@ -331,6 +331,8 @@
     .sectionHeader {
         margin-left: 0;
         padding-left: 0;
+        justify-content: center;
+        /* Center content */
     }
 
     .questLogContainer {
@@ -371,5 +373,10 @@
 
     .roleTitle {
         font-size: 1.5rem;
+    }
+
+    .sectionTitle {
+        font-size: 36px;
+        text-align: center;
     }
 }

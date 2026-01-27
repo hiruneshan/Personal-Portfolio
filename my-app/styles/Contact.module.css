@@ -67,3 +67,14 @@
     transform: translate(-5px, -5px);
     box-shadow: 5px 5px 0 0 var(--color-accent);
 }
+
+@media (max-width: 768px) {
+    .title {
+        font-size: 36px;
+    }
+
+    .contactSection {
+        padding-bottom: 0;
+        margin-bottom: 0;
+    }
+}

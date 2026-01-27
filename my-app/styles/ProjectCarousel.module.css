@@ -370,4 +370,8 @@
     .cardHeader {
         margin-bottom: 1rem;
     }
+
+    .carouselTitle {
+        font-size: 36px;
+    }
 }

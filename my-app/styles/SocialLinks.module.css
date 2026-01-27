@@ -24,8 +24,8 @@
   display: flex;
   justify-content: center;
   gap: 2rem;
-  padding: 4rem 0 2rem 0;
-  /* Increased top padding for spacing */
+  padding: 5rem 0;
+  /* Balanced top/bottom padding for centering */
   width: 100%;
   background-color: transparent;
   /* Match main bg */
