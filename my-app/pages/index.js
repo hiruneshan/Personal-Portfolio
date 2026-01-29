@@ -25,6 +25,7 @@ export default function Home() {
       <Projects />
       <ProjectCarousel />
       <Contact />
+
       <div className="d-none d-md-block">
         <SocialLinks />
       </div>
