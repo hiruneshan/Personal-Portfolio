@@ -1,9 +1,12 @@
 .contactSection {
-    padding: 100px 0;
+    padding: 100px 0 20px 0;
     text-align: center;
     max-width: 600px;
     margin: 0 auto;
-    margin-bottom: 100px;
+    margin-bottom: 0;
+    pointer-events: none;
+    position: relative;
+    z-index: 1;
     font-family: 'Calibre', 'Inter', sans-serif;
 }
 
@@ -77,4 +80,11 @@
         padding-bottom: 0;
         margin-bottom: 0;
     }
+}
+
+.contactSection h2,
+.contactSection p,
+.contactSection a,
+.contactSection button {
+    pointer-events: auto;
 }
