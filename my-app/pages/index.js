@@ -36,9 +36,7 @@ export default function Home() {
       </div>
       <SnakeGameModal isOpen={isGameOpen} onClose={() => setIsGameOpen(false)} />
 
-      <div className="text-center py-4" style={{ fontFamily: '"SF Mono", "Fira Code", monospace', fontSize: '0.9rem', color: '#8892b0' }}>
-        Built and designed by <a href="https://github.com/hiruneshan/Personal-Portfolio" target="_blank" rel="noopener noreferrer" className={styles.linkHighlight}>Hiru Wijemanne</a>
-      </div>
+
 
     </>
   );

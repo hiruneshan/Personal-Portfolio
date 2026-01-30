@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 
 export default function ContactGrid() {
     const cols = 5;
-    const rows = 14;
+    const rows = 24;
 
     const [visible, setVisible] = useState([]);
 
@@ -36,7 +36,7 @@ export default function ContactGrid() {
             height: 'calc((100vh - 80px) * 2)',
             width: '35vw',
             maxWidth: '720px',
-            zIndex: 0,
+            zIndex: -1,
             pointerEvents: 'none'
         }}>
             <div className={styles.grid} style={{ gridTemplateRows: `repeat(${rows}, 1fr)` }}>

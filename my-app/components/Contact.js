@@ -4,6 +4,8 @@ import styles from "../styles/Contact.module.css";
 import SocialLinks from "./SocialLinks";
 import ContactGrid from "./ContactGrid";
 
+import homeStyles from "../styles/Home.module.css";
+
 export default function Contact() {
     return (
         <section id="contact" style={{ position: 'relative', overflow: 'hidden' }}>
@@ -25,6 +27,9 @@ export default function Contact() {
                         </Col>
                     </Row>
                 </Container>
+                <div className="text-center py-4" style={{ fontFamily: '"SF Mono", "Fira Code", monospace', fontSize: '0.9rem', color: '#8892b0', marginTop: '50px' }}>
+                    Built and designed by <a href="https://github.com/hiruneshan/Personal-Portfolio" target="_blank" rel="noopener noreferrer" className={homeStyles.linkHighlight}>Hiru Wijemanne</a>
+                </div>
             </div>
         </section>
     );
