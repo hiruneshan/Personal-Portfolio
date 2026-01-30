@@ -331,6 +331,10 @@
 }
 
 @media (max-width: 768px) {
+    .sectionWrapper {
+        padding: 80px 1rem;
+    }
+
     .projectCard {
         box-shadow: none !important;
         height: auto !important;
@@ -365,5 +369,9 @@
 
     .cardHeader {
         margin-bottom: 1rem;
+    }
+
+    .carouselTitle {
+        font-size: 36px;
     }
 }

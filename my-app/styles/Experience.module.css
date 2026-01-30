@@ -29,34 +29,7 @@
     /* Align header with the shifted grid */
 }
 
-.sectionNumber {
-    font-size: 1.5rem;
-    color: var(--color-accent);
-    font-family: 'Share Tech Mono', monospace;
-}
-
-.sectionTitle {
-    font-size: clamp(40px, 8vw, 60px);
-    color: var(--color-text-primary);
-    font-weight: 500;
-    margin: 0;
-    line-height: 1.1;
-    font-family: 'VT323', monospace;
-    text-align: left;
-
-    /* PIXELATED TEXT SHADOW EFFECT */
-    text-shadow:
-        2px 2px 0px #000,
-        -2px -2px 0px #000,
-        2px -2px 0px #000,
-        -2px 2px 0px #000,
-        2px 0px 0px #000,
-        -2px 0px 0px #000,
-        0px 2px 0px #000,
-        0px -2px 0px #000,
-        4px 4px 0px #1a2c38,
-        6px 6px 0px #1a2c38;
-}
+/* ... middle content ... */
 
 /* --- MAIN CONTAINER (Grid) --- */
 .questLogContainer {
@@ -331,6 +304,8 @@
     .sectionHeader {
         margin-left: 0;
         padding-left: 0;
+        justify-content: center;
+        /* Center content */
     }
 
     .questLogContainer {
@@ -371,5 +346,10 @@
 
     .roleTitle {
         font-size: 1.5rem;
+    }
+
+    .sectionTitle {
+        font-size: 36px;
+        text-align: center;
     }
 }
