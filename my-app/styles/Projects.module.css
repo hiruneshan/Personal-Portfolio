@@ -29,7 +29,7 @@
 }
 
 .sectionTitle {
-  font-size: 60px;
+  font-size: 36px;
   /* Matching Experience Section */
   color: var(--color-text-primary);
   font-weight: 500;
@@ -71,6 +71,20 @@
 @media (min-width: 1024px) {
   .projectsGrid {
     grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+@media (min-width: 1201px) {
+  .projectsGrid {
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .sectionHeader {
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
   }
 }
 
@@ -345,7 +359,16 @@
     filter: blur(4px) brightness(0.25) !important;
   }
 
-  .sectionTitle {
-    font-size: 36px;
+  .sectionTitle {}
+}
+
+@media (min-width: 481px) and (max-width: 768px) {
+  .projectsSection {
+    padding: 100px 3rem 4rem 3rem;
+  }
+
+  .projectsGrid {
+    gap: 30px;
+    /* More gap for 2-col layout */
   }
 }

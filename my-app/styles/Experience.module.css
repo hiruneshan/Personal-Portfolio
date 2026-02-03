@@ -352,4 +352,35 @@
         font-size: 36px;
         text-align: center;
     }
+
+    .sectionTitle {
+        font-size: 36px;
+        text-align: center;
+    }
+}
+
+@media (min-width: 481px) and (max-width: 768px) {
+    .experienceSection {
+        padding: 6rem 3rem 4rem 3rem;
+    }
+
+    .questList {
+        gap: 25px;
+        /* Slightly more spaced out */
+    }
+}
+
+@media (min-width: 1201px) {
+    .sectionHeader {
+        margin-left: auto;
+        margin-right: auto;
+        justify-content: center;
+        max-width: 900px;
+        /* Match content width roughly */
+    }
+
+    .questLogContainer {
+        margin-left: auto;
+        margin-right: auto;
+    }
 }

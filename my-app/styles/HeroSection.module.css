@@ -39,6 +39,19 @@
   }
 }
 
+@media (min-width: 481px) and (max-width: 768px) {
+  .heroText {
+    margin-left: 5vw;
+    margin-right: 5vw;
+    margin-top: 2rem;
+  }
+
+  .heroTagline {
+    font-size: 24px;
+    /* Ensure readability */
+  }
+}
+
 .heroIntro {
   color: var(--color-accent);
   font-family: 'SF Mono', 'Fira Code', 'Fira Mono', 'Roboto Mono', monospace;
@@ -147,5 +160,15 @@
 
   .heroNameChar {
     font-size: clamp(50px, 10vw, 80px);
+  }
+}
+
+@media (min-width: 1201px) {
+  .heroText {
+    margin-left: 15vw;
+    /* Balanced left alignment */
+    margin-top: 15rem;
+    /* Move text down */
+    width: fit-content;
   }
 }
