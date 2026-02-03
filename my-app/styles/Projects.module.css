@@ -29,7 +29,7 @@
 }
 
 .sectionTitle {
-  font-size: 36px;
+  font-size: 55px;
   /* Matching Experience Section */
   color: var(--color-text-primary);
   font-weight: 500;
@@ -133,7 +133,8 @@
 }
 
 .projectsGrid .projectCard:hover {
-  transform: scale(1.05) translateY(-10px);
+  transform: scale(1.1) translateY(-10px);
+  height: 650px;
   z-index: 100;
   filter: none;
   /* Clear blur */
@@ -153,6 +154,7 @@
 }
 
 .cardBackground {
+  display: none;
   position: absolute;
   top: 0;
   left: 0;
@@ -253,6 +255,8 @@
   line-height: 1.6;
   color: #e6f1ff;
   font-family: 'Share Tech Mono', 'VT323', monospace;
+  text-align: left;
+  width: 100%;
 
   /* Hidden initially */
   opacity: 0;
@@ -359,7 +363,7 @@
     filter: blur(4px) brightness(0.25) !important;
   }
 
-  .sectionTitle {}
+
 }
 
 @media (min-width: 481px) and (max-width: 768px) {

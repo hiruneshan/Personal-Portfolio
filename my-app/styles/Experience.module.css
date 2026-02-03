@@ -22,11 +22,20 @@
     gap: 1rem;
     margin-bottom: 3rem;
     max-width: 1200px;
-    margin-left: auto;
     margin-right: auto;
     padding-left: 20px;
     margin-left: 20%;
     /* Align header with the shifted grid */
+    /* Align header with the shifted grid */
+}
+
+.sectionTitle {
+    font-size: 55px;
+    color: var(--color-text-primary);
+    font-weight: 500;
+    margin: 0;
+    font-family: 'VT323', monospace;
+    text-shadow: 2px 2px 0px #000;
 }
 
 /* ... middle content ... */
@@ -38,7 +47,7 @@
     /* Constrants the right column width */
     gap: 40px;
     max-width: 1200px;
-    margin: 0 auto;
+    margin-right: auto;
     margin-left: 20%;
     /* Shift grid to the right */
 }
@@ -372,15 +381,13 @@
 
 @media (min-width: 1201px) {
     .sectionHeader {
-        margin-left: auto;
+        margin-left: 20%;
         margin-right: auto;
-        justify-content: center;
-        max-width: 900px;
-        /* Match content width roughly */
+        max-width: 1200px;
     }
 
     .questLogContainer {
-        margin-left: auto;
+        margin-left: 20%;
         margin-right: auto;
     }
 }

@@ -13,11 +13,23 @@
   position: relative;
   z-index: 2;
   margin-left: 150px;
-  margin-top: 6rem;
+  margin-top: 4rem;
   max-width: 700px;
   /* Increased slightly for the tagline */
   font-family: 'Calibre', 'Inter', 'San Francisco', 'SF Pro Text', -apple-system, system-ui, sans-serif;
   /* Applied sans-serif globally to text block */
+}
+
+/* ... middle content ... */
+
+@media (min-width: 1201px) {
+  .heroText {
+    margin-left: 10vw;
+    /* Balanced left alignment */
+    margin-top: 8rem;
+    /* Move text down */
+    width: fit-content;
+  }
 }
 
 @media (max-width: 768px) {
@@ -160,15 +172,5 @@
 
   .heroNameChar {
     font-size: clamp(50px, 10vw, 80px);
-  }
-}
-
-@media (min-width: 1201px) {
-  .heroText {
-    margin-left: 15vw;
-    /* Balanced left alignment */
-    margin-top: 15rem;
-    /* Move text down */
-    width: fit-content;
   }
 }
