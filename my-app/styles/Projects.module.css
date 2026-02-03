@@ -29,7 +29,7 @@
 }
 
 .sectionTitle {
-  font-size: 60px;
+  font-size: 55px;
   /* Matching Experience Section */
   color: var(--color-text-primary);
   font-weight: 500;
@@ -71,6 +71,20 @@
 @media (min-width: 1024px) {
   .projectsGrid {
     grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+@media (min-width: 1201px) {
+  .projectsGrid {
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .sectionHeader {
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
   }
 }
 
@@ -119,7 +133,8 @@
 }
 
 .projectsGrid .projectCard:hover {
-  transform: scale(1.05) translateY(-10px);
+  transform: scale(1.1) translateY(-10px);
+  height: 650px;
   z-index: 100;
   filter: none;
   /* Clear blur */
@@ -139,6 +154,7 @@
 }
 
 .cardBackground {
+  display: none;
   position: absolute;
   top: 0;
   left: 0;
@@ -239,6 +255,8 @@
   line-height: 1.6;
   color: #e6f1ff;
   font-family: 'Share Tech Mono', 'VT323', monospace;
+  text-align: left;
+  width: 100%;
 
   /* Hidden initially */
   opacity: 0;
@@ -345,7 +363,16 @@
     filter: blur(4px) brightness(0.25) !important;
   }
 
-  .sectionTitle {
-    font-size: 36px;
+
+}
+
+@media (min-width: 481px) and (max-width: 768px) {
+  .projectsSection {
+    padding: 100px 3rem 4rem 3rem;
+  }
+
+  .projectsGrid {
+    gap: 30px;
+    /* More gap for 2-col layout */
   }
 }

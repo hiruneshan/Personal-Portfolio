@@ -13,7 +13,7 @@
 }
 
 .carouselTitle {
-    font-size: 60px;
+    font-size: 55px;
     color: var(--color-text-primary);
     font-weight: 500;
     margin: 0 0 5rem 0;
@@ -122,9 +122,9 @@
     flex-direction: column;
     justify-content: center;
     /* Vertically center content */
-    align-items: center;
+    align-items: flex-start;
     /* Horizontally center content */
-    text-align: center;
+    text-align: left;
     /* Center text */
     transition: all 0.25s cubic-bezier(0.645, 0.045, 0.355, 1);
     overflow: hidden;
@@ -207,8 +207,9 @@
     background: transparent;
     padding: 0;
 
-    display: inline-block;
+    display: block;
     margin-bottom: 15px;
+    text-align: left;
 }
 
 .cardDescription {
@@ -221,6 +222,8 @@
     /* Reduced margin */
     /* Removed flex-grow to reduce gap between desc and tech list */
     font-family: 'Share Tech Mono', 'VT323', monospace;
+    text-align: left;
+    width: 100%;
 }
 
 .techList {
@@ -232,7 +235,7 @@
     list-style: none;
 
     /* Centered Tech List */
-    justify-content: center;
+    justify-content: flex-start;
 
     /* Default hidden state */
     opacity: 0;
