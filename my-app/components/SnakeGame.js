@@ -22,7 +22,6 @@ export default function SnakeGame() {
         const y = Math.floor(Math.random() * TILE_COUNT);
         setFood({ x, y });
     };
-
     const autoPlay = () => {
         const head = snake[0];
 

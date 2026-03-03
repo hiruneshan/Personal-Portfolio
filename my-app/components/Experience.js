@@ -10,8 +10,8 @@ const experienceData = [
         company: "NeedList.ORG",
         url: "https://needlist.org/",
         role: "Developer / Team Lead",
-        date: "Sep 2025 - Present",
-        type: "CURRENT_DUNGEON", // Custom Label for Pixel Theme
+        date: "Sep 2025 - Jan 2026",
+        type: "CURRENT_DUNGEON",
         status: "ACTIVE_RAID",
         location: "Toronto, Canada",
         description: [
@@ -44,7 +44,7 @@ const experienceData = [
         company: "Seneca Polytechnic",
         url: "https://www.senecapolytechnic.ca/home.html",
         role: "Lab Assistant - OOP 244",
-        date: "Sep 2025 - Present",
+        date: "Sep 2025 - Jan 2025",
         type: "SIDE_QUEST",
         status: "ONGOING",
         location: "Toronto, Ontario",
