@@ -22,27 +22,22 @@ export default function SnakeGame() {
         const y = Math.floor(Math.random() * TILE_COUNT);
         setFood({ x, y });
     };
-
     const autoPlay = () => {
         const head = snake[0];
 
-        // Simple AI: Move towards food
         if (head.x < food.x) setDirection({ x: 1, y: 0 });
         else if (head.x > food.x) setDirection({ x: -1, y: 0 });
         else if (head.y < food.y) setDirection({ x: 0, y: 1 });
         else if (head.y > food.y) setDirection({ x: 0, y: -1 });
 
-        // Very basic collision avoidance (random turn if about to hit self)
-        // This is a placeholder for better AI
+
     };
 
     const moveSnake = () => {
-        // consume next direction from queue if available
+
         if (directionQueue.current.length > 0) {
             const nextDir = directionQueue.current.shift();
             setDirection(nextDir);
-            // We use nextDir directly for calculation to avoid state update delay issues
-            // inside this closure, although we still set state for rendering/collisions
             var currentDir = nextDir;
         } else {
             var currentDir = direction;
@@ -54,7 +49,7 @@ export default function SnakeGame() {
         head.x += currentDir.x;
         head.y += currentDir.y;
 
-        // Wrap around
+
         if (head.x < 0) head.x = TILE_COUNT - 1;
         if (head.x >= TILE_COUNT) head.x = 0;
         if (head.y < 0) head.y = TILE_COUNT - 1;
