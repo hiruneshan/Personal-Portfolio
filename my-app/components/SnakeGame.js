@@ -55,13 +55,12 @@ export default function SnakeGame() {
         if (head.y < 0) head.y = TILE_COUNT - 1;
         if (head.y >= TILE_COUNT) head.y = 0;
 
-        // Check collision with self
         if (newSnake.some(segment => segment.x === head.x && segment.y === head.y)) {
             if (!isAutoPlaying) {
                 setGameOver(true);
                 return;
             } else {
-                // Simple reset for autoplay to keep it going
+
                 setSnake([{ x: 10, y: 10 }]);
                 setDirection({ x: 1, y: 0 });
                 return;

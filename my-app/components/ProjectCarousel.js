@@ -51,7 +51,6 @@ const allProjects = [
 
 import ProjectsGrid from './ProjectsGrid';
 
-// ... existing imports ...
 
 export default function ProjectCarousel() {
   const [cards, setCards] = useState(allProjects);
