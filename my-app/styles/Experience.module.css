@@ -22,41 +22,23 @@
     gap: 1rem;
     margin-bottom: 3rem;
     max-width: 1200px;
-    margin-left: auto;
     margin-right: auto;
     padding-left: 20px;
     margin-left: 20%;
     /* Align header with the shifted grid */
-}
-
-.sectionNumber {
-    font-size: 1.5rem;
-    color: var(--color-accent);
-    font-family: 'Share Tech Mono', monospace;
+    /* Align header with the shifted grid */
 }
 
 .sectionTitle {
-    font-size: clamp(40px, 8vw, 60px);
+    font-size: 55px;
     color: var(--color-text-primary);
     font-weight: 500;
     margin: 0;
-    line-height: 1.1;
     font-family: 'VT323', monospace;
-    text-align: left;
-
-    /* PIXELATED TEXT SHADOW EFFECT */
-    text-shadow:
-        2px 2px 0px #000,
-        -2px -2px 0px #000,
-        2px -2px 0px #000,
-        -2px 2px 0px #000,
-        2px 0px 0px #000,
-        -2px 0px 0px #000,
-        0px 2px 0px #000,
-        0px -2px 0px #000,
-        4px 4px 0px #1a2c38,
-        6px 6px 0px #1a2c38;
+    text-shadow: 2px 2px 0px #000;
 }
+
+/* ... middle content ... */
 
 /* --- MAIN CONTAINER (Grid) --- */
 .questLogContainer {
@@ -65,7 +47,7 @@
     /* Constrants the right column width */
     gap: 40px;
     max-width: 1200px;
-    margin: 0 auto;
+    margin-right: auto;
     margin-left: 20%;
     /* Shift grid to the right */
 }
@@ -331,6 +313,8 @@
     .sectionHeader {
         margin-left: 0;
         padding-left: 0;
+        justify-content: center;
+        /* Center content */
     }
 
     .questLogContainer {
@@ -371,5 +355,39 @@
 
     .roleTitle {
         font-size: 1.5rem;
+    }
+
+    .sectionTitle {
+        font-size: 36px;
+        text-align: center;
+    }
+
+    .sectionTitle {
+        font-size: 36px;
+        text-align: center;
+    }
+}
+
+@media (min-width: 481px) and (max-width: 768px) {
+    .experienceSection {
+        padding: 6rem 3rem 4rem 3rem;
+    }
+
+    .questList {
+        gap: 25px;
+        /* Slightly more spaced out */
+    }
+}
+
+@media (min-width: 1201px) {
+    .sectionHeader {
+        margin-left: 20%;
+        margin-right: auto;
+        max-width: 1200px;
+    }
+
+    .questLogContainer {
+        margin-left: 20%;
+        margin-right: auto;
     }
 }

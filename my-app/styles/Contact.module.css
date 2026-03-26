@@ -1,9 +1,12 @@
 .contactSection {
-    padding: 100px 0;
+    padding: 100px 0 20px 0;
     text-align: center;
     max-width: 600px;
     margin: 0 auto;
-    margin-bottom: 100px;
+    margin-bottom: 0;
+    pointer-events: none;
+    position: relative;
+    z-index: 1;
     font-family: 'Calibre', 'Inter', sans-serif;
 }
 
@@ -16,7 +19,7 @@
 }
 
 .title {
-    font-size: 32px;
+    font-size: 55px;
     font-weight: 500;
     color: var(--color-text-primary);
     margin-bottom: 20px;
@@ -66,4 +69,22 @@
     text-decoration: none;
     transform: translate(-5px, -5px);
     box-shadow: 5px 5px 0 0 var(--color-accent);
+}
+
+@media (max-width: 768px) {
+    .title {
+        font-size: 36px;
+    }
+
+    .contactSection {
+        padding-bottom: 0;
+        margin-bottom: 0;
+    }
+}
+
+.contactSection h2,
+.contactSection p,
+.contactSection a,
+.contactSection button {
+    pointer-events: auto;
 }

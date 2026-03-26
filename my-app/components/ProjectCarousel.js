@@ -55,9 +55,36 @@ import ProjectsGrid from './ProjectsGrid';
 
 export default function ProjectCarousel() {
   const [cards, setCards] = useState(allProjects);
-  const [isAutoPlaying, setIsAutoPlaying] = useState(true);
-  const [userPaused, setUserPaused] = useState(false); // Track if user manually stopped it
+  const [isAutoPlaying, setIsAutoPlaying] = useState(false); // Start false, wait for view
+  const [userPaused, setUserPaused] = useState(false);
   const [showAll, setShowAll] = useState(false);
+
+  const containerRef = React.useRef(null);
+  const isInView = React.useRef(false); // Use ref for event listener access
+
+  // Update logic to track view state without re-triggering listener hook constantly if not needed
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        isInView.current = entry.isIntersecting;
+        if (entry.isIntersecting && !userPaused) {
+          setIsAutoPlaying(true);
+        } else if (!entry.isIntersecting) {
+          // Optional: Pause when out of view to save resources? 
+          // setIsAutoPlaying(false); 
+        }
+      },
+      { threshold: 0.3 } // 30% visible
+    );
+
+    if (containerRef.current) {
+      observer.observe(containerRef.current);
+    }
+
+    return () => {
+      if (containerRef.current) observer.unobserve(containerRef.current);
+    };
+  }, [userPaused]);
 
   // Stable callback for moving cards
   const moveToEnd = useCallback(() => {
@@ -78,7 +105,7 @@ export default function ProjectCarousel() {
     });
   }, []);
 
-  // Temporary pause (hvoer)
+  // Temporary pause (hover)
   const handlePause = () => {
     if (!userPaused) {
       setIsAutoPlaying(false);
@@ -109,16 +136,19 @@ export default function ProjectCarousel() {
     return () => clearInterval(interval);
   }, [isAutoPlaying, moveToEnd]);
 
-  // Keyboard Navigation
+  // Keyboard Navigation (Restored Global Listener)
   useEffect(() => {
     const handleKeyDown = (e) => {
+      // Only capture if component is in view
+      if (!isInView.current) return;
+
       if (e.key === 'ArrowUp') {
         e.preventDefault();
-        handleManualStop(); // User intervened
+        handleManualStop();
         moveToEnd();
       } else if (e.key === 'ArrowDown') {
         e.preventDefault();
-        handleManualStop(); // User intervened
+        handleManualStop();
         moveToFront();
       }
     };
@@ -128,7 +158,7 @@ export default function ProjectCarousel() {
   }, [moveToEnd, moveToFront]);
 
   return (
-    <div className={styles.sectionWrapper}>
+    <div className={styles.sectionWrapper} ref={containerRef}>
       <ProjectsGrid />
       <Container>
         <div className={styles.carouselHeader}>

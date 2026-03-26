@@ -55,7 +55,7 @@ export default function HeroSection() {
           animate={{ opacity: 1 }}
           transition={{ duration: 0.8, delay: 1.1 }}
         >
-          I&apos;m a computer science student based in Toronto specializing in backend and front end development.
+          A computer science student based in Toronto specializing in backend and front end development.
         </motion.p>
 
 
