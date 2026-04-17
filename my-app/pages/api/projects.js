@@ -29,7 +29,7 @@ const projectData = {
     },
     {
       "title": "Fragments service",
-      "technologies": ["C++", "STL Containers & Algorithms", "Formatting & I/O", "Dynamic Memory Management"],
+      "technologies": ["AWS", "JavaScript", "JWT"],
       "description": "A Media Management System in <span style=\"color: #64ffda\">C++</span> that loads, stores, and displays Books and TV Shows using <span style=\"color: #64ffda\">object-oriented programming principles</span>. The system supports formatted output, dynamic collections, spell checking, file parsing, and custom display settings. It also includes <span style=\"color: #64ffda\">sorting, lookup,</span> and observer notifications for new items <span style=\"color: #64ffda\">added to a collection.</span>",
       "imageUrl": "/images/DBS_C++_sol.png"
     }
