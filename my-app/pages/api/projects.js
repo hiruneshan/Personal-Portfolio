@@ -28,10 +28,10 @@ const projectData = {
       "imageUrl": "/images/DBS_C++_sol.png"
     },
     {
-      "title": "Fragments service",
-      "technologies": ["AWS", "JavaScript", "JWT"],
-      "description": "A Media Management System in <span style=\"color: #64ffda\">C++</span> that loads, stores, and displays Books and TV Shows using <span style=\"color: #64ffda\">object-oriented programming principles</span>. The system supports formatted output, dynamic collections, spell checking, file parsing, and custom display settings. It also includes <span style=\"color: #64ffda\">sorting, lookup,</span> and observer notifications for new items <span style=\"color: #64ffda\">added to a collection.</span>",
-      "imageUrl": "/images/DBS_C++_sol.png"
+      "title": "Fragments Microservice",
+      "technologies": ["Node.js", "Express", "Docker", "AWS", "DynamoDB", "S3", "Sharp", "Jest"],
+      "description": "A cloud-native <span style=\"color: #64ffda\">RESTful microservice</span> for storing and retrieving text and image fragments. Built with <span style=\"color: #64ffda\">Node.js and Express</span>, containerized with <span style=\"color: #64ffda\">Docker</span>, and deployed on AWS using <span style=\"color: #64ffda\">DynamoDB and S3</span> for storage. Supports <span style=\"color: #64ffda\">image conversion</span> between formats (PNG, JPEG, WebP) and markdown-to-HTML rendering with full unit and integration test coverage.",
+      "imageUrl": "/images/fragments.png"
     }
   ]
 };
