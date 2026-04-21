@@ -16,7 +16,7 @@ export default function Contact() {
                         <Col md={10} lg={8}>
                             <h2 className={styles.title}>Get in Contact</h2>
                             <p className={styles.description}>
-                                I’m currently looking for a summer internship and new opportunities. My inbox is always open. Thank you for checking out my work!
+                                Thank you for checking out my work!
                             </p>
                             <a href="mailto:hiruneshan@gmail.com" className={styles.emailButton}>
                                 Say Hello
