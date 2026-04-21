@@ -47,6 +47,21 @@ const allProjects = [
     technologies: ['JavaScript', 'HTML', 'CSS3'],
     githubUrl: 'https://github.com'
   },
+  {
+    id: 7,
+    title: 'AuthFlow',
+    description: '<span style="color: #64ffda">A full-stack user authentication system</span> with secure <span style="color: #64ffda">JWT-based authorization</span>. The project supports user registration and login, token-based session handling, and <span style="color: #64ffda">protected API routes</span> for managing user favourites. Authentication is handled using <span style="color: #64ffda">Passport.js</span> with a JWT strategy, and the frontend securely stores and decodes tokens to manage authenticated UI state. The backend is deployed on Vercel.',
+    technologies: ['React', 'Node.js', 'Express.js', 'Passport.js', 'JWT', 'Vercel', 'MongoDB'],
+    githubUrl: 'https://github.com/hiruneshan/WEB---APP',
+    externalUrl: 'https://web-app-p792.vercel.app/login'
+  },
+  {
+    id: 8,
+    title: 'Media Management System',
+    description: 'A Media Management System in <span style="color: #64ffda">C++</span> that loads, stores, and displays Books and TV Shows using <span style="color: #64ffda">object-oriented programming principles</span>. The system supports formatted output, dynamic collections, spell checking, file parsing, and custom display settings. It also includes <span style="color: #64ffda">sorting, lookup,</span> and observer notifications for new items <span style="color: #64ffda">added to a collection.</span>',
+    technologies: ['C++', 'STL Containers & Algorithms', 'Formatting & I/O', 'Dynamic Memory Management'],
+    githubUrl: 'https://github.com'
+  },
 ];
 
 import ProjectsGrid from './ProjectsGrid';
