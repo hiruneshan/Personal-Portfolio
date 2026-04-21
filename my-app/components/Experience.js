@@ -7,6 +7,19 @@ import styles from '../styles/Experience.module.css';
 const experienceData = [
     {
         id: "r3",
+        company: "Government of Ontario",
+        url: "",
+        role: "Incoming Systems Programmer",
+        date: "May 2026 - Sept 2026",
+        type: "CURRENT_DUNGEON",
+        status: "ACTIVE_RAID",
+        location: "Toronto, Canada",
+        description: [ // an empty array because of incoming 
+        ],
+        icon: "star"//double check
+    },
+    {
+        id: "r3",
         company: "NeedList.ORG",
         url: "https://needlist.org/",
         role: "Developer / Team Lead",
