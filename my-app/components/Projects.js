@@ -77,6 +77,25 @@ const Projects = () => {
 
               {/* Foreground Content Layer */}
               <div className={styles.cardContent}>
+                {/* Top Right Links on Hover */}
+                <div className={styles.cardLinksHover}>
+                  <a
+                    href={project.GitHub || '#'}
+                    target={project.GitHub ? "_blank" : "_self"}
+                    rel="noopener noreferrer"
+                    className={styles.cardLink}
+                    onClick={(e) => handleGithubClick(e, project.GitHub)}
+                  >
+                    <Github size={24} />
+                  </a>
+
+                  {project.Link && (
+                    <a href={project.Link} target="_blank" rel="noopener noreferrer" className={styles.cardLink}>
+                      <ExternalLink size={24} />
+                    </a>
+                  )}
+                </div>
+
                 <h3 className={styles.cardTitle}>
                   {project.title}
                   <div className={styles.cardLinks}>

@@ -300,6 +300,25 @@
   color: var(--color-accent);
 }
 
+.cardLinksHover {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  display: flex;
+  gap: 15px;
+  z-index: 1000;
+  opacity: 0;
+  transform: translateY(-10px);
+  transition: all 0.5s ease 0.2s;
+  pointer-events: none;
+}
+
+.projectCard:hover .cardLinksHover {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
 .cardLinks {
   display: flex;
   gap: 20px;
