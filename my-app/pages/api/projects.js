@@ -3,8 +3,20 @@ const projectData = {
     {
       "title": "Factory Production Line Simulation",
       "technologies": ["C++", "Object-Oriented Programming", "STL", "Data Structures", "Dynamic Memory Management"],
-      "description": "Developed a full <span style=\"color: #64ffda\">production-line simulation</span> using <span style=\"color: #64ffda\">modern C++</span> and <span style=\"color: #64ffda\">Object-Oriented Programming</span> principles. The system models real factory behavior by moving customer orders through multiple <span style=\"color: #64ffda\">workstations</span>, each responsible for processing a specific item. Implemented <span style=\"color: #64ffda\">dynamic memory management</span>, custom data structures, and class interactions (<span style=\"color: #64ffda\">aggregation/association</span>) to manage orders efficiently.",
+      "description": "Developed a full <span style=\"color: #64ffda\">production-line simulation</span> using <span style=\"color: #64ffda\">modern C++</span> and <span style=\"color: #64ffda\">Object-Oriented Programming</span> principles. The system models real factory behavior by moving customer orders through multiple <span style=\"color: #64ffda\">workstations</span>, each responsible for processing a specific item. Implemented <span style=\"color: #64ffda\">dynamic memory management</span>, custom data structures, and class interactions (<span style=\"color: #64ffda\">aggregation/association</span>) to manage orders.",
       "imageUrl": "/images/image.png"
+    },
+    {
+      "title": "DriveNet CNN",
+      "technologies": ["Python", "TensorFlow", "Keras", "OpenCV", "NVIDIA Architecture", "Unity Simulator"],
+      "description": "<span style=\"color: #64ffda\">An autonomous vehicle control system</span> based on a <span style=\"color: #64ffda\">Convolutional Neural Network (CNN)</span>. Inspired by the NVIDIA end-to-end learning model, the system processes real-time camera feeds using <span style=\"color: #64ffda\">YUV color space transformation</span> and image augmentation. The model predicts steering angles with high precision by training on a balanced dataset of over 10,000 frames. Features include <span style=\"color: #64ffda\">autonomous lane centering</span> and recovery logic.",
+      "imageUrl": "/images/SelfDrivingCar.png"
+    },
+    {
+      "title": "Fragments Microservice",
+      "technologies": ["Node.js", "Express", "Docker", "AWS", "DynamoDB", "S3", "Sharp", "Jest"],
+      "description": "A cloud-native <span style=\"color: #64ffda\">RESTful microservice</span> for storing and retrieving text and image fragments. Built with <span style=\"color: #64ffda\">Node.js and Express</span>, containerized with <span style=\"color: #64ffda\">Docker</span>, and deployed on AWS using <span style=\"color: #64ffda\">DynamoDB and S3</span> for storage. Supports <span style=\"color: #64ffda\">image conversion</span> between formats (PNG, JPEG, WebP) and markdown-to-HTML rendering with full unit and integration test coverage.",
+      "imageUrl": "/images/fragments.png"
     },
     {
       "title": "Olympic Data ETL Pipeline",
@@ -12,20 +24,6 @@ const projectData = {
       "description": "Processed <span style=\"color: #64ffda\">large Olympic open datasets</span> by identifying missing, inconsistent, and incorrect data. Designed a <span style=\"color: #64ffda\">Python-based workflow</span> to clean and standardize records, integrate Paris 2024 data without duplicates, and generate new cleaned CSV files along with a summarized medal tally for analysis.",
       "imageUrl": "/images/ETLImage.png",
       "GitHub": "https://github.com/hiruneshan/end-to-end-data-pipeline-design"
-    },
-    {
-      "title": "AuthFlow",
-      "technologies": ["React", "Node.js", "Express.js", "Passport.js", "JWT", "Vercel", "MongoDB"],
-      "description": "<span style=\"color: #64ffda\">A full-stack user authentication system</span> with secure <span style=\"color: #64ffda\">JWT-based authorization</span>. The project supports user registration and login, token-based session handling, and <span style=\"color: #64ffda\">protected API routes</span> for managing user favourites. Authentication is handled using <span style=\"color: #64ffda\">Passport.js</span> with a JWT strategy, and the frontend securely stores and decodes tokens to manage authenticated UI state. The backend is deployed on Vercel.",
-      "imageUrl": "/images/AuthFlow.png",
-      "GitHub": "https://github.com/hiruneshan/WEB---APP",
-      "Link": "https://web-app-p792.vercel.app/login"
-    },
-    {
-      "title": "Media Management System",
-      "technologies": ["C++", "STL Containers & Algorithms", "Formatting & I/O", "Dynamic Memory Management"],
-      "description": "A Media Management System in <span style=\"color: #64ffda\">C++</span> that loads, stores, and displays Books and TV Shows using <span style=\"color: #64ffda\">object-oriented programming principles</span>. The system supports formatted output, dynamic collections, spell checking, file parsing, and custom display settings. It also includes <span style=\"color: #64ffda\">sorting, lookup,</span> and observer notifications for new items <span style=\"color: #64ffda\">added to a collection.</span>",
-      "imageUrl": "/images/DBS_C++_sol.png"
     }
   ]
 };

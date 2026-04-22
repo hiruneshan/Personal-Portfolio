@@ -6,6 +6,20 @@ import styles from '../styles/Experience.module.css';
 // Flattened Data Structure for easier "Timeline/Quest" navigation
 const experienceData = [
     {
+        id: "r0",
+        company: "Government of Ontario",
+        url: "",
+        role: "Systems Programmer",
+        date: "May 2026 - Sept 2026",
+        type: "CURRENT_DUNGEON",
+        status: "ACTIVE_RAID",
+        location: "Toronto, Canada",
+        description: [ // an empty array because of incoming 
+            "Incoming IT Systems & Programmer"
+        ],
+        icon: "star"//double check
+    },
+    {
         id: "r3",
         company: "NeedList.ORG",
         url: "https://needlist.org/",
@@ -104,8 +118,8 @@ import ExperienceGrid from './ExperienceGrid';
 // ... existing imports ...
 
 export default function Experience() {
-    // Default to the first item (NeedList Team Lead)
-    const [selectedId, setSelectedId] = useState("r3");
+    // Default to the first item
+    const [selectedId, setSelectedId] = useState("r0");
 
     const selectedRole = experienceData.find(item => item.id === selectedId);
 
