@@ -10,9 +10,7 @@ const projectData = {
       "title": "DriveNet CNN",
       "technologies": ["Python", "TensorFlow", "Keras", "OpenCV", "NVIDIA Architecture", "Unity Simulator"],
       "description": "<span style=\"color: #64ffda\">An autonomous vehicle control system</span> based on a <span style=\"color: #64ffda\">Convolutional Neural Network (CNN)</span>. Inspired by the NVIDIA end-to-end learning model, the system processes real-time camera feeds using <span style=\"color: #64ffda\">YUV color space transformation</span> and image augmentation. The model predicts steering angles with high precision by training on a balanced dataset of over 10,000 frames. Features include <span style=\"color: #64ffda\">autonomous lane centering</span> and recovery logic.",
-      "imageUrl": "/images/SelfDrivingCar.png",
-      "GitHub": "https://github.com/hiruneshan/Self-Driving-Car-Simulation",
-      "Link": "#"
+      "imageUrl": "/images/SelfDrivingCar.png"
     },
     {
       "title": "Fragments Microservice",

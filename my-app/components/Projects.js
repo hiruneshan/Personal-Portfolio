@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef } from 'react';
 import Image from 'next/image';
-import { Container } from 'react-bootstrap'; // Removed unused imports
+import { Container, OverlayTrigger, Tooltip } from 'react-bootstrap';
 import { Github, ExternalLink } from 'lucide-react';
 import { motion } from 'framer-motion'; // Imported Framer Motion
 import styles from '../styles/Projects.module.css';
@@ -25,12 +25,7 @@ const Projects = () => {
     fetchProjects();
   }, []);
 
-  const handleGithubClick = (e, link) => {
-    if (!link) {
-      e.preventDefault();
-      alert("This is a private repository, please contact the owner for a code review");
-    }
-  };
+
 
   if (loading) {
     return <div className={styles.projectContainer}>Loading...</div>;
@@ -77,17 +72,36 @@ const Projects = () => {
 
               {/* Foreground Content Layer */}
               <div className={styles.cardContent}>
-                {/* Top Right Links on Hover */}
+                {/* Top Left Links on Hover */}
                 <div className={styles.cardLinksHover}>
-                  <a
-                    href={project.GitHub || '#'}
-                    target={project.GitHub ? "_blank" : "_self"}
-                    rel="noopener noreferrer"
-                    className={styles.cardLink}
-                    onClick={(e) => handleGithubClick(e, project.GitHub)}
-                  >
-                    <Github size={24} />
-                  </a>
+                  {project.GitHub ? (
+                    <a
+                      href={project.GitHub}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={styles.cardLink}
+                    >
+                      <Github size={24} />
+                    </a>
+                  ) : (
+                    <OverlayTrigger
+                      placement="top"
+                      overlay={
+                        <Tooltip id={`tooltip-hover-${index}`} className={styles.repoTooltip}>
+                          This is a private repository, please contact the owner for a code review
+                        </Tooltip>
+                      }
+                    >
+                      <a
+                        href="#"
+                        className={styles.cardLink}
+                        onClick={(e) => e.preventDefault()}
+                        style={{ cursor: 'pointer' }}
+                      >
+                        <Github size={24} />
+                      </a>
+                    </OverlayTrigger>
+                  )}
 
                   {project.Link && (
                     <a href={project.Link} target="_blank" rel="noopener noreferrer" className={styles.cardLink}>
@@ -99,15 +113,34 @@ const Projects = () => {
                 <h3 className={styles.cardTitle}>
                   {project.title}
                   <div className={styles.cardLinks}>
-                    <a
-                      href={project.GitHub || '#'}
-                      target={project.GitHub ? "_blank" : "_self"}
-                      rel="noopener noreferrer"
-                      className={styles.cardLink}
-                      onClick={(e) => handleGithubClick(e, project.GitHub)}
-                    >
-                      <Github size={20} />
-                    </a>
+                    {project.GitHub ? (
+                      <a
+                        href={project.GitHub}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className={styles.cardLink}
+                      >
+                        <Github size={20} />
+                      </a>
+                    ) : (
+                      <OverlayTrigger
+                        placement="top"
+                        overlay={
+                          <Tooltip id={`tooltip-title-${index}`} className={styles.repoTooltip}>
+                            This is a private repository, please contact the owner for a code review
+                          </Tooltip>
+                        }
+                      >
+                        <a
+                          href="#"
+                          className={styles.cardLink}
+                          onClick={(e) => e.preventDefault()}
+                          style={{ cursor: 'pointer' }}
+                        >
+                          <Github size={20} />
+                        </a>
+                      </OverlayTrigger>
+                    )}
 
                     {project.Link && (
                       <a href={project.Link} target="_blank" rel="noopener noreferrer" className={styles.cardLink}>
