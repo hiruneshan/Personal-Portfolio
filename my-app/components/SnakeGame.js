@@ -44,6 +44,8 @@ export default function SnakeGame() {
             currentDir = direction;
         }
 
+        if (currentDir.x === 0 && currentDir.y === 0) return;
+
         const newSnake = [...snake];
         const head = { ...newSnake[0] };
 
@@ -124,6 +126,10 @@ export default function SnakeGame() {
                 : direction;
 
             let newDir = null;
+
+            if (['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight'].includes(e.key)) {
+                e.preventDefault();
+            }
 
             switch (e.key) {
                 case 'ArrowUp':

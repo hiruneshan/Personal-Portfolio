@@ -1,8 +1,19 @@
+import { useEffect } from 'react';
 import styles from '../styles/SnakeGameModal.module.css';
 import SnakeGame from './SnakeGame';
 
-
 export default function SnakeGameModal({ isOpen, onClose }) {
+    useEffect(() => {
+        if (isOpen) {
+            document.body.style.overflow = 'hidden';
+        } else {
+            document.body.style.overflow = 'unset';
+        }
+        return () => {
+            document.body.style.overflow = 'unset';
+        };
+    }, [isOpen]);
+
     if (!isOpen) return null;
 
     return (
