@@ -1,9 +1,7 @@
-import 'bootstrap/dist/css/bootstrap.min.css'; // <-- BOOTSTRAP FIRST
+import 'bootstrap/dist/css/bootstrap.min.css';
 import '../styles/globals.css';
-import MouseLight from '../components/MouseLight';
-import SocialLinks from '../components/SocialLinks';
-
-import Head from 'next/head';
+import Head from "next/head";
+import MouseLight from "../components/MouseLight";
 
 export default function App({ Component, pageProps }) {
   return (

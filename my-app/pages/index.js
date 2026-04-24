@@ -1,16 +1,14 @@
-import { useEffect, useState } from "react";
-
-
+import { useState } from "react";
 import NavBar from "../components/NavBar";
 import HeroSection from "../components/HeroSection";
-import Projects from "@/components/Projects";
-import SocialLinks from "@/components/SocialLinks";
-import AboutMe from "@/components/AboutMe";
-import Experience from "@/components/Experience";
-import ProjectCarousel from "@/components/ProjectCarousel";
-import Contact from "@/components/Contact";
-import SnakeGameModal, { SnakeGameButton } from "@/components/SnakeGameModal";
-import styles from "../styles/Home.module.css";
+import AboutMe from "../components/AboutMe";
+import Experience from "../components/Experience";
+import Projects from "../components/Projects";
+import ProjectCarousel from "../components/ProjectCarousel";
+import Contact from "../components/Contact";
+import SocialLinks from "../components/SocialLinks";
+import SnakeGameModal, { SnakeGameButton } from "../components/SnakeGameModal";
+
 
 export default function Home() {
   const [isGameOpen, setIsGameOpen] = useState(false);

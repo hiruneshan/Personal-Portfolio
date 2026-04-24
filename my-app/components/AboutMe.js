@@ -1,9 +1,8 @@
-import React, { useEffect, useRef, useState } from "react";
-import Image from "next/image";
-import PixelatedImage from './PixelatedImage';
+import { useEffect, useRef, useState } from "react";
 import { Row, Col } from "react-bootstrap";
+import PixelatedImage from "./PixelatedImage";
+import AboutGrid from "./AboutGrid";
 import styles from "../styles/AboutSection.module.css";
-import AboutGrid from './AboutGrid';
 
 export default function AboutSection() {
   const [isVisible, setIsVisible] = useState(false);

@@ -6,7 +6,7 @@ export default function ProjectsGrid() {
     const cols = 5;
     const rows = 14;
 
-    // Pattern: 1, 2, 3, 1, 1, 3
+
     const [visible, setVisible] = useState([]);
 
     useEffect(() => {

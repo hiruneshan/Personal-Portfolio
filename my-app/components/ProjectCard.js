@@ -1,4 +1,3 @@
-import React from 'react';
 import { Folder, Github, ExternalLink } from 'lucide-react';
 import { OverlayTrigger, Tooltip } from 'react-bootstrap';
 import styles from '../styles/ProjectCarousel.module.css';

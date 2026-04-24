@@ -1,11 +1,11 @@
 
-import { Container, Row, Col } from "react-bootstrap";
 import styles from "../styles/Contact.module.css";
-import SocialLinks from "./SocialLinks";
-import ContactGrid from "./ContactGrid";
 
 import homeStyles from "../styles/Home.module.css";
 
+import { Container, Row, Col } from "react-bootstrap";
+import ContactGrid from "./ContactGrid";
+import SocialLinks from "./SocialLinks";
 export default function Contact() {
     return (
         <section id="contact" style={{ position: 'relative', overflow: 'hidden' }}>

@@ -1,8 +1,9 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { Container, Row, Col } from 'react-bootstrap';
 import styles from '../styles/ProjectCarousel.module.css';
 import { motion, AnimatePresence } from 'framer-motion';
+import { Container, Row, Col } from 'react-bootstrap';
 import ProjectCard from './ProjectCard';
+import ProjectsGrid from './ProjectsGrid';
 
 const allProjects = [
   {
@@ -64,7 +65,6 @@ const allProjects = [
   },
 ];
 
-import ProjectsGrid from './ProjectsGrid';
 
 
 export default function ProjectCarousel() {

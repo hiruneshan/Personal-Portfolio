@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import styles from '../styles/SnakeGame.module.css';
 
 const CANVAS_SIZE = 300;
@@ -35,12 +35,13 @@ export default function SnakeGame() {
 
     const moveSnake = () => {
 
+        let currentDir;
         if (directionQueue.current.length > 0) {
             const nextDir = directionQueue.current.shift();
             setDirection(nextDir);
-            var currentDir = nextDir;
+            currentDir = nextDir;
         } else {
-            var currentDir = direction;
+            currentDir = direction;
         }
 
         const newSnake = [...snake];

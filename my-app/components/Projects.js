@@ -1,10 +1,9 @@
-import React, { useEffect, useState, useRef } from 'react';
-import Image from 'next/image';
+import { useEffect, useState } from 'react';
+import { motion } from 'framer-motion';
 import { Container, OverlayTrigger, Tooltip } from 'react-bootstrap';
 import { Github, ExternalLink } from 'lucide-react';
-import { motion } from 'framer-motion'; // Imported Framer Motion
+import Image from 'next/image';
 import styles from '../styles/Projects.module.css';
-
 const Projects = () => {
   const [projects, setProjects] = useState([]);
   const [loading, setLoading] = useState(true);

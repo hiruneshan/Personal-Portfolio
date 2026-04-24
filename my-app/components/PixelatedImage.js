@@ -1,6 +1,6 @@
-import React, { useRef, useEffect } from 'react';
+import { useRef, useEffect } from 'react';
 
-const PixelatedImage = ({ src, alt, className, priority, triggerAnimation = true }) => {
+const PixelatedImage = ({ src, alt, className, triggerAnimation = true }) => {
     const canvasRef = useRef(null);
 
     useEffect(() => {

@@ -1,6 +1,5 @@
-import React from "react";
-import { Github, Linkedin, Instagram, Mail } from "lucide-react";
 import styles from "../styles/SocialLinks.module.css";
+import { Github, Linkedin, Instagram, Mail } from 'lucide-react';
 
 // Custom Duolingo Icon SVG
 const DuolingoIcon = () => (

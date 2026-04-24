@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import styles from '../styles/HeroGrid.module.css'; // Reusing HeroGrid styles for consistency
+import styles from '../styles/HeroGrid.module.css';
 import { motion } from 'framer-motion';
 
 export default function AboutGrid() {

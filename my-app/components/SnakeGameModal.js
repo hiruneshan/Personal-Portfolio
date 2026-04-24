@@ -1,4 +1,3 @@
-import React from 'react';
 import styles from '../styles/SnakeGameModal.module.css';
 import SnakeGame from './SnakeGame';
 

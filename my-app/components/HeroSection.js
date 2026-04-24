@@ -1,8 +1,6 @@
-import HeroGrid from './HeroGrid';
-import SocialLinks from './SocialLinks';
 import styles from '../styles/HeroSection.module.css';
-
 import { motion } from 'framer-motion';
+import HeroGrid from './HeroGrid';
 
 export default function HeroSection() {
   return (

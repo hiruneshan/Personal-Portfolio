@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
-import { Container, Row, Col } from "react-bootstrap";
+import { useState } from 'react';
+import { Container } from 'react-bootstrap';
 import { motion, AnimatePresence } from 'framer-motion';
+import ExperienceGrid from './ExperienceGrid';
 import styles from '../styles/Experience.module.css';
 
 // Flattened Data Structure for easier "Timeline/Quest" navigation
@@ -113,7 +114,6 @@ const experienceData = [
     }
 ];
 
-import ExperienceGrid from './ExperienceGrid';
 
 // ... existing imports ...
 

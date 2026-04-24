@@ -1,9 +1,8 @@
 import { useState } from 'react';
-import { Navbar, Container, Nav } from 'react-bootstrap';
-import { motion } from 'framer-motion';
 import Link from 'next/link';
-import Image from 'next/image';
-import styles from '../styles/Navbar.module.css';
+import { Navbar, Nav, Container } from 'react-bootstrap';
+import { motion } from 'framer-motion';
+import styles from '../styles/Navbar.module.css'
 
 export default function RetroNavbar() {
   const [expanded, setExpanded] = useState(false);
