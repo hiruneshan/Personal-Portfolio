@@ -1,3 +1,6 @@
+import React from 'react';
+import SnakeGame from './SnakeGame';
+
 /**
  * A* Pathfinding Logic for Snake/Robot Simulation
  * 
@@ -95,3 +98,11 @@
  *   3. Move snake head to that first step.
  *   4. Update snake body accordingly.
  */
+
+export default function AStarTestingSnakeGame() {
+    return (
+        <div style={{ width: '100%', display: 'flex', justifyContent: 'center' }}>
+            <SnakeGame />
+        </div>
+    );
+}

@@ -6,7 +6,7 @@ const TILE_COUNT = 15;
 const TILE_SIZE = CANVAS_SIZE / TILE_COUNT;
 const SPEED = 100;
 
-export default function SnakeGame() {
+export default function SnakeGame({ customAutoPlay = null }) {
     const canvasRef = useRef(null);
     const [snake, setSnake] = useState([{ x: 10, y: 10 }]);
     const [food, setFood] = useState({ x: 15, y: 15 });
@@ -23,14 +23,20 @@ export default function SnakeGame() {
         setFood({ x, y });
     };
     const autoPlay = () => {
+        if (customAutoPlay) {
+            const nextDir = customAutoPlay(snake, food, TILE_COUNT);
+            if (nextDir) {
+                directionQueue.current.push(nextDir);
+            }
+            return;
+        }
+
         const head = snake[0];
 
         if (head.x < food.x) setDirection({ x: 1, y: 0 });
         else if (head.x > food.x) setDirection({ x: -1, y: 0 });
         else if (head.y < food.y) setDirection({ x: 0, y: 1 });
         else if (head.y > food.y) setDirection({ x: 0, y: -1 });
-
-
     };
 
     const moveSnake = () => {
