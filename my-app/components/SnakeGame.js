@@ -14,7 +14,7 @@ export default function SnakeGame({ customAutoPlay = null }) {
     const directionQueue = useRef([]);
     const [gameOver, setGameOver] = useState(false);
     const [score, setScore] = useState(0);
-    const [isAutoPlaying, setIsAutoPlaying] = useState(true);
+    const [isAutoPlaying, setIsAutoPlaying] = useState(!!customAutoPlay);
     const [showBanner, setShowBanner] = useState(true);
 
     const spawnFood = () => {
@@ -208,7 +208,7 @@ export default function SnakeGame({ customAutoPlay = null }) {
                                 setScore(0);
                                 setDirection({ x: 0, y: 0 });
                                 directionQueue.current = []; // Clear queue
-                                setIsAutoPlaying(false);
+                                setIsAutoPlaying(!!customAutoPlay);
                             }}>RESTART</button>
                         </div>
                     )}
