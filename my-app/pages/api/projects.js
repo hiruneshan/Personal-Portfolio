@@ -33,7 +33,7 @@ const projectData = {
       "rank": 5,
       "title": "Factory Production Line Simulation",
       "technologies": ["C++", "Object-Oriented Programming", "STL", "Data Structures", "Dynamic Memory Management"],
-      "description": "Developed a full <span style=\"color: #64ffda\">production-line simulation</span> using <span style=\"color: #64ffda\">modern C++</span> and <span style=\"color: #64ffda\">Object-Oriented Programming</span> principles. The system models real factory behavior by moving customer orders through multiple <span style=\"color: #64ffda\">workstations</span>, each responsible for processing a specific item. Implemented <span style=\"color: #64ffda\">dynamic memory management</span>, custom data structures, and class interactions (<span style=\"color: #64ffda\">aggregation/association</span>) to manage orders.",
+      "description": "Developed a full <span style=\"color: #64ffda\">production-line simulation</span> using <span style=\"color: #64ffda\">modern C++</span> and <span style=\"color: #64ffda\">OOP</span> principles. The system models real factory behavior by moving customer orders through multiple <span style=\"color: #64ffda\">workstations</span>, each responsible for processing a specific item. Implemented <span style=\"color: #64ffda\">dynamic memory management</span>, custom data structures, and class interactions to manage orders.",
       "imageUrl": "/images/image.png"
     },
     {
