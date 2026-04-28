@@ -66,3 +66,24 @@
     box-shadow: 0 6px 15px rgba(254, 127, 45, 0.3);
     background-color: rgba(254, 127, 45, 0.1);
 }
+
+.toggleContainer {
+    display: flex;
+    justify-content: center;
+    margin-top: 1rem;
+}
+
+.toggleButton {
+    background-color: transparent;
+    border: 1px solid var(--color-accent);
+    color: var(--color-accent);
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.toggleButton:hover {
+    background-color: rgba(254, 127, 45, 0.1);
+}

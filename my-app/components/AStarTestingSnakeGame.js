@@ -1,45 +1,99 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import SnakeGame from './SnakeGame';
 
 /**
  * A* Pathfinding Logic for Snake Game
- * 
- * OVERVIEW:
- * We are reusing the original SnakeGame component here so we don't have to build 
- * the game twice. This file acts as a wrapper. Its main job will be to provide 
- * a "brain" (the A* algorithm) to the existing SnakeGame.
- * 
- * HOW THE ALGORITHM WILL WORK:
- * 1. The goal is to find the shortest, safest path from the Snake's head to the 
- *    Food, without crashing into the Snake's own body or the walls.
- * 2. We treat the game board like a grid.
- * 3. The algorithm checks the empty squares around the snake, estimates which one 
- *    gets us closer to the food, and maps out a path.
- * 4. Once it finds a clear path to the food, it will tell the game which direction 
- *    to turn next.
- * 
- * HOW WE WILL CONNECT IT TO THE GAME:
- * 1. The SnakeGame component was updated to accept a `customAutoPlay` property.
- * 2. We will write the A* logic inside this file (AStarTestingSnakeGame.js).
- * 3. We will pass our A* function into the `<SnakeGame />` component below.
- * 4. Every time the game needs to move the snake, it will run our A* function to 
- *    ask: "Based on the grid, which direction should I go?".
- * 
- * POTENTIAL ISSUES (USER PLAYING vs. ALGORITHM):
- * - The original game lets the user press arrow keys to play manually.
- * - If the user presses an arrow key, the game automatically turns off "auto-play" 
- *   and lets the user take over.
- * - When we test the algorithm, we might run into a problem if we accidentally 
- *   touch the keyboard, as it will stop the algorithm from running.
- * - FIX: We may need to slightly modify `SnakeGame.js` later to completely disable 
- *   keyboard inputs when we are feeding it a `customAutoPlay` algorithm, or just 
- *   be careful not to touch the keys while it runs!
  */
-
 export default function AStarTestingSnakeGame() {
+    // The autoPlay function using A*
+    const autoPlayAStar = useMemo(() => {
+        return (snake, food, TILE_COUNT) => {
+            const head = snake[0];
+            
+            // Helper to get distance accounting for wrapping grid
+            const getDist = (a, b) => {
+                const dx = Math.min(Math.abs(a.x - b.x), TILE_COUNT - Math.abs(a.x - b.x));
+                const dy = Math.min(Math.abs(a.y - b.y), TILE_COUNT - Math.abs(a.y - b.y));
+                return dx + dy;
+            };
+
+            const getNeighbors = (node) => {
+                const dirs = [{x: 0, y: -1}, {x: 0, y: 1}, {x: -1, y: 0}, {x: 1, y: 0}];
+                const neighbors = [];
+                for (let d of dirs) {
+                    const nx = (node.x + d.x + TILE_COUNT) % TILE_COUNT;
+                    const ny = (node.y + d.y + TILE_COUNT) % TILE_COUNT;
+                    
+                    // Treat the snake's body as obstacles.
+                    // We don't check the very last tail segment because it will move forward.
+                    const isBody = snake.some((segment, index) => {
+                        if (index === snake.length - 1) return false; 
+                        return segment.x === nx && segment.y === ny;
+                    });
+                    
+                    if (!isBody) {
+                        neighbors.push({x: nx, y: ny, dx: d.x, dy: d.y});
+                    }
+                }
+                return neighbors;
+            };
+
+            // A* Search initialization
+            const openSet = [ { ...head, g: 0, h: getDist(head, food), f: getDist(head, food), parent: null, dx: 0, dy: 0 } ];
+            const closedSet = new Set();
+            
+            const posKey = (x, y) => `${x},${y}`;
+
+            while (openSet.length > 0) {
+                // Get node with lowest f
+                openSet.sort((a, b) => a.f - b.f);
+                const current = openSet.shift();
+
+                // If path to food is found
+                if (current.x === food.x && current.y === food.y) {
+                    // Trace back to the first move
+                    let curr = current;
+                    while (curr.parent && curr.parent.parent) {
+                        curr = curr.parent;
+                    }
+                    return { x: curr.dx, y: curr.dy };
+                }
+
+                closedSet.add(posKey(current.x, current.y));
+
+                const neighbors = getNeighbors(current);
+                for (let n of neighbors) {
+                    if (closedSet.has(posKey(n.x, n.y))) continue;
+
+                    const gScore = current.g + 1;
+                    const hScore = getDist(n, food);
+                    const fScore = gScore + hScore;
+
+                    const existingNode = openSet.find(node => node.x === n.x && node.y === n.y);
+                    if (!existingNode) {
+                        openSet.push({ ...n, g: gScore, h: hScore, f: fScore, parent: current });
+                    } else if (gScore < existingNode.g) {
+                        existingNode.g = gScore;
+                        existingNode.f = fScore;
+                        existingNode.parent = current;
+                    }
+                }
+            }
+
+            // If no path to food is found (e.g. blocked), just make a safe move (survival mode)
+            const safeNeighbors = getNeighbors(head);
+            if (safeNeighbors.length > 0) {
+                return { x: safeNeighbors[0].dx, y: safeNeighbors[0].dy };
+            }
+
+            // If completely trapped, return a default move (will cause game over)
+            return { x: 0, y: -1 };
+        };
+    }, []);
+
     return (
         <div style={{ width: '100%', display: 'flex', justifyContent: 'center' }}>
-            <SnakeGame />
+            <SnakeGame customAutoPlay={autoPlayAStar} />
         </div>
     );
 }

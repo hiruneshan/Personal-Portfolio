@@ -1,8 +1,11 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import styles from '../styles/SnakeGameModal.module.css';
 import SnakeGame from './SnakeGame';
+import AStarTestingSnakeGame from './AStarTestingSnakeGame';
 
 export default function SnakeGameModal({ isOpen, onClose }) {
+    const [gameMode, setGameMode] = useState('normal');
+
     useEffect(() => {
         if (isOpen) {
             document.body.style.overflow = 'hidden';
@@ -22,7 +25,15 @@ export default function SnakeGameModal({ isOpen, onClose }) {
                 <button className={styles.closeButton} onClick={onClose}>
                     &times;
                 </button>
-                <SnakeGame />
+                {gameMode === 'normal' ? <SnakeGame /> : <AStarTestingSnakeGame />}
+                <div className={styles.toggleContainer}>
+                    <button 
+                        className={styles.toggleButton} 
+                        onClick={() => setGameMode(gameMode === 'normal' ? 'astar' : 'normal')}
+                    >
+                        {gameMode === 'normal' ? "Watch AI Play (A* Algorithm)" : "Play Normal Game"}
+                    </button>
+                </div>
             </div>
         </div>
     );
