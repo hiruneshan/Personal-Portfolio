@@ -6,7 +6,7 @@ const TILE_COUNT = 15;
 const TILE_SIZE = CANVAS_SIZE / TILE_COUNT;
 const SPEED = 100;
 
-export default function SnakeGame({ customAutoPlay = null }) {
+export default function SnakeGame({ customAutoPlay = null, isPaused = false }) {
     const canvasRef = useRef(null);
     const [snake, setSnake] = useState([{ x: 10, y: 10 }]);
     const [food, setFood] = useState({ x: 15, y: 15 });
@@ -109,7 +109,7 @@ export default function SnakeGame({ customAutoPlay = null }) {
     // Game Loop
     useEffect(() => {
         const interval = setInterval(() => {
-            if (gameOver) return;
+            if (gameOver || isPaused) return;
 
             if (isAutoPlaying) {
                 autoPlay();

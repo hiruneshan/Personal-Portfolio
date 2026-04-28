@@ -86,4 +86,42 @@
 
 .toggleButton:hover {
     background-color: rgba(254, 127, 45, 0.1);
+}
+
+.docPopup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90%;
+    max-width: 600px;
+    height: auto;
+    max-height: 80vh;
+    background-color: rgba(4, 16, 54, 0.98);
+    border-radius: 12px;
+    padding: 2.5rem;
+    box-sizing: border-box;
+    z-index: 2000;
+    overflow-y: auto;
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: var(--color-text-primary);
+    backdrop-filter: blur(8px);
+    border: 2px solid var(--color-accent);
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.8);
+}
+
+.closeDocButton {
+    position: absolute;
+    top: 5px;
+    right: 10px;
+    background: transparent;
+    border: none;
+    color: var(--color-text-secondary);
+    font-size: 1.2rem;
+    cursor: pointer;
+}
+
+.closeDocButton:hover {
+    color: var(--color-accent);
 }

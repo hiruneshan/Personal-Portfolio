@@ -4,7 +4,7 @@ import SnakeGame from './SnakeGame';
 /**
  * A* Pathfinding Logic for Snake Game
  */
-export default function AStarTestingSnakeGame() {
+export default function AStarTestingSnakeGame({ isPaused = false }) {
     // The autoPlay function using A*
     const autoPlayAStar = useMemo(() => {
         return (snake, food, TILE_COUNT) => {
@@ -93,7 +93,7 @@ export default function AStarTestingSnakeGame() {
 
     return (
         <div style={{ width: '100%', display: 'flex', justifyContent: 'center' }}>
-            <SnakeGame customAutoPlay={autoPlayAStar} />
+            <SnakeGame customAutoPlay={autoPlayAStar} isPaused={isPaused} />
         </div>
     );
 }
