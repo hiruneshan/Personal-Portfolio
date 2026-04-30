@@ -5,73 +5,40 @@ import { Container, Row, Col } from 'react-bootstrap';
 import ProjectCard from './ProjectCard';
 import ProjectsGrid from './ProjectsGrid';
 
-const allProjects = [
-  {
-    id: 1,
-    title: 'project management platform',
-    description: 'A secure project management web app that allows users to browse, add, edit, and manage projects by sector with user authentication and session-based access control.',
-    technologies: ['JavaScript', 'Tailwind CSS', 'Node.js', 'Express.js', 'EJS', 'MongoDB'],
-    githubUrl: 'https://github.com/hiruneshan/Climate-Solutions-project'
-  },
-  {
-    id: 2,
-    title: 'Dictionary System',
-    description: 'a C++ dictionary system that loads word data from files, supports configurable searches, and logs execution events.',
-    technologies: ['C++', 'STL', 'Object-Oriented Programming', 'Dynamic Memory Management'],
-    githubUrl: 'https://github.com'
-  },
-  {
-    id: 3,
-    title: 'Hero & Guild System',
-    description: 'Engineered a template-based character system that adapts to different health types (Numeric, Super, Infinite) and implemented strict resource management for "Guilds" and "Teams" using deep-cloning and manual memory control.',
-    technologies: ['C++', 'Dynamic Memory', 'Templates', 'STL', 'OOP'],
-    githubUrl: 'https://github.com'
-  },
-  {
-    id: 4,
-    title: 'Delivery System',
-    description: 'Integrated the A* routing algorithm to determine optimal delivery paths. Engineered logic to manage physical constraints (weight and volume) for truck assignments, ensuring efficient resource allocation while maintaining code integrity through version control.',
-    technologies: ['C', 'A* Search Algorithm', 'Git', 'Unit Testing'],
-    githubUrl: 'https://github.com'
-  },
-  {
-    id: 6,
-    title: 'Database Design',
-    description: 'Designed a normalized database with a complete data dictionary and schema scripts, and developed custom SQL views for inventory and revenue insights to support data-driven decision-making.',
-    technologies: ['SQL/Oracle', 'C++', 'ERD', 'OCI', 'PL/SQL'],
-    githubUrl: 'https://github.com'
-  },
-  {
-    id: 5,
-    title: 'Music App',
-    description: 'Built a dynamic UI using DOM manipulation for artist menus and song cards. Implemented custom data filtering and client-side validation to ensure a seamless search and user experience.',
-    technologies: ['JavaScript', 'HTML', 'CSS3'],
-    githubUrl: 'https://github.com'
-  },
-  {
-    id: 7,
-    title: 'AuthFlow',
-    description: '<span style="color: #64ffda">A full-stack user authentication system</span> with secure <span style="color: #64ffda">JWT-based authorization</span>. The project supports user registration and login, token-based session handling, and <span style="color: #64ffda">protected API routes</span> for managing user favourites. Authentication is handled using <span style="color: #64ffda">Passport.js</span> with a JWT strategy, and the frontend securely stores and decodes tokens to manage authenticated UI state. The backend is deployed on Vercel.',
-    technologies: ['React', 'Node.js', 'Express.js', 'Passport.js', 'JWT', 'Vercel', 'MongoDB'],
-    githubUrl: 'https://github.com/hiruneshan/WEB---APP',
-    externalUrl: 'https://web-app-p792.vercel.app/login'
-  },
-  {
-    id: 8,
-    title: 'Media Management System',
-    description: 'A Media Management System in <span style="color: #64ffda">C++</span> that loads, stores, and displays Books and TV Shows using <span style="color: #64ffda">object-oriented programming principles</span>. The system supports formatted output, dynamic collections, spell checking, file parsing, and custom display settings. It also includes <span style="color: #64ffda">sorting, lookup,</span> and observer notifications for new items <span style="color: #64ffda">added to a collection.</span>',
-    technologies: ['C++', 'STL Containers & Algorithms', 'Formatting & I/O', 'Dynamic Memory Management'],
-    githubUrl: 'https://github.com'
-  },
-];
+// Removed hardcoded allProjects array to fetch dynamically from API
 
 
 
 export default function ProjectCarousel() {
-  const [cards, setCards] = useState(allProjects);
+  const [allProjects, setAllProjects] = useState([]);
+  const [cards, setCards] = useState([]);
   const [isAutoPlaying, setIsAutoPlaying] = useState(false); // Start false, wait for view
   const [userPaused, setUserPaused] = useState(false);
   const [showAll, setShowAll] = useState(false);
+
+  // Fetch projects from API
+  useEffect(() => {
+    const fetchProjects = async () => {
+      try {
+        const response = await fetch('/api/projects');
+        const data = await response.json();
+        
+        // Filter out rank 1-4 for the carousel
+        const carouselProjects = data.projects
+          .filter(p => p.rank > 4)
+          .sort((a, b) => a.rank - b.rank);
+          
+        // Add an 'id' property if it doesn't exist, using rank
+        const projectsWithId = carouselProjects.map(p => ({ ...p, id: p.rank }));
+
+        setAllProjects(projectsWithId);
+        setCards(projectsWithId);
+      } catch (error) {
+        console.error('Error fetching carousel projects:', error);
+      }
+    };
+    fetchProjects();
+  }, []);
 
   const containerRef = React.useRef(null);
   const isInView = React.useRef(false); // Use ref for event listener access

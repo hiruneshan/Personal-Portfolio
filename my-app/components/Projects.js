@@ -13,7 +13,13 @@ const Projects = () => {
       try {
         const response = await fetch('/api/projects');
         const data = await response.json();
-        setProjects(data.projects);
+        
+        // Only show top 4 ranked projects in the main cards
+        const topProjects = data.projects
+          .filter(p => p.rank >= 1 && p.rank <= 4)
+          .sort((a, b) => a.rank - b.rank);
+          
+        setProjects(topProjects);
       } catch (error) {
         console.error('Error fetching projects:', error);
       } finally {
