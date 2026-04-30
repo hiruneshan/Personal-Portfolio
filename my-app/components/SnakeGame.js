@@ -17,7 +17,7 @@ export default function SnakeGame({ customAutoPlay = null, isPaused = false }) {
     const [isAutoPlaying, setIsAutoPlaying] = useState(!!customAutoPlay);
     const [showBanner, setShowBanner] = useState(true);
 
-    // Refs to always have latest values inside interval closures
+
     const snakeRef = useRef(snake);
     const foodRef = useRef(food);
     const directionRef = useRef(direction);
@@ -89,6 +89,7 @@ export default function SnakeGame({ customAutoPlay = null, isPaused = false }) {
                 } else {
                     setDirection({ x: 1, y: 0 });
                     directionRef.current = { x: 1, y: 0 };
+                    setScore(0); //reset score to match snake reset
                     return [{ x: 10, y: 10 }];
                 }
             }
