@@ -15,7 +15,7 @@ export default function SnakeGame({ customAutoPlay = null, isPaused = false }) {
     const [gameOver, setGameOver] = useState(false);
     const [score, setScore] = useState(0);
     const [isAutoPlaying, setIsAutoPlaying] = useState(!!customAutoPlay);
-    const [showBanner, setShowBanner] = useState(true);
+    const [showBanner, setShowBanner] = useState(!customAutoPlay);
 
 
     const snakeRef = useRef(snake);
