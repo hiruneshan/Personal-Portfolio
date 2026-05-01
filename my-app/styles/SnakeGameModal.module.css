@@ -104,7 +104,7 @@
     z-index: 2000;
     overflow-y: auto;
     font-family: 'Share Tech Mono', 'VT323', monospace;
-    font-size: 1.25rem;
+    font-size: 1.1rem;
     line-height: 1.6;
     color: var(--color-text-primary);
     backdrop-filter: blur(8px);
@@ -125,4 +125,4 @@
 
 .closeDocButton:hover {
     color: var(--color-accent);
-}
+}

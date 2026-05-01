@@ -5,53 +5,65 @@ import SnakeGame from './SnakeGame';
  * A* Pathfinding Logic for Snake Game
  */
 export default function AStarTestingSnakeGame({ isPaused = false }) {
-    // The autoPlay function using A*
     const autoPlayAStar = useMemo(() => {
         return (snake, food, TILE_COUNT) => {
             const head = snake[0];
-            
-            // Helper to get distance accounting for wrapping grid
+
             const getDist = (a, b) => {
                 const dx = Math.min(Math.abs(a.x - b.x), TILE_COUNT - Math.abs(a.x - b.x));
                 const dy = Math.min(Math.abs(a.y - b.y), TILE_COUNT - Math.abs(a.y - b.y));
                 return dx + dy;
             };
 
+            const posKey = (x, y) => `${x},${y}`;
+
             const getNeighbors = (node) => {
-                const dirs = [{x: 0, y: -1}, {x: 0, y: 1}, {x: -1, y: 0}, {x: 1, y: 0}];
+                const dirs = [{ x: 0, y: -1 }, { x: 0, y: 1 }, { x: -1, y: 0 }, { x: 1, y: 0 }];
                 const neighbors = [];
                 for (let d of dirs) {
                     const nx = (node.x + d.x + TILE_COUNT) % TILE_COUNT;
                     const ny = (node.y + d.y + TILE_COUNT) % TILE_COUNT;
-                    
-                    // Treat the snake's body as obstacles.
-                    // We don't check the very last tail segment because it will move forward.
+
                     const isBody = snake.some((segment, index) => {
-                        if (index === snake.length - 1) return false; 
+                        if (index === snake.length - 1) return false;
                         return segment.x === nx && segment.y === ny;
                     });
-                    
+
                     if (!isBody) {
-                        neighbors.push({x: nx, y: ny, dx: d.x, dy: d.y});
+                        neighbors.push({ x: nx, y: ny, dx: d.x, dy: d.y });
                     }
                 }
                 return neighbors;
             };
 
-            // A* Search initialization
-            const openSet = [ { ...head, g: 0, h: getDist(head, food), f: getDist(head, food), parent: null, dx: 0, dy: 0 } ];
+            // Flood fill — counts how many tiles are reachable from a given node.
+            // Used to pick the safest fallback direction when A* can't find a path.
+            const floodFill = (startNode) => {
+                const visited = new Set();
+                const queue = [startNode];
+                visited.add(posKey(startNode.x, startNode.y));
+                while (queue.length > 0) {
+                    const node = queue.shift();
+                    for (const neighbor of getNeighbors(node)) {
+                        const key = posKey(neighbor.x, neighbor.y);
+                        if (!visited.has(key)) {
+                            visited.add(key);
+                            queue.push(neighbor);
+                        }
+                    }
+                }
+                return visited.size;
+            };
+
+            // A* Search
+            const openSet = [{ ...head, g: 0, h: getDist(head, food), f: getDist(head, food), parent: null, dx: 0, dy: 0 }];
             const closedSet = new Set();
-            
-            const posKey = (x, y) => `${x},${y}`;
 
             while (openSet.length > 0) {
-                // Get node with lowest f
                 openSet.sort((a, b) => a.f - b.f);
                 const current = openSet.shift();
 
-                // If path to food is found
                 if (current.x === food.x && current.y === food.y) {
-                    // Trace back to the first move
                     let curr = current;
                     while (curr.parent && curr.parent.parent) {
                         curr = curr.parent;
@@ -80,13 +92,16 @@ export default function AStarTestingSnakeGame({ isPaused = false }) {
                 }
             }
 
-            // If no path to food is found (e.g. blocked), just make a safe move (survival mode)
+            // No path to food found — use flood fill to pick the direction with the most open space
             const safeNeighbors = getNeighbors(head);
             if (safeNeighbors.length > 0) {
-                return { x: safeNeighbors[0].dx, y: safeNeighbors[0].dy };
+                const best = safeNeighbors.reduce((bestN, n) => {
+                    return floodFill(n) >= floodFill(bestN) ? n : bestN;
+                }, safeNeighbors[0]);
+                return { x: best.dx, y: best.dy };
             }
 
-            // If completely trapped, return a default move (will cause game over)
+            // Completely trapped — no moves available
             return { x: 0, y: -1 };
         };
     }, []);
