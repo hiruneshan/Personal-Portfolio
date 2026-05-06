@@ -15,10 +15,10 @@ const experienceData = [
         type: "CURRENT_DUNGEON",
         status: "ACTIVE_RAID",
         location: "Toronto, Canada",
-        description: [ // an empty array because of incoming 
+        description: [
             "Incoming IT Systems & Programmer"
         ],
-        icon: "star"//double check
+        icon: "star"
     },
     {
         id: "r3",
