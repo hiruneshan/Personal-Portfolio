@@ -10,13 +10,13 @@ const experienceData = [
         id: "r0",
         company: "Government of Ontario",
         url: "",
-        role: "Systems Programmer",
+        role: "IT Systems & Programmer – CO-OP",
         date: "May 2026 - Sept 2026",
         type: "CURRENT_DUNGEON",
         status: "ACTIVE_RAID",
         location: "Toronto, Canada",
         description: [
-            "Incoming IT Systems & Programmer"
+            "Ministry of Public and Business Service Delivery and Procurement, Justice Technology Services"
         ],
         icon: "star"
     },
