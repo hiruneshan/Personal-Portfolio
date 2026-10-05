@@ -60,7 +60,8 @@ export default function AboutSection() {
                 <h3 className={styles.terminalHeader}># about_me</h3>
                 <div className={styles.terminalBody}>
                   <p>
-                    Hi, I’m Hiru I’m a software development student in Toronto, Canada, who loves building things with code. I enjoy backend development, solving tricky problems, and learning new technologies. When I’m not coding, you’ll probably find me skating, traveling, or trying new food.
+                    Hi, I’m Hiru. I’m a software development student in Toronto, Canada, who loves building things with code. I enjoy backend development, solving tricky problems, and playing around with new technologies. When I’m not coding, you’ll probably find me reading, skating, traveling, or trying some new food.
+
                   </p>
                 </div>
               </div>

@@ -50,6 +50,7 @@
     margin-right: auto;
     margin-left: 20%;
     /* Shift grid to the right */
+    align-items: start;
 }
 
 /* --- LEFT COLUMN: Quest List (Timeline) --- */
@@ -60,6 +61,8 @@
     gap: 30px;
     padding-left: 20px;
     /* Space for part of the icon to hang out if needed */
+    align-self: start;
+    height: fit-content;
 }
 
 /* Dashed vertical line */
@@ -67,8 +70,8 @@
     position: absolute;
     left: 42px;
     /* Center with icon center approx */
-    top: 20px;
-    bottom: 20px;
+    top: 24px;
+    bottom: 24px;
     width: 4px;
     /* Orange dashed line logic */
     background-image: linear-gradient(to bottom, #FE7F2D 50%, transparent 50%);
